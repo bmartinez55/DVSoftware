@@ -13,7 +13,7 @@
         android:theme="@style/Theme.DVSoftware"
         tools:targetApi="31">
         <activity
-            android:name="el.dv.fayucafinder.MainActivity"
+            android:name="el.dv.fayucafinder.core.view.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.DVSoftware.NoActionBar">

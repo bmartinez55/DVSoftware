@@ -52,6 +52,7 @@ dependencies {
 
     // DI
     api "io.insert-koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
 
     // Test
     testImplementation "junit:junit:$junit_version"
