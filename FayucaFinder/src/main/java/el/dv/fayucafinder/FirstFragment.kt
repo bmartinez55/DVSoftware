@@ -1,13 +1,12 @@
 package el.dv.fayucafinder
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import el.dv.dvsoftware.R
-import el.dv.dvsoftware.databinding.FragmentFirstBinding
+import el.dv.fayucafinder.databinding.FragmentFirstBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
