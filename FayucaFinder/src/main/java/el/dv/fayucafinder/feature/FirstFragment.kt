@@ -1,4 +1,4 @@
-package el.dv.fayucafinder.view
+package el.dv.fayucafinder.feature
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import el.dv.fayucafinder.R
 import el.dv.fayucafinder.databinding.FragmentFirstBinding
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * Fragment that host the one feature
  */
 class FirstFragment : Fragment() {
 
