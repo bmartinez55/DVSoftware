@@ -12,7 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import el.dv.fayucafinder.R
 import el.dv.fayucafinder.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class FayucaFinderActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding

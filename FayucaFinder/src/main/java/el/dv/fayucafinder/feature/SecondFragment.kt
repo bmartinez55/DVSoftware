@@ -1,4 +1,4 @@
-package el.dv.fayucafinder.view
+package el.dv.fayucafinder.feature
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +9,8 @@ import androidx.navigation.fragment.findNavController
 import el.dv.fayucafinder.R
 import el.dv.fayucafinder.databinding.FragmentSecondBinding
 
-
 /**
- * A simple [Fragment] subclass as the second destination in the navigation.
+ * Fragment that holds one of the features
  */
 class SecondFragment : Fragment() {
 
