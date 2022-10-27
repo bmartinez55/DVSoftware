@@ -15,7 +15,10 @@ class AccountFragment : Fragment() {
     private lateinit var binding: FullScreenComposeLayoutBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FullScreenComposeLayoutBinding.inflate(inflater, container, false).also {
             it.lifecycleOwner = this@AccountFragment
         }
@@ -26,5 +29,4 @@ class AccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
-
 }
