@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="el.dv.fayucafinder.core.view.bottomnavigation.BottomNavigationFragment">
+    <item
+        android:id="@+id/mapNavGraph"
+        android:title="@string/map"
+        android:icon="@drawable/ic_map_icon"/>
+
+    <item
+        android:id="@+id/accountNavGraph"
+        android:title="@string/account"
+        android:icon="@drawable/ic_account_circle_icon"/>
+</menu>

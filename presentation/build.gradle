@@ -38,6 +38,9 @@ dependencies {
     api "androidx.appcompat:appcompat:$app_compat_version"
 
     // Jetpack Suite or UI
+    api "androidx.fragment:fragment-ktx:$fragment_version"
+    api "com.google.android.material:material:$material_version"
+    api "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
     api "com.google.android.material:material:$material_version"
     api "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
     api "androidx.compose.animation:animation:$compose_version"
@@ -46,13 +49,20 @@ dependencies {
     api "androidx.compose.runtime:runtime:$compose_version"
     api "androidx.compose.ui:ui:$compose_version"
 
+    // Navigation
+    api "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    api "androidx.navigation:navigation-ui-ktx:$navigation_version"
+    api "androidx.navigation:navigation-compose:$navigation_version"
+
     // Threads
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
     // DI
     api "io.insert-koin:koin-core:$koin_version"
-    implementation "io.insert-koin:koin-android:$koin_version"
+    api "io.insert-koin:koin-android:$koin_android_version"
+    api "io.insert-koin:koin-androidx-compose:$koin_android_version"
+    api "io.insert-koin:koin-androidx-navigation:$koin_android_version"
 
     // Test
     testImplementation "junit:junit:$junit_version"
