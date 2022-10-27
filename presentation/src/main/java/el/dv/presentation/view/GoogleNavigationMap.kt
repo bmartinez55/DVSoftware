@@ -1,4 +1,3 @@
 package el.dv.presentation.view
 
-class GoogleNavigationMap {
-}
+class GoogleNavigationMap

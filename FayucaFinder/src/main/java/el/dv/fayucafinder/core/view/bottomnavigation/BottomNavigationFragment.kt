@@ -33,7 +33,7 @@ class BottomNavigationFragment : Fragment() {
         bottomNavigationNavController = navHost.navController
         binding.bottomNavView.setupWithNavController(bottomNavigationNavController)
         binding.bottomNavView.setOnItemReselectedListener { item ->
-            val selectedMenuItemNavGraph = navHost .navController.graph.findNode(item.itemId) as NavGraph
+            val selectedMenuItemNavGraph = navHost.navController.graph.findNode(item.itemId) as NavGraph
             selectedMenuItemNavGraph.let { menuGraph ->
                 navHost.navController.popBackStack(menuGraph.startDestinationId, inclusive = false)
             }
