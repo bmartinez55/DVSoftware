@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "304035302103",
+    "project_id": "fayuca-finder",
+    "storage_bucket": "fayuca-finder.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:304035302103:android:4445a6a1364b7641b63e92",
+        "android_client_info": {
+          "package_name": "el.dv.fayucafinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "304035302103-k90a1vah2h8vutrm7on6fapktt0urc8t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC67yyB65wuY4ZsAHDrAW_uP6w17suzRKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "304035302103-k90a1vah2h8vutrm7on6fapktt0urc8t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:304035302103:android:d23708166e758a1fb63e92",
+        "android_client_info": {
+          "package_name": "el.dv.presentation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "304035302103-k90a1vah2h8vutrm7on6fapktt0urc8t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC67yyB65wuY4ZsAHDrAW_uP6w17suzRKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "304035302103-k90a1vah2h8vutrm7on6fapktt0urc8t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
