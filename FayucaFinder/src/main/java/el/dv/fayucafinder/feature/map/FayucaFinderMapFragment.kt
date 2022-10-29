@@ -1,4 +1,4 @@
-package el.dv.fayucafinder.feature
+package el.dv.fayucafinder.feature.map
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,29 +14,39 @@ import el.dv.domain.logging.AppLog
 import el.dv.domain.navigation.NavigationMap
 import el.dv.domain.navigation.NavigationMapFactory
 import el.dv.fayucafinder.R
-import el.dv.fayucafinder.databinding.MapLayoutBinding
+import el.dv.fayucafinder.databinding.FayucaFinderMapLayoutBinding
+import el.dv.presentation.extension.onBackPress
+import el.dv.presentation.view.effect.ViewEffect
+import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
-/**
- * Fragment that host the one feature
- */
-class MapFragment : Fragment(), OnMapReadyCallback {
+class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
 
+    private val viewModel: FayucaFinderMapVM by viewModel()
     private val navigationMapFactory: NavigationMapFactory<GoogleMap, Marker> by inject()
     private lateinit var navigationMap: NavigationMap<GoogleMap, Marker>
-    private lateinit var binding: MapLayoutBinding
+    private lateinit var binding: FayucaFinderMapLayoutBinding
+    private val fayucaFinderMapLifecycleObserver: FayucaFinderMapLifecycleObserver = get {
+        parametersOf(
+            this,
+            {},
+            {}
+        )
+    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = MapLayoutBinding.inflate(inflater, container, false).also {
-            it.lifecycleOwner = this@MapFragment
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = FayucaFinderMapLayoutBinding.inflate(inflater, container, false).also {
+            it.lifecycleOwner = this@FayucaFinderMapFragment
+            it.vm = viewModel
         }
 
         ((childFragmentManager.findFragmentById(R.id.map_container)) as SupportMapFragment).let {
             it.getMapAsync(this)
+        }
+
+        onBackPress(false) {
         }
 
         return binding.root
@@ -44,6 +54,15 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.viewEffect.observe(viewLifecycleOwner) { viewEffect ->
+            triggerViewEffect(viewEffect)
+        }
+    }
+
+    private fun triggerViewEffect(viewEffect: ViewEffect) {
+        when (viewEffect) {
+            is ViewEffect.Default -> {}
+        }
     }
 
     override fun onMapReady(map: GoogleMap) {
@@ -52,6 +71,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             map.let { googleMap ->
                 navigationMap = navigationMapFactory.getNavigationMap(googleMap)
                 MapsInitializer.initialize(context)
+                viewModel.handleEvent(FayucaFinderMapViewEvent.ViewLoaded)
             }
         }
     }

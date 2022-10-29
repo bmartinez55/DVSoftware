@@ -3,9 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="el.dv.fayucafinder.feature.MapFragment">
+    tools:context="el.dv.fayucafinder.feature.map.FayucaFinderMapFragment">
 
-    <data></data>
+    <data>
+        <variable
+            name="vm"
+            type="el.dv.fayucafinder.feature.map.FayucaFinderMapVM" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

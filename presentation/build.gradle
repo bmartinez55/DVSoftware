@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
+    id 'kotlin-kapt'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
     id 'com.google.gms.google-services'
 }
@@ -25,6 +26,12 @@ android {
         }
     }
 
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+        compose true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -35,7 +42,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "$compose_version"
+        kotlinCompilerExtensionVersion = "$compose_compiler_version"
     }
 
     testOptions {
@@ -43,6 +50,13 @@ android {
             includeAndroidResources true
         }
         animationsDisabled true
+    }
+    sourceSets {
+        main {
+            res {
+                srcDirs 'src/main/res'
+            }
+        }
     }
 }
 

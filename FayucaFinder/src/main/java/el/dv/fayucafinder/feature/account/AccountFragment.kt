@@ -1,4 +1,4 @@
-package el.dv.fayucafinder.feature
+package el.dv.fayucafinder.feature.account
 
 import android.os.Bundle
 import android.view.LayoutInflater
