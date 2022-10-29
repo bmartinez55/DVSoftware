@@ -17,6 +17,8 @@ import el.dv.fayucafinder.R
 import el.dv.fayucafinder.databinding.FayucaFinderMapLayoutBinding
 import el.dv.presentation.extension.onBackPress
 import el.dv.presentation.view.effect.ViewEffect
+import el.dv.presentation.view.manager.dialog.DialogManager
+import el.dv.presentation.view.manager.notification.NotificationManager
 import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -27,6 +29,8 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
     private val viewModel: FayucaFinderMapVM by viewModel()
     private val navigationMapFactory: NavigationMapFactory<GoogleMap, Marker> by inject()
     private lateinit var navigationMap: NavigationMap<GoogleMap, Marker>
+    private val dialogManager: DialogManager by inject()
+    private val notificationManager: NotificationManager by inject()
     private lateinit var binding: FayucaFinderMapLayoutBinding
     private val fayucaFinderMapLifecycleObserver: FayucaFinderMapLifecycleObserver = get {
         parametersOf(
