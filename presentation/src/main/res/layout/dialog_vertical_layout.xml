@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="24dp"
+        android:background="?attr/colorPrimary">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:textSize="32sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Dialog Text Title" />
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="24sp"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Dialog Text Message" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_positive_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:letterSpacing="0"
+            android:paddingHorizontal="28dp"
+            android:paddingVertical="12dp"
+            android:stateListAnimator="@null"
+            android:textAllCaps="false"
+            app:cornerRadius="42dp"
+            app:strokeWidth="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/message"
+            tools:text="Ok" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_negative_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:letterSpacing="0"
+            android:paddingHorizontal="28dp"
+            android:paddingVertical="12dp"
+            android:stateListAnimator="@null"
+            android:textAllCaps="false"
+            app:cornerRadius="42dp"
+            app:strokeWidth="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/message"
+            tools:text="Cancel" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

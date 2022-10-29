@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/accountFragment"
-        android:name="el.dv.fayucafinder.feature.AccountFragment"
+        android:name="el.dv.fayucafinder.feature.account.AccountFragment"
         android:label="account_layout"
         tools:layout="@layout/full_screen_compose_layout" />
 </navigation>
