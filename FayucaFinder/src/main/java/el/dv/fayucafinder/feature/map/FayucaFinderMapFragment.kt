@@ -1,5 +1,6 @@
 package el.dv.fayucafinder.feature.map
 
+import android.Manifest
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import el.dv.domain.navigation.NavigationMapFactory
 import el.dv.fayucafinder.R
 import el.dv.fayucafinder.databinding.FayucaFinderMapLayoutBinding
 import el.dv.presentation.extension.onBackPress
+import el.dv.presentation.permission.Permission
 import el.dv.presentation.view.effect.ViewEffect
 import el.dv.presentation.view.manager.dialog.DialogManager
 import el.dv.presentation.view.manager.notification.NotificationManager
@@ -52,6 +54,13 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
 
         onBackPress(false) {
         }
+
+        viewModel.handleEvent(
+            FayucaFinderMapViewEvent.Init(
+                permission = Permission(permissionId = Manifest.permission.ACCESS_FINE_LOCATION),
+                fragment = this
+            )
+        )
 
         return binding.root
     }
