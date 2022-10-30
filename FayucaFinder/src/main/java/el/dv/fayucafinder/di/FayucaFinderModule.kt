@@ -16,7 +16,9 @@ import org.koin.dsl.module
 val appModule = module {
     viewModel {
         FayucaFinderMapVM(
-            appDictionary = get()
+            permissionFactory = get(),
+            appDictionary = get(),
+            context = androidContext()
         )
     }
 
