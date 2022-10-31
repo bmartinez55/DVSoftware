@@ -2,7 +2,7 @@ package el.dv.domain.core
 
 interface UseCase
 
-interface MainUseCase<Param, Result> : UseCase {
+interface DefaultUseCase<Param, Result> : UseCase {
     fun run(param: Param): Result
 }
 

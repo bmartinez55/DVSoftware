@@ -22,7 +22,7 @@ interface DialogManager {
         onKeyListener: OnKeyListener? = null
     )
 
-    fun hideDialog()
+    fun dismiss()
 }
 
 class DialogManagerVertical(@StyleRes val themeStyleResId: Int) : DialogManager {
@@ -73,7 +73,7 @@ class DialogManagerVertical(@StyleRes val themeStyleResId: Int) : DialogManager 
         }
     }
 
-    override fun hideDialog() {
+    override fun dismiss() {
         dialog?.dismiss()
     }
 }

@@ -1,7 +1,7 @@
 package el.dv.domain.navigation.model
 
 import androidx.annotation.ColorRes
-import el.dv.domain.location.Geolocation
+import el.dv.domain.core.Geolocation
 
 data class AddGeoPolylineRequest(
     val geoRoute: GeoRoute,

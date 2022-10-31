@@ -5,12 +5,9 @@
     <string name="map">Map</string>
     <string name="account">Account</string>
 
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <!--Location related strings-->
+    <string name="turn_location_on" translatable="false">Turn Location On</string>
+    <string name="turn_location_on_desc" translatable="false">For better experience, we need your location. Please turn on location.</string>
+    <string name="open_settings" translatable="false">Open Settings</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

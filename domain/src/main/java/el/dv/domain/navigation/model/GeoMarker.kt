@@ -2,7 +2,7 @@ package el.dv.domain.navigation.model
 
 import android.graphics.Bitmap
 import androidx.annotation.DrawableRes
-import el.dv.domain.location.Geolocation
+import el.dv.domain.core.Geolocation
 
 data class AddGeoMarkerRequest(
     val location: Geolocation,

@@ -21,6 +21,8 @@ import el.dv.presentation.permission.Permission
 import el.dv.presentation.view.effect.ViewEffect
 import el.dv.presentation.view.manager.dialog.DialogManager
 import el.dv.presentation.view.manager.notification.NotificationManager
+import el.dv.presentation.view.state.NavigationMapCenter
+import el.dv.presentation.view.state.NavigationMapState
 import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -37,8 +39,12 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
     private val fayucaFinderMapLifecycleObserver: FayucaFinderMapLifecycleObserver = get {
         parametersOf(
             this,
-            {},
-            {}
+            {
+                viewModel.handleEvent(FayucaFinderMapViewEvent.GetLocation)
+            },
+            {
+                viewModel.handleEvent(FayucaFinderMapViewEvent.StopLocation)
+            }
         )
     }
 
@@ -67,13 +73,82 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.viewState.observe(viewLifecycleOwner) { viewState ->
+            renderNavigationMapState(viewState.navigationMapState)
+        }
         viewModel.viewEffect.observe(viewLifecycleOwner) { viewEffect ->
             triggerViewEffect(viewEffect)
         }
     }
 
+    private fun renderNavigationMapState(viewState: NavigationMapState) {
+        if (!::navigationMap.isInitialized) {
+            AppLog.e(TAG, "renderNavigationMapState called when google map is not initialized")
+            return
+        }
+
+        when (viewState) {
+            is NavigationMapState.Init -> {}
+            is NavigationMapState.Idle -> {}
+            is NavigationMapState.Hide -> with(binding) {
+                mapContainer.visibility = View.GONE
+            }
+            is NavigationMapState.Show -> with(binding) {
+                mapContainer.visibility = View.VISIBLE
+                navigationMap.setZoomGestureEnabled(viewState.mapFeature.zoomGestureEnabled)
+                navigationMap.setRotationGestureEnabled(viewState.mapFeature.rotationGestureEnabled)
+                navigationMap.setTiltGestureEnabled(viewState.mapFeature.tiltGestureEnabled)
+                navigationMap.setBuildingEnabled(viewState.mapFeature.buildingEnabled)
+                navigationMap.setIndoorEnabled(viewState.mapFeature.indoorEnabled)
+                navigationMap.setTrafficEnabled(viewState.mapFeature.trafficEnabled)
+                navigationMap.setUserLocationEnabled(viewState.mapFeature.userLocationEnabled)
+                navigationMap.setMapToolbarEnabled(viewState.mapFeature.mapToolbarEnabled)
+                navigationMap.setMapInteractionListener(viewState.interactionListener, viewState.interactionFilterLogic)
+                when (val navigationMapCenter = viewState.navigationMapCenter) {
+                    is NavigationMapCenter.Unbounded -> navigationMap.setMapCenterLocation(
+                        location = navigationMapCenter.centerLocation,
+                        zoomLevel = navigationMapCenter.zoomLevel,
+                        animate = navigationMapCenter.animate
+                    )
+                    is NavigationMapCenter.Bounded -> navigationMap.setMapCenterLocation(
+                        coordinateList = navigationMapCenter.coordinateList,
+                        boundingBoxPadding = navigationMapCenter.boundBoxPadding,
+                        animate = navigationMapCenter.animate
+                    )
+                }
+            }
+            is NavigationMapState.UpdateCenterLocation -> {
+                when (val navigationMapCenter = viewState.navigationMapCenter) {
+                    is NavigationMapCenter.Unbounded -> navigationMap.setMapCenterLocation(
+                        location = navigationMapCenter.centerLocation,
+                        zoomLevel = navigationMapCenter.zoomLevel,
+                        animate = navigationMapCenter.animate
+                    )
+                    is NavigationMapCenter.Bounded -> navigationMap.setMapCenterLocation(
+                        coordinateList = navigationMapCenter.coordinateList,
+                        boundingBoxPadding = navigationMapCenter.boundBoxPadding,
+                        animate = navigationMapCenter.animate
+                    )
+                }
+                navigationMap.setUserLocationEnabled(viewState.showCurrentLocation)
+            }
+        }
+    }
+
     private fun triggerViewEffect(viewEffect: ViewEffect) {
         when (viewEffect) {
+            is ViewEffect.ShowDialogEffect -> dialogManager.showDialog(
+                context = viewEffect.context,
+                title = viewEffect.title,
+                message = viewEffect.message,
+                positiveButtonTitle = viewEffect.positiveButtonTitle,
+                positiveClickListener = viewEffect.positiveClickListener,
+                negativeButtonTitle = viewEffect.negativeButtonTitle,
+                negativeClickListener = viewEffect.negativeClickListener,
+                onKeyListener = viewEffect.onKeyListener
+            )
+            is ViewEffect.DismissDialogEffect -> dialogManager.dismiss()
+            is ViewEffect.StartActivityEffect -> activity?.startActivity(viewEffect.intent)
             is ViewEffect.Default -> {}
         }
     }

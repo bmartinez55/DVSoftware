@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Common Button Text-->
+    <string name="ok" translatable="false">Ok</string>
+    <string name="confirm" translatable="false">Confirm</string>
+    <string name="back" translatable="false">Back</string>
+    <string name="cancel" translatable="false">False</string>
+
+</resources>

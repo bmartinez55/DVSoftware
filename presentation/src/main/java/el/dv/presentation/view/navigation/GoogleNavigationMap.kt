@@ -8,7 +8,7 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import el.dv.domain.location.Geolocation
+import el.dv.domain.core.Geolocation
 import el.dv.domain.logging.AppLog
 import el.dv.domain.navigation.NavigationMap
 import el.dv.domain.navigation.NavigationMapInteractionListener
@@ -65,14 +65,6 @@ class GoogleNavigationMap(
         when (animate) {
             true -> map.animateCamera(CameraUpdateFactory.zoomTo(zoomLevel))
             false -> map.moveCamera(CameraUpdateFactory.zoomTo(zoomLevel))
-        }
-    }
-
-    override fun scrollBy(xPixel: Float, yPixel: Float, animate: Boolean) {
-        AppLog.d(TAG, "scrollBy")
-        when (animate) {
-            true -> map.animateCamera(CameraUpdateFactory.scrollBy(xPixel, yPixel))
-            false -> map.moveCamera(CameraUpdateFactory.scrollBy(xPixel, yPixel))
         }
     }
 
@@ -150,7 +142,7 @@ class GoogleNavigationMap(
     override fun setUserLocationEnabled(enable: Boolean) {
         AppLog.d(TAG, "setUserLocationEnabled")
         map.isMyLocationEnabled = enable
-        map.uiSettings.isMyLocationButtonEnabled = enable
+        map.uiSettings.isMyLocationButtonEnabled = false
     }
 
     override fun setMapToolbarEnabled(enable: Boolean) {
