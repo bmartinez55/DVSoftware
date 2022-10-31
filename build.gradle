@@ -35,6 +35,8 @@ buildscript {
     // Google Firebase && Play Services
     ext.google_play_services_version = '4.3.14'
     ext.google_places_version = '2.6.0'
+    ext.google_maps_utils_version = '2.4.0'
+    ext.google_maps_ktx_version = '3.1.0'
     ext.mapsplatform_secrets_version = '2.0.1'
     ext.play_services_map_version = '18.1.0'
     ext.play_services_location_version = '21.0.0'
