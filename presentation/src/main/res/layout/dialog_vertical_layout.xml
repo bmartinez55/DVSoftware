@@ -19,8 +19,8 @@
             android:layout_height="wrap_content"
             android:gravity="top"
             android:textSize="32sp"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Dialog Text Title" />
 
         <TextView
