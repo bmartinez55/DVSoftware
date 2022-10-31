@@ -1,6 +1,6 @@
 package el.dv.domain.navigation
 
-import el.dv.domain.location.Geolocation
+import el.dv.domain.core.Geolocation
 import el.dv.domain.navigation.model.AddGeoMarkerRequest
 import el.dv.domain.navigation.model.GeoMarker
 import el.dv.domain.navigation.model.MapVisualType
@@ -37,14 +37,6 @@ interface NavigationMap<MapType, MarkerType> {
      * @param animate
      */
     fun setZoomLevel(zoomLevel: Float, animate: Boolean = false)
-
-    /**
-     * Scroll map camera by given x and y values
-     * @param xPixel: Float
-     * @param yPixel: Float
-     * @param animate: Boolean
-     */
-    fun scrollBy(xPixel: Float, yPixel: Float, animate: Boolean = false)
 
     /**
      * Set map center point

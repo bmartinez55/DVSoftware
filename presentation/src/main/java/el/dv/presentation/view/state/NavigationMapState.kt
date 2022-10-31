@@ -1,6 +1,6 @@
 package el.dv.presentation.view.state
 
-import el.dv.domain.location.Geolocation
+import el.dv.domain.core.Geolocation
 import el.dv.domain.navigation.NavigationMapInteractionListener
 import el.dv.domain.navigation.model.NavigationMapFeature
 import el.dv.domain.navigation.model.NavigationMapInteractionType

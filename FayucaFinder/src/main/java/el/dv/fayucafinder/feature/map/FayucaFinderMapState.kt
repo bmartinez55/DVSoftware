@@ -11,6 +11,12 @@ data class NavigationViewReadyState(
     val view: ReadyState = ReadyState.NotReady
 ) {
     fun isReady() = location is ReadyState.Ready && view is ReadyState.Ready
+    fun isLocationNotReady() = location is ReadyState.NotReady
+}
+
+enum class NavigationReadyRequirement {
+    Location,
+    View
 }
 
 sealed class ReadyState {
