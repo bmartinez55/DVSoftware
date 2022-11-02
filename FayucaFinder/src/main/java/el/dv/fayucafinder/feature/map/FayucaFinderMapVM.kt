@@ -299,7 +299,8 @@ class FayucaFinderMapVM(
                     navigationMapState = NavigationMapState.UpdateCenterLocation(
                         navigationMapCenter = NavigationMapCenter.Unbounded(
                             centerLocation = state.userCurrentLocation,
-                            zoomLevel = Const.CURRENT_LOCATION_SELECTION_ZOOM_LEVEL
+                            zoomLevel = Const.CURRENT_LOCATION_SELECTION_ZOOM_LEVEL,
+                            animate = true
                         ),
                         showCurrentLocation = state.locationPermissionGranted
                     )
