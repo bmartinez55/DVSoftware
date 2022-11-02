@@ -11,6 +11,7 @@ sealed class FayucaFinderMapViewEvent {
     data class CheckIfPermissionIsGranted(val permission: Permission) : FayucaFinderMapViewEvent()
     data class RequestForPermissionReceived(val permission: Permission, val permissionResult: PermissionResult) : FayucaFinderMapViewEvent()
     data class MapInteractedByUser(val interactionType: NavigationMapInteractionType) : FayucaFinderMapViewEvent()
+    object CurrentLocationMenuClick : FayucaFinderMapViewEvent()
 
     // Lifecycle associated ViewEvents
     object GetLocation : FayucaFinderMapViewEvent()
