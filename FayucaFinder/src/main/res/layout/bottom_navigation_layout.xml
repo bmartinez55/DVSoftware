@@ -19,13 +19,16 @@
             app:navGraph="@navigation/bottom_nav_graph"
             app:defaultNavHost="true"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout="@layout/fayuca_finder_map_layout" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav_view"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:itemIconTint="@color/bottom_nav_text_color_selector"
+            app:itemTextColor="@color/bottom_nav_text_color_selector"
             app:menu="@menu/bottom_nav_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
