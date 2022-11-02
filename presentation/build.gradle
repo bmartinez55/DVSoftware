@@ -63,19 +63,20 @@ android {
 dependencies {
     api project(":data")
     api project(":xml-uikit")
+    api project(":compose-uikit")
 
+    // Androidx
     api "androidx.core:core-ktx:$core_ktx_version"
     api "androidx.appcompat:appcompat:$app_compat_version"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    api "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    api "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
     // Jetpack Suite or UI
     api "androidx.fragment:fragment-ktx:$fragment_version"
     api "com.google.android.material:material:$material_version"
     api "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
-    api "androidx.compose.animation:animation:$compose_version"
-    api "androidx.compose.foundation:foundation:$compose_version"
-    api "androidx.compose.material:material:$compose_version"
-    api "androidx.compose.runtime:runtime:$compose_version"
-    api "androidx.compose.ui:ui:$compose_version"
 
     // Navigation
     api "androidx.navigation:navigation-fragment-ktx:$navigation_version"
@@ -90,13 +91,10 @@ dependencies {
     }
     api platform("com.google.firebase:firebase-bom:$firebase_bom_version")
 
-    // Threads
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-
     // DI
     api "io.insert-koin:koin-core:$koin_version"
     api "io.insert-koin:koin-android:$koin_android_version"
+    api "io.insert-koin:koin-androidx-viewmodel:$koin_viewmodel_version"
 
     // Test
     testImplementation "junit:junit:$junit_version"
