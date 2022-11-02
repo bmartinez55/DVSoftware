@@ -7,7 +7,7 @@ import com.google.android.gms.maps.model.LatLng
 import el.dv.domain.core.Geolocation
 import kotlinx.coroutines.channels.SendChannel
 
-typealias OnAction = () -> Unit
+typealias ActionListener = () -> Unit
 
 fun Geolocation.toGoogleLatLng(): LatLng {
     return LatLng(this.lat, this.lon)
@@ -37,4 +37,10 @@ fun <E> SendChannel<E>.offerWhenOpen(data: E) {
         false -> this.trySend(data)
         else -> {}
     }
+}
+
+fun <K, V> Map<K, V>.addOrUpdate(key: K, value: V): Map<K, V> {
+    return this.toMutableMap().apply {
+        this[key] = value
+    }.toMap()
 }

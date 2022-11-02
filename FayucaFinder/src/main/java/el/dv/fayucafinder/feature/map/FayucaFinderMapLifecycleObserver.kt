@@ -3,12 +3,12 @@ package el.dv.fayucafinder.feature.map
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import el.dv.domain.logging.AppLog
-import el.dv.presentation.extension.OnAction
+import el.dv.presentation.extension.ActionListener
 
 class FayucaFinderMapLifecycleObserver(
     private val lifecycleOwner: LifecycleOwner,
-    private val onResumeAction: OnAction,
-    private val onPauseAction: OnAction,
+    private val onResumeAction: ActionListener,
+    private val onPauseAction: ActionListener,
 ) : DefaultLifecycleObserver {
 
     init {

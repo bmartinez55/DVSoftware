@@ -4,7 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import el.dv.fayucafinder.R
 import el.dv.fayucafinder.feature.map.FayucaFinderMapLifecycleObserver
 import el.dv.fayucafinder.feature.map.FayucaFinderMapVM
-import el.dv.presentation.extension.OnAction
+import el.dv.presentation.extension.ActionListener
 import el.dv.presentation.sensor.AccelerometerSensor
 import el.dv.presentation.sensor.GyroscopeSensor
 import el.dv.presentation.view.manager.dialog.DialogManager
@@ -27,7 +27,7 @@ val appModule = module {
         )
     }
 
-    factory { (lifecycleOwner: LifecycleOwner, OnResumeAction: OnAction, OnPauseAction: OnAction) ->
+    factory { (lifecycleOwner: LifecycleOwner, OnResumeAction: ActionListener, OnPauseAction: ActionListener) ->
         FayucaFinderMapLifecycleObserver(lifecycleOwner = lifecycleOwner, onResumeAction = OnResumeAction, onPauseAction = OnPauseAction)
     }
 
