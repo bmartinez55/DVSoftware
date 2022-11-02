@@ -17,6 +17,7 @@ import el.dv.domain.logging.AppLog
 import el.dv.domain.navigation.model.MapZoomType
 import el.dv.domain.navigation.model.NavigationMapFeature
 import el.dv.domain.navigation.model.NavigationMapInteractionType
+import el.dv.fayucafinder.util.Const
 import el.dv.presentation.location.usecase.GetLocationUseCase
 import el.dv.presentation.location.usecase.StopLocationUseCase
 import el.dv.presentation.permission.Permission
@@ -86,6 +87,7 @@ class FayucaFinderMapVM(
                     is FayucaFinderMapViewEvent.MapInteractedByUser -> handleMapInteractedByUser(event)
                     is FayucaFinderMapViewEvent.GetLocation -> handleGetLocation(event)
                     is FayucaFinderMapViewEvent.StopLocation -> handleStopLocation(event)
+                    is FayucaFinderMapViewEvent.CurrentLocationMenuClick -> handleCurrentLocationMenuClicked(event)
                 }
             }
             .launchIn(viewModelScope)
@@ -152,7 +154,7 @@ class FayucaFinderMapVM(
                         state.isReady() -> NavigationMapState.Show(
                             navigationMapCenter = NavigationMapCenter.Unbounded(
                                 centerLocation = state.userCurrentLocation,
-                                zoomLevel = MAP_ZOOM_LEVEL,
+                                zoomLevel = Const.CITY_SELECTION_ZOOM_LEVEL,
                                 animate = false
                             ),
                             mapFeature = NavigationMapFeature(
@@ -173,12 +175,13 @@ class FayucaFinderMapVM(
                         !state.userCurrentLocation.isDefault() -> NavigationMapState.UpdateCenterLocation(
                             NavigationMapCenter.Unbounded(
                                 centerLocation = state.userCurrentLocation,
-                                zoomLevel = MAP_ZOOM_LEVEL,
+                                zoomLevel = Const.CITY_SELECTION_ZOOM_LEVEL,
                                 animate = false
                             )
                         )
                         else -> NavigationMapState.Idle
-                    }
+                    },
+                    currentLocationMenuState = CurrentLocationMenuState.Show
                 )
             )
         )
@@ -286,6 +289,24 @@ class FayucaFinderMapVM(
                 )
             )
         }
+    }
+
+    private fun handleCurrentLocationMenuClicked(event: FayucaFinderMapViewEvent.CurrentLocationMenuClick) {
+        AppLog.d(TAG, "handleCurrentLocationMenuClicked")
+        updateViewState(
+            state.copy(
+                viewState = state.viewState.copy(
+                    navigationMapState = NavigationMapState.UpdateCenterLocation(
+                        navigationMapCenter = NavigationMapCenter.Unbounded(
+                            centerLocation = state.userCurrentLocation,
+                            zoomLevel = Const.CURRENT_LOCATION_SELECTION_ZOOM_LEVEL,
+                            animate = true
+                        ),
+                        showCurrentLocation = state.locationPermissionGranted
+                    )
+                )
+            )
+        )
     }
 
     private fun handleGetLocation(event: FayucaFinderMapViewEvent.GetLocation) {

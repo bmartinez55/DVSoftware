@@ -1,6 +1,10 @@
 package el.dv.fayucafinder.util
 
 object Const {
+    // Map Constants
+    const val CITY_SELECTION_ZOOM_LEVEL = 10f
+    const val CURRENT_LOCATION_SELECTION_ZOOM_LEVEL = 14f
+
     // Notification Constants
     const val FAYUCA_FINDER_MAIN_NOTIFICATION_CHANNEL_ID = "FAYUCA_FINDER_MAIN_NOTIFICATION_CHANNEL_ID"
     const val FAYUCA_FINDER_MAIN_NOTIFICATION_CHANNEL_NAME = "Fayuca Finder Notifications"

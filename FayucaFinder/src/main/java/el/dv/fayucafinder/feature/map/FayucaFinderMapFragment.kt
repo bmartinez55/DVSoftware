@@ -17,6 +17,7 @@ import el.dv.domain.navigation.NavigationMapFactory
 import el.dv.fayucafinder.R
 import el.dv.fayucafinder.databinding.FayucaFinderMapLayoutBinding
 import el.dv.presentation.extension.onBackPress
+import el.dv.presentation.extension.sharedNavGraphViewModel
 import el.dv.presentation.permission.Permission
 import el.dv.presentation.view.effect.ViewEffect
 import el.dv.presentation.view.manager.dialog.DialogManager
@@ -25,12 +26,11 @@ import el.dv.presentation.view.state.NavigationMapCenter
 import el.dv.presentation.view.state.NavigationMapState
 import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
 
-    private val viewModel: FayucaFinderMapVM by viewModel()
+    private val viewModel: FayucaFinderMapVM by sharedNavGraphViewModel(R.id.bottom_nav_graph)
     private val navigationMapFactory: NavigationMapFactory<GoogleMap, Marker> by inject()
     private lateinit var navigationMap: NavigationMap<GoogleMap, Marker>
     private val dialogManager: DialogManager by inject()
@@ -52,6 +52,7 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
         binding = FayucaFinderMapLayoutBinding.inflate(inflater, container, false).also {
             it.lifecycleOwner = this@FayucaFinderMapFragment
             it.vm = viewModel
+            it.currentLocationView.vm = viewModel
         }
 
         ((childFragmentManager.findFragmentById(R.id.map_container)) as SupportMapFragment).let {
@@ -59,6 +60,7 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
         }
 
         onBackPress(false) {
+            activity?.onBackPressedDispatcher?.onBackPressed()
         }
 
         viewModel.handleEvent(
@@ -75,6 +77,7 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
         viewModel.viewState.observe(viewLifecycleOwner) { viewState ->
             renderNavigationMapState(viewState.navigationMapState)
+            renderCurrentLocationMenuState(viewState.currentLocationMenuState)
         }
         viewModel.viewEffect.observe(viewLifecycleOwner) { viewEffect ->
             triggerViewEffect(viewEffect)
@@ -131,6 +134,17 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
                     )
                 }
                 navigationMap.setUserLocationEnabled(viewState.showCurrentLocation)
+            }
+        }
+    }
+
+    private fun renderCurrentLocationMenuState(viewState: CurrentLocationMenuState) {
+        when (viewState) {
+            is CurrentLocationMenuState.Hide -> with(binding) {
+                currentLocationButtonConstraintLayout.visibility = View.GONE
+            }
+            is CurrentLocationMenuState.Show -> with(binding) {
+                currentLocationButtonConstraintLayout.visibility = View.VISIBLE
             }
         }
     }
