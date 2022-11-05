@@ -11,7 +11,8 @@ object DIDataModuleProvider {
             AppType.Fayuca -> listOf(
                 fayucaFinderDataModule,
                 fayucaFinderServiceModule,
-                utilModule
+                utilModule,
+                commonServiceModule
             )
         }
     }

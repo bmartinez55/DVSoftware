@@ -4,7 +4,8 @@ import el.dv.presentation.view.state.NavigationMapState
 
 data class FayucaFinderMapState(
     val navigationMapState: NavigationMapState = NavigationMapState.Init,
-    val currentLocationMenuState: CurrentLocationMenuState = CurrentLocationMenuState.Hide
+    val currentLocationMenuState: CurrentLocationMenuState = CurrentLocationMenuState.Hide,
+    val mapConfigurationMenuState: MapConfigurationMenuState = MapConfigurationMenuState.Hide
 )
 
 data class NavigationViewReadyState(
@@ -28,4 +29,9 @@ sealed class ReadyState {
 sealed class CurrentLocationMenuState {
     object Hide : CurrentLocationMenuState()
     object Show : CurrentLocationMenuState()
+}
+
+sealed class MapConfigurationMenuState {
+    object Hide : MapConfigurationMenuState()
+    object Show : MapConfigurationMenuState()
 }

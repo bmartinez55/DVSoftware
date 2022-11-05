@@ -12,11 +12,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import el.dv.domain.core.Geolocation
+import el.dv.domain.event.AppEvent
+import el.dv.domain.event.EventBus
 import el.dv.domain.location.LocationState
 import el.dv.domain.logging.AppLog
+import el.dv.domain.navigation.model.MapConfigurations
+import el.dv.domain.navigation.model.MapVisualType
 import el.dv.domain.navigation.model.MapZoomType
 import el.dv.domain.navigation.model.NavigationMapFeature
 import el.dv.domain.navigation.model.NavigationMapInteractionType
+import el.dv.domain.sharedpreferences.model.LoadValueRequest
+import el.dv.domain.sharedpreferences.model.SaveStringRequest
+import el.dv.domain.sharedpreferences.usecase.LoadStringFromSharedPreferencesUseCase
+import el.dv.domain.sharedpreferences.usecase.SaveStringInSharedPreferencesUseCase
+import el.dv.fayucafinder.extension.toMapVisualType
+import el.dv.fayucafinder.feature.map.viewreducer.GetNavigationMapCenterLocationUpdateViewReducer
 import el.dv.fayucafinder.util.Const
 import el.dv.presentation.location.usecase.GetLocationUseCase
 import el.dv.presentation.location.usecase.StopLocationUseCase
@@ -46,8 +56,12 @@ import el.dv.fayucafinder.R as FayucaFinderRes
 class FayucaFinderMapVM(
     private val getLocationUseCase: GetLocationUseCase,
     private val stopLocationUseCase: StopLocationUseCase,
+    private val saveStringInSharedPreferencesUseCase: SaveStringInSharedPreferencesUseCase,
+    private val loadStringFromSharedPreferencesUseCase: LoadStringFromSharedPreferencesUseCase,
+    private val getNavigationMapCenterLocationUpdateViewReducer: GetNavigationMapCenterLocationUpdateViewReducer,
     private val permissionFactory: PermissionFactory<UIPermissionProviderConstructParams<RequestPermissionCallback>, PermissionApi, CheckPermissionGrantedUseCase, RequestForPermissionGrantedUseCase>,
     private val appDictionary: AppDictionary,
+    private val eventBus: EventBus,
     private val context: Context
 ) : ViewModel() {
 
@@ -72,6 +86,11 @@ class FayucaFinderMapVM(
     private lateinit var requestForPermissionGrantedUseCase: RequestForPermissionGrantedUseCase
 
     init {
+        observeLocalViewEventChannel()
+        observeGlobalEventBus()
+    }
+
+    private fun observeLocalViewEventChannel() {
         eventChannel
             .consumeAsFlow()
             .catch { e ->
@@ -88,9 +107,23 @@ class FayucaFinderMapVM(
                     is FayucaFinderMapViewEvent.GetLocation -> handleGetLocation(event)
                     is FayucaFinderMapViewEvent.StopLocation -> handleStopLocation(event)
                     is FayucaFinderMapViewEvent.CurrentLocationMenuClick -> handleCurrentLocationMenuClicked(event)
+                    is FayucaFinderMapViewEvent.MapConfigurationMenuClick -> handleMapConfigurationMenuClick(event)
                 }
             }
             .launchIn(viewModelScope)
+    }
+
+    private fun observeGlobalEventBus() {
+        viewModelScope.launch {
+            eventBus.events
+                .collectLatest { event ->
+                    AppLog.d(TAG, "EventBus app event: ${event.javaClass.name}")
+                    when (event) {
+                        is AppEvent.MapVisualTypeChangedReceived -> handleMapVisualTypeChangedReceived(event.mapVisualType)
+                        else -> {}
+                    }
+                }
+        }
     }
 
     fun handleEvent(event: FayucaFinderMapViewEvent) {
@@ -147,45 +180,58 @@ class FayucaFinderMapVM(
 
     private fun showInitViewState() {
         AppLog.d(TAG, "showInitViewState")
-        updateViewState(
-            state.copy(
-                viewState = state.viewState.copy(
-                    navigationMapState = when {
-                        state.isReady() -> NavigationMapState.Show(
-                            navigationMapCenter = NavigationMapCenter.Unbounded(
-                                centerLocation = state.userCurrentLocation,
-                                zoomLevel = Const.CITY_SELECTION_ZOOM_LEVEL,
-                                animate = false
-                            ),
-                            mapFeature = NavigationMapFeature(
-                                zoomGestureEnabled = true,
-                                userLocationEnabled = state.locationPermissionGranted,
-                                tiltGestureEnabled = true,
-                                rotationGestureEnabled = true
-                            ),
-                            interactionFilterLogic = {
-                                it is NavigationMapInteractionType.Gesture ||
-                                    it is NavigationMapInteractionType.Dev ||
-                                    it is NavigationMapInteractionType.Rotate
-                            },
-                            interactionListener = { interactionType ->
-                                handleEvent(FayucaFinderMapViewEvent.MapInteractedByUser(interactionType))
-                            }
-                        )
-                        !state.userCurrentLocation.isDefault() -> NavigationMapState.UpdateCenterLocation(
-                            NavigationMapCenter.Unbounded(
-                                centerLocation = state.userCurrentLocation,
-                                zoomLevel = Const.CITY_SELECTION_ZOOM_LEVEL,
-                                animate = false
+        viewModelScope.launch {
+            val storedMapVisualType = loadStringFromSharedPreferencesUseCase.run(LoadValueRequest(Const.MAP_VISUAL_TYPE_KEY)).toMapVisualType()
+            val mapConfigurations = MapConfigurations(
+                mapFeature = NavigationMapFeature(
+                    zoomGestureEnabled = true,
+                    userLocationEnabled = state.locationPermissionGranted,
+                    tiltGestureEnabled = true,
+                    rotationGestureEnabled = true,
+                    buildingEnabled = storedMapVisualType == MapVisualType.ThreeDimension
+                ),
+                mapVisualType = storedMapVisualType
+            )
+            updateViewState(
+                state.copy(
+                    viewState = state.viewState.copy(
+                        navigationMapState = when {
+                            state.isReady() -> NavigationMapState.Show(
+                                navigationMapCenter = NavigationMapCenter.Unbounded(
+                                    centerLocation = state.userCurrentLocation,
+                                    zoomLevel = if (mapConfigurations.isIn3DMode()) Const.THREE_DIMENSION_ZOOM_LEVEL
+                                    else Const.CURRENT_LOCATION_SELECTION_ZOOM_LEVEL,
+                                    animate = mapConfigurations.isIn3DMode(),
+                                    tilt = if (mapConfigurations.isIn3DMode()) Const.THREE_DIMENSION_CAMERA_TILT else 0f
+                                ),
+                                mapFeature = mapConfigurations.mapFeature,
+                                interactionFilterLogic = {
+                                    it is NavigationMapInteractionType.Gesture ||
+                                        it is NavigationMapInteractionType.Dev ||
+                                        it is NavigationMapInteractionType.Rotate
+                                },
+                                interactionListener = { interactionType ->
+                                    handleEvent(FayucaFinderMapViewEvent.MapInteractedByUser(interactionType))
+                                },
+                                mapVisualType = mapConfigurations.mapVisualType
                             )
-                        )
-                        else -> NavigationMapState.Idle
-                    },
-                    currentLocationMenuState = CurrentLocationMenuState.Show
+                            !state.userCurrentLocation.isDefault() -> NavigationMapState.UpdateCenterLocation(
+                                NavigationMapCenter.Unbounded(
+                                    centerLocation = state.userCurrentLocation,
+                                    zoomLevel = Const.CURRENT_LOCATION_SELECTION_ZOOM_LEVEL,
+                                    animate = false
+                                )
+                            )
+                            else -> NavigationMapState.Idle
+                        },
+                        currentLocationMenuState = CurrentLocationMenuState.Show,
+                        mapConfigurationMenuState = MapConfigurationMenuState.Show
+                    ),
+                    mapConfigurations = mapConfigurations
                 )
             )
-        )
-        handleNavigationReadyState(NavigationReadyRequirement.View, ReadyState.Ready)
+            handleNavigationReadyState(NavigationReadyRequirement.View, ReadyState.Ready)
+        }
     }
 
     private fun handleNavigationReadyState(navigationReadyRequirement: NavigationReadyRequirement, readyState: ReadyState) {
@@ -293,20 +339,15 @@ class FayucaFinderMapVM(
 
     private fun handleCurrentLocationMenuClicked(event: FayucaFinderMapViewEvent.CurrentLocationMenuClick) {
         AppLog.d(TAG, "handleCurrentLocationMenuClicked")
-        updateViewState(
-            state.copy(
-                viewState = state.viewState.copy(
-                    navigationMapState = NavigationMapState.UpdateCenterLocation(
-                        navigationMapCenter = NavigationMapCenter.Unbounded(
-                            centerLocation = state.userCurrentLocation,
-                            zoomLevel = Const.CURRENT_LOCATION_SELECTION_ZOOM_LEVEL,
-                            animate = true
-                        ),
-                        showCurrentLocation = state.locationPermissionGranted
-                    )
-                )
-            )
+        val currentLocationMapState = getNavigationMapCenterLocationUpdateViewReducer.run(
+            GetNavigationMapCenterLocationUpdateViewReducer.Request(state)
         )
+        updateViewState(currentLocationMapState.state)
+    }
+
+    private fun handleMapConfigurationMenuClick(event: FayucaFinderMapViewEvent.MapConfigurationMenuClick) {
+        AppLog.d(TAG, "handleMapConfigurationMenuClick")
+        sendViewEffect(ViewEffect.ShowMapConfigurationsScreenEffect(state.mapConfigurations.mapVisualType))
     }
 
     private fun handleGetLocation(event: FayucaFinderMapViewEvent.GetLocation) {
@@ -382,21 +423,25 @@ class FayucaFinderMapVM(
 
     private fun handleLocationChangedViewUpdate(location: Geolocation) {
         AppLog.d(TAG, "handleLocationChangedViewUpdate")
+        val mapFeature = state.mapConfigurations.mapFeature.copy(
+            zoomGestureEnabled = true,
+            userLocationEnabled = state.locationPermissionGranted,
+            tiltGestureEnabled = true,
+            rotationGestureEnabled = true,
+            buildingEnabled = state.mapConfigurations.isIn3DMode()
+        )
         updateViewState(
             state.copy(
                 viewState = state.viewState.copy(
                     navigationMapState = NavigationMapState.Show(
                         navigationMapCenter = NavigationMapCenter.Unbounded(
                             centerLocation = location,
-                            zoomLevel = MAP_ZOOM_LEVEL,
-                            animate = false
+                            zoomLevel = if (state.mapConfigurations.isIn3DMode()) Const.THREE_DIMENSION_ZOOM_LEVEL
+                            else Const.CURRENT_LOCATION_SELECTION_ZOOM_LEVEL,
+                            animate = state.mapConfigurations.isIn3DMode(),
+                            tilt = if (state.mapConfigurations.isIn3DMode()) Const.THREE_DIMENSION_CAMERA_TILT else 0f
                         ),
-                        mapFeature = NavigationMapFeature(
-                            zoomGestureEnabled = true,
-                            userLocationEnabled = state.locationPermissionGranted,
-                            tiltGestureEnabled = true,
-                            rotationGestureEnabled = true
-                        ),
+                        mapFeature = mapFeature,
                         interactionFilterLogic = {
                             it is NavigationMapInteractionType.Gesture ||
                                 it is NavigationMapInteractionType.Dev ||
@@ -404,11 +449,30 @@ class FayucaFinderMapVM(
                         },
                         interactionListener = { interactionType ->
                             handleEvent(FayucaFinderMapViewEvent.MapInteractedByUser(interactionType))
-                        }
+                        },
+                        mapVisualType = state.mapConfigurations.mapVisualType
                     )
-                )
+                ),
+                mapConfigurations = state.mapConfigurations.copy(mapFeature = mapFeature)
             )
         )
+    }
+
+    /**
+     * Below this is Global Event Bus related methods
+     */
+
+    private fun handleMapVisualTypeChangedReceived(mapVisualType: MapVisualType) {
+        AppLog.d(TAG, "handleMapVisualTypeChangedReceived")
+        updateViewState(state.copy(mapConfigurations = state.mapConfigurations.copy(mapVisualType = mapVisualType)))
+        sendViewEffect(ViewEffect.UpdateMapTypeEffect(mapVisualType = mapVisualType))
+        val mapVisualTypeState = getNavigationMapCenterLocationUpdateViewReducer.run(
+            GetNavigationMapCenterLocationUpdateViewReducer.Request(state)
+        )
+        updateViewState(mapVisualTypeState.state)
+        viewModelScope.launch {
+            saveStringInSharedPreferencesUseCase.run(SaveStringRequest(Const.MAP_VISUAL_TYPE_KEY, mapVisualType.name))
+        }
     }
 
     private fun getDefaultState(): InternalState {
@@ -421,13 +485,13 @@ class FayucaFinderMapVM(
         val navigationMapCenterLocation: Geolocation = Geolocation(),
         val mapZoomType: MapZoomType = MapZoomType.FreeZoom,
         val userCurrentLocation: Geolocation = Geolocation(),
-        val locationPermissionGranted: Boolean = false
+        val locationPermissionGranted: Boolean = false,
+        val mapConfigurations: MapConfigurations = MapConfigurations()
     ) {
         fun isReady(): Boolean = this.navigationViewReadyState.isReady()
     }
 
     companion object {
         const val TAG = "FayucaFinderMapVM"
-        const val MAP_ZOOM_LEVEL = 10f
     }
 }

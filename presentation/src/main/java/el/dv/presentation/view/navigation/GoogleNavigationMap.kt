@@ -68,9 +68,13 @@ class GoogleNavigationMap(
         }
     }
 
-    override fun setMapCenterLocation(location: Geolocation, zoomLevel: Float, animate: Boolean) {
+    override fun setMapCenterLocation(location: Geolocation, zoomLevel: Float, animate: Boolean, tilt: Float) {
         AppLog.d(TAG, "setMapCenterLocation")
-        val cameraPosition = CameraPosition.builder().target(location.toGoogleLatLng()).zoom(zoomLevel).build()
+        val cameraPosition = CameraPosition.builder()
+            .target(location.toGoogleLatLng())
+            .zoom(zoomLevel)
+            .tilt(tilt)
+            .build()
         when (animate) {
             true -> map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
             false -> map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
@@ -107,6 +111,9 @@ class GoogleNavigationMap(
 
     override fun setBuildingEnabled(enable: Boolean) {
         AppLog.d(TAG, "setBuildingEnabled $enable")
+        if (enable) {
+            map.mapType = GoogleMap.MAP_TYPE_NORMAL
+        }
         map.isBuildingsEnabled = enable
     }
 
@@ -157,6 +164,7 @@ class GoogleNavigationMap(
             MapVisualType.Hybrid -> map.mapType = GoogleMap.MAP_TYPE_HYBRID
             MapVisualType.Satellite -> map.mapType = GoogleMap.MAP_TYPE_SATELLITE
             MapVisualType.Terrain -> map.mapType = GoogleMap.MAP_TYPE_TERRAIN
+            else -> {}
         }
     }
 
