@@ -63,3 +63,9 @@ fun Fragment.navigate(directions: NavDirections) {
         findNavController().navigate(directions)
     }
 }
+
+fun Fragment.navigate(@IdRes actionId: Int) {
+    if (!isAlreadyAtDestination(actionId)) {
+        findNavController().navigate(actionId)
+    }
+}

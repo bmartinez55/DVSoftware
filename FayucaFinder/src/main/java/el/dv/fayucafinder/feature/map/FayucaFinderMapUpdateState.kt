@@ -4,5 +4,5 @@ import el.dv.presentation.view.effect.ViewEffect
 
 data class FayucaFinderMapUpdateState(
     val state: FayucaFinderMapVM.InternalState,
-    val viewEffectList: List<ViewEffect>
+    val viewEffectList: List<ViewEffect> = emptyList()
 )

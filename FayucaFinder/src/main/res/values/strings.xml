@@ -10,4 +10,11 @@
     <string name="turn_location_on_desc" translatable="false">For better experience, we need your location. Please turn on location.</string>
     <string name="open_settings" translatable="false">Open Settings</string>
 
+    <!--Map Configurations-->
+    <string name="map_configuration_title" translatable="false">Map Configurations</string>
+    <string name="normal" translatable="false">Normal</string>
+    <string name="satellite" translatable="false">Satellite</string>
+    <string name="terrain" translatable="false">Terrain</string>
+    <string name="hybrid" translatable="false">Hybrid</string>
+    <string name="three_dimension_mode" translatable="false">3D Mode</string>
 </resources>

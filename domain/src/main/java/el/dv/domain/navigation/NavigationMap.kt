@@ -44,7 +44,7 @@ interface NavigationMap<MapType, MarkerType> {
      * @param zoomLevel
      * @param animate
      */
-    fun setMapCenterLocation(location: Geolocation, zoomLevel: Float = 14f, animate: Boolean = false)
+    fun setMapCenterLocation(location: Geolocation, zoomLevel: Float = 14f, animate: Boolean = false, tilt: Float = 0f)
 
     /**
      * Set Map center location based on box bounds

@@ -14,8 +14,12 @@ import com.google.android.gms.maps.model.Marker
 import el.dv.domain.logging.AppLog
 import el.dv.domain.navigation.NavigationMap
 import el.dv.domain.navigation.NavigationMapFactory
+import el.dv.domain.navigation.model.MapVisualType
 import el.dv.fayucafinder.R
 import el.dv.fayucafinder.databinding.FayucaFinderMapLayoutBinding
+import el.dv.fayucafinder.feature.map.bottomsheet.MapConfigurationFragment
+import el.dv.presentation.extension.convertParcelableToBundle
+import el.dv.presentation.extension.navigate
 import el.dv.presentation.extension.onBackPress
 import el.dv.presentation.extension.sharedNavGraphViewModel
 import el.dv.presentation.permission.Permission
@@ -53,6 +57,7 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
             it.lifecycleOwner = this@FayucaFinderMapFragment
             it.vm = viewModel
             it.currentLocationView.vm = viewModel
+            it.mapConfigurationButtonView.vm = viewModel
         }
 
         ((childFragmentManager.findFragmentById(R.id.map_container)) as SupportMapFragment).let {
@@ -78,6 +83,7 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
         viewModel.viewState.observe(viewLifecycleOwner) { viewState ->
             renderNavigationMapState(viewState.navigationMapState)
             renderCurrentLocationMenuState(viewState.currentLocationMenuState)
+            renderMapConfigurationMenuState(viewState.mapConfigurationMenuState)
         }
         viewModel.viewEffect.observe(viewLifecycleOwner) { viewEffect ->
             triggerViewEffect(viewEffect)
@@ -101,12 +107,16 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
                 navigationMap.setZoomGestureEnabled(viewState.mapFeature.zoomGestureEnabled)
                 navigationMap.setRotationGestureEnabled(viewState.mapFeature.rotationGestureEnabled)
                 navigationMap.setTiltGestureEnabled(viewState.mapFeature.tiltGestureEnabled)
-                navigationMap.setBuildingEnabled(viewState.mapFeature.buildingEnabled)
                 navigationMap.setIndoorEnabled(viewState.mapFeature.indoorEnabled)
                 navigationMap.setTrafficEnabled(viewState.mapFeature.trafficEnabled)
                 navigationMap.setUserLocationEnabled(viewState.mapFeature.userLocationEnabled)
                 navigationMap.setMapToolbarEnabled(viewState.mapFeature.mapToolbarEnabled)
                 navigationMap.setMapInteractionListener(viewState.interactionListener, viewState.interactionFilterLogic)
+                when (viewState.mapVisualType) {
+                    MapVisualType.ThreeDimension -> navigationMap.setBuildingEnabled(viewState.mapFeature.buildingEnabled)
+                    else -> navigationMap.setMapType(viewState.mapVisualType)
+                }
+                navigationMap.setMapType(viewState.mapVisualType)
                 when (val navigationMapCenter = viewState.navigationMapCenter) {
                     is NavigationMapCenter.Unbounded -> navigationMap.setMapCenterLocation(
                         location = navigationMapCenter.centerLocation,
@@ -125,7 +135,8 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
                     is NavigationMapCenter.Unbounded -> navigationMap.setMapCenterLocation(
                         location = navigationMapCenter.centerLocation,
                         zoomLevel = navigationMapCenter.zoomLevel,
-                        animate = navigationMapCenter.animate
+                        animate = navigationMapCenter.animate,
+                        tilt = navigationMapCenter.tilt
                     )
                     is NavigationMapCenter.Bounded -> navigationMap.setMapCenterLocation(
                         coordinateList = navigationMapCenter.coordinateList,
@@ -149,6 +160,17 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+    private fun renderMapConfigurationMenuState(viewState: MapConfigurationMenuState) {
+        when (viewState) {
+            is MapConfigurationMenuState.Hide -> with(binding) {
+                mapConfigurationButtonConstraintLayout.visibility = View.GONE
+            }
+            is MapConfigurationMenuState.Show -> with(binding) {
+                mapConfigurationButtonConstraintLayout.visibility = View.VISIBLE
+            }
+        }
+    }
+
     private fun triggerViewEffect(viewEffect: ViewEffect) {
         when (viewEffect) {
             is ViewEffect.ShowDialogEffect -> dialogManager.showDialog(
@@ -163,6 +185,21 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
             )
             is ViewEffect.DismissDialogEffect -> dialogManager.dismiss()
             is ViewEffect.StartActivityEffect -> activity?.startActivity(viewEffect.intent)
+            is ViewEffect.NavigateToGlobalActionEffect -> navigate(viewEffect.actionId)
+            is ViewEffect.UpdateMapTypeEffect -> when (viewEffect.mapVisualType) {
+                MapVisualType.ThreeDimension -> navigationMap.setBuildingEnabled(enable = true)
+                else -> {
+                    navigationMap.setMapType(viewEffect.mapVisualType)
+                    navigationMap.setBuildingEnabled(false)
+                }
+            }
+            is ViewEffect.ShowMapConfigurationsScreenEffect -> {
+                val fm = requireActivity().supportFragmentManager.beginTransaction()
+                MapConfigurationFragment().apply {
+                    show(fm, null)
+                    arguments = viewEffect.mapVisualType.convertParcelableToBundle(MAP_CONFIGURATION_ARGUMENT_KEY)
+                }
+            }
             is ViewEffect.Default -> {}
         }
     }
@@ -180,5 +217,6 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
 
     companion object {
         const val TAG = "MapFragment"
+        const val MAP_CONFIGURATION_ARGUMENT_KEY = "mapvisualtype"
     }
 }

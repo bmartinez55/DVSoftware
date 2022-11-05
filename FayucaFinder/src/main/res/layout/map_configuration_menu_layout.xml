@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="el.dv.fayucafinder.feature.map.FayucaFinderMapFragment">
+
+    <data>
+        <import type="el.dv.fayucafinder.feature.map.FayucaFinderMapVM" />
+        <import type="el.dv.fayucafinder.feature.map.FayucaFinderMapViewEvent" />
+        <import type="el.dv.fayucafinder.feature.map.FayucaFinderMapViewEvent.MapConfigurationMenuClick" />
+
+        <variable
+            name="vm"
+            type="el.dv.fayucafinder.feature.map.FayucaFinderMapVM" />
+    </data>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:elevation="@dimen/view_elevation_24dp"
+        android:insetLeft="2dp"
+        android:insetTop="2dp"
+        android:insetRight="2dp"
+        android:insetBottom="2dp"
+        android:backgroundTint="?attr/background"
+        android:onClick="@{() -> vm.handleEvent(FayucaFinderMapViewEvent.MapConfigurationMenuClick.INSTANCE)}"
+        app:cornerRadius="50dp"
+        app:icon="@drawable/ic_layers_icon"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="?attr/colorOnBackground" />
+
+</layout>

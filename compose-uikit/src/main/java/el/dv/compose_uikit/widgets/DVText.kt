@@ -152,7 +152,8 @@ fun CaptionText(
     fontWeight: FontWeight = FontWeight.Normal,
     textAlign: TextAlign = TextAlign.Start,
     color: Color = MaterialTheme.colors.onSurface,
-    maxLines: Int = Int.MAX_VALUE
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayoutResult: ((TextLayoutResult) -> Unit)? = null
 ) {
     Text(
         text = text,
@@ -164,7 +165,8 @@ fun CaptionText(
         lineHeight = lineHeight,
         color = color,
         textAlign = textAlign,
-        maxLines = maxLines
+        maxLines = maxLines,
+        onTextLayout = onTextLayoutResult ?: {}
     )
 }
 

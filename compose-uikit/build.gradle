@@ -34,6 +34,13 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "$compose_compiler_version"
     }
+    sourceSets {
+        main {
+            res {
+                srcDirs 'src/main/res'
+            }
+        }
+    }
 }
 
 dependencies {

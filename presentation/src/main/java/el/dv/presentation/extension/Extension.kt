@@ -1,6 +1,8 @@
 package el.dv.presentation.extension
 
 import android.location.Location
+import android.os.Bundle
+import android.os.Parcelable
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.model.LatLng
@@ -43,4 +45,21 @@ fun <K, V> Map<K, V>.addOrUpdate(key: K, value: V): Map<K, V> {
     return this.toMutableMap().apply {
         this[key] = value
     }.toMap()
+}
+
+fun <T : Parcelable> T.convertParcelableToBundle(key: String): Bundle {
+    return Bundle().apply {
+        putParcelable(key, this@convertParcelableToBundle)
+    }
+}
+
+fun <T : Any> Bundle.getBundleData(key: String, defaultValue: T): T {
+    return when (this.containsKey(key)) {
+        true -> this.getParcelable(key) ?: defaultValue
+        false -> defaultValue
+    }
+}
+
+fun <T : Any> Fragment.getBundleData(key: String, defaultValue: T) = lazy {
+    arguments?.getBundleData(key, defaultValue) ?: defaultValue
 }

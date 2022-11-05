@@ -22,24 +22,49 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <!--Text Appearance-->
     <style name="RegularTextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textStyle">normal</item>
         <item name="fontFamily">@font/roboto</item>
     </style>
-
     <style name="MediumTextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textStyle">normal</item>
         <item name="fontFamily">@font/roboto_medium</item>
     </style>
-
     <style name="BoldTextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textStyle">bold</item>
         <item name="fontFamily">@font/roboto_bold</item>
     </style>
 
+    <!--App Dialog Theme-->
     <style name="FayucaFinderDialogTheme" parent="Theme.MaterialComponents.Dialog">
         <item name="cornerRadius">@dimen/corner_radius_8dp</item>
         <item name="windowMinWidthMajor">90%</item>
         <item name="windowMinWidthMinor">90%</item>
+    </style>
+
+    <!--Top rounded corner card style with 8dp for BottomSheets-->
+    <style name="TopRoundedCardViewStyle8dp" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/TopRoundedShapeAppearanceOverlay8dp</item>
+    </style>
+    <style name="TopRoundedShapeAppearanceOverlay8dp" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/corner_radius_8dp</item>
+        <item name="cornerSizeTopRight">@dimen/corner_radius_8dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <!--Map Configuration BottomSheet Dialog Appearance-->
+    <style name="MapConfigurationBottomSheetDialogAppearance" parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/TopRoundedBottomSheetDialogStyle</item>
+    </style>
+    <style name="TopRoundedBottomSheetDialogStyle" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/CustomShapeAppearanceTopRoundedBottomSheetDialog10dp</item>
+    </style>
+    <style name="CustomShapeAppearanceTopRoundedBottomSheetDialog10dp" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/corner_radius_10dp</item>
+        <item name="cornerSizeTopRight">@dimen/corner_radius_10dp</item>
     </style>
 </resources>
