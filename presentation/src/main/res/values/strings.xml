@@ -6,4 +6,6 @@
     <string name="back" translatable="false">Back</string>
     <string name="cancel" translatable="false">False</string>
 
+    <!--Common Banner Text-->
+    <string name="wifi_disconnected" translatable="false">No internet detected</string>
 </resources>

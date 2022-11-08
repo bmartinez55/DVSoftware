@@ -43,12 +43,8 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
     private val fayucaFinderMapLifecycleObserver: FayucaFinderMapLifecycleObserver = get {
         parametersOf(
             this,
-            {
-                viewModel.handleEvent(FayucaFinderMapViewEvent.GetLocation)
-            },
-            {
-                viewModel.handleEvent(FayucaFinderMapViewEvent.StopLocation)
-            }
+            { viewModel.handleEvent(FayucaFinderMapViewEvent.GetLocation) },
+            { viewModel.handleEvent(FayucaFinderMapViewEvent.StopLocation) }
         )
     }
 
@@ -58,6 +54,7 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
             it.vm = viewModel
             it.currentLocationView.vm = viewModel
             it.mapConfigurationButtonView.vm = viewModel
+            it.bottomBannerView.vm = viewModel
         }
 
         ((childFragmentManager.findFragmentById(R.id.map_container)) as SupportMapFragment).let {
@@ -81,11 +78,14 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.viewState.observe(viewLifecycleOwner) { viewState ->
+            AppLog.d(TAG, "ViewState: $viewState")
             renderNavigationMapState(viewState.navigationMapState)
             renderCurrentLocationMenuState(viewState.currentLocationMenuState)
             renderMapConfigurationMenuState(viewState.mapConfigurationMenuState)
+            renderBottomBannerViewState(viewState.bottomBannerViewState)
         }
         viewModel.viewEffect.observe(viewLifecycleOwner) { viewEffect ->
+            AppLog.d(TAG, "ViewEffect: $viewEffect")
             triggerViewEffect(viewEffect)
         }
     }
@@ -171,6 +171,20 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+    private fun renderBottomBannerViewState(viewState: BottomBannerViewState) {
+        when (viewState) {
+            is BottomBannerViewState.Hide -> with(binding) {
+                bottomBannerConstraintLayout.visibility = View.GONE
+            }
+            is BottomBannerViewState.ShowWifiDisconnected -> with(binding) {
+                bottomBannerConstraintLayout.visibility = View.VISIBLE
+                bottomBannerView.bottomBannerCardView.visibility = View.VISIBLE
+                bottomBannerView.wifiDisconnectedBanner.visibility = View.VISIBLE
+                bottomBannerView.bottomBannerTitle.text = viewState.title
+            }
+        }
+    }
+
     private fun triggerViewEffect(viewEffect: ViewEffect) {
         when (viewEffect) {
             is ViewEffect.ShowDialogEffect -> dialogManager.showDialog(
@@ -218,5 +232,6 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
     companion object {
         const val TAG = "MapFragment"
         const val MAP_CONFIGURATION_ARGUMENT_KEY = "mapvisualtype"
+        const val BOUNCE_ANIMATION_DURATION = 3000L
     }
 }

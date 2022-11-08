@@ -11,7 +11,6 @@ import el.dv.domain.event.EventBus
 import el.dv.domain.logging.AppLog
 import el.dv.domain.navigation.model.MapVisualType
 import el.dv.fayucafinder.feature.map.bottomsheet.viewreducer.GetMapConfigurationInitViewStateViewReducer
-import el.dv.presentation.util.AppDictionary
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.consumeAsFlow
@@ -21,7 +20,6 @@ import kotlinx.coroutines.launch
 
 class MapConfigurationVM(
     private val getMapConfigurationInitViewStateViewReducer: GetMapConfigurationInitViewStateViewReducer,
-    private val appDictionary: AppDictionary,
     private val eventBus: EventBus
 ) : ViewModel() {
 

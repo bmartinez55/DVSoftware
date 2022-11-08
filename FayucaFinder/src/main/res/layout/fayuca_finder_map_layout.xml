@@ -6,6 +6,7 @@
     tools:context="el.dv.fayucafinder.feature.map.FayucaFinderMapFragment">
 
     <data>
+        <import type="el.dv.fayucafinder.feature.map.FayucaFinderMapVM" />
         <variable
             name="vm"
             type="el.dv.fayucafinder.feature.map.FayucaFinderMapVM" />
@@ -26,10 +27,12 @@
             android:id="@+id/current_location_button_constraint_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_24"
-            android:layout_marginTop="@dimen/margin_34"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:layout_marginEnd="@dimen/margin_20"
+            android:layout_marginBottom="@dimen/margin_14"
+            app:layout_constraintBottom_toTopOf="@id/bottom_banner_constraint_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <include
                 android:id="@+id/current_location_view"
@@ -40,14 +43,29 @@
             android:id="@+id/map_configuration_button_constraint_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_16"
             app:layout_constraintStart_toStartOf="@id/current_location_button_constraint_layout"
-            app:layout_constraintTop_toBottomOf="@id/current_location_button_constraint_layout"
-            app:layout_constraintEnd_toEndOf="@id/current_location_button_constraint_layout">
+            app:layout_constraintBottom_toTopOf="@id/current_location_button_constraint_layout"
+            app:layout_constraintEnd_toEndOf="@id/current_location_button_constraint_layout"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <include
                 android:id="@+id/map_configuration_button_view"
                 layout="@layout/map_configuration_menu_layout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_banner_constraint_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <include
+                android:id="@+id/bottom_banner_view"
+                layout="@layout/bottom_banner_layout" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

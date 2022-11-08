@@ -1,11 +1,13 @@
 package el.dv.fayucafinder.feature.map
 
+import androidx.annotation.DrawableRes
 import el.dv.presentation.view.state.NavigationMapState
 
 data class FayucaFinderMapState(
     val navigationMapState: NavigationMapState = NavigationMapState.Init,
     val currentLocationMenuState: CurrentLocationMenuState = CurrentLocationMenuState.Hide,
-    val mapConfigurationMenuState: MapConfigurationMenuState = MapConfigurationMenuState.Hide
+    val mapConfigurationMenuState: MapConfigurationMenuState = MapConfigurationMenuState.Hide,
+    val bottomBannerViewState: BottomBannerViewState = BottomBannerViewState.Hide
 )
 
 data class NavigationViewReadyState(
@@ -34,4 +36,9 @@ sealed class CurrentLocationMenuState {
 sealed class MapConfigurationMenuState {
     object Hide : MapConfigurationMenuState()
     object Show : MapConfigurationMenuState()
+}
+
+sealed class BottomBannerViewState {
+    object Hide : BottomBannerViewState()
+    data class ShowWifiDisconnected(@DrawableRes val drawableRes: Int, val title: String) : BottomBannerViewState()
 }

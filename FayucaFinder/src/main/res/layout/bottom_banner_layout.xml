@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="el.dv.fayucafinder.feature.map.FayucaFinderMapFragment">
+
+    <data>
+        <import type="el.dv.fayucafinder.feature.map.FayucaFinderMapVM" />
+        <variable
+            name="vm"
+            type="el.dv.fayucafinder.feature.map.FayucaFinderMapVM" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bottom_banner_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TopRoundedCardViewStyle8dp"
+        app:cardBackgroundColor="?attr/colorError"
+        app:cardElevation="@dimen/view_elevation_8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/wifi_disconnected_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/padding_8"
+            android:paddingHorizontal="@dimen/padding_12">
+
+            <TextView
+                android:id="@+id/bottom_banner_image_view"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:drawableLeft="@drawable/ic_wifi_off_icon"
+                android:drawableTint="?attr/background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/bottom_banner_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margin_12"
+                android:textSize="@dimen/text_size_large"
+                android:textColor="?attr/background"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/bottom_banner_image_view"
+                tools:text="No internet detected" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
