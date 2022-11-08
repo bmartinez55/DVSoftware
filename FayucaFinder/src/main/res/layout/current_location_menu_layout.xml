@@ -17,8 +17,8 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/current_location_button"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:elevation="@dimen/view_elevation_24dp"
         android:insetLeft="2dp"
         android:insetTop="2dp"

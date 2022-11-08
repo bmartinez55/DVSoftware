@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- App theme. -->
-    <style name="Theme.DVSoftware" parent="Theme.MaterialComponents.Light">
+    <style name="Theme.DVSoftware.FayucaFinder" parent="Theme.MaterialComponents.DayNight">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/deep_orange_500</item>
         <item name="colorPrimaryVariant">@color/deep_orange_500_light</item>
@@ -20,6 +20,17 @@
         <item name="colorOnError">@color/red</item>
 
         <item name="android:windowLightStatusBar">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+
+        <!--Default text style-->
+        <item name="android:textViewStyle">@style/DefaultTextStyle</item>
+    </style>
+
+    <!--Default Text Style-->
+    <style name="DefaultTextStyle" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textViewStyle">@style/RegularTextAppearance</item>
     </style>
 
     <!--Text Appearance-->
@@ -53,6 +64,18 @@
         <item name="cornerSizeTopRight">@dimen/corner_radius_8dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <!--Bottom rounded corner card style with 8dp for BottomSheets-->
+    <style name="BottomRoundedCardViewStyle8dp" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/BottomRoundedShapeAppearanceOverlay8dp</item>
+    </style>
+    <style name="BottomRoundedShapeAppearanceOverlay8dp" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomLeft">@dimen/corner_radius_8dp</item>
+        <item name="cornerSizeBottomRight">@dimen/corner_radius_8dp</item>
     </style>
 
     <!--Map Configuration BottomSheet Dialog Appearance-->

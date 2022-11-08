@@ -19,7 +19,7 @@
             app:navGraph="@navigation/bottom_nav_graph"
             app:defaultNavHost="true"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bottom_nav_view"
             tools:layout="@layout/fayuca_finder_map_layout" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

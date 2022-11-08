@@ -3,6 +3,8 @@ package el.dv.data.di
 import el.dv.data.storage.core.api.DataStoreApi
 import el.dv.data.storage.sharedpreferences.api.SharedPreferencesDataStoreApi
 import el.dv.data.storage.sharedpreferences.repository.SharedPreferencesDataStoreRepositoryImpl
+import el.dv.data.util.NetworkConnectivityMonitorImpl
+import el.dv.domain.networkmonitor.NetworkConnectivityMonitor
 import el.dv.domain.sharedpreferences.DataStoreRepository
 import org.koin.dsl.module
 
@@ -13,5 +15,9 @@ val commonServiceModule = module {
 
     single<DataStoreRepository> {
         SharedPreferencesDataStoreRepositoryImpl(dataStoreApi = get())
+    }
+
+    single<NetworkConnectivityMonitor> {
+        NetworkConnectivityMonitorImpl(connectivityManager = get())
     }
 }

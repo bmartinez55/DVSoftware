@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DVSoftware</string>
+    <string name="fayuca_finder_app_name">FayucaFinder</string>
 
     <!--Navigation Tabs-->
     <string name="map">Map</string>

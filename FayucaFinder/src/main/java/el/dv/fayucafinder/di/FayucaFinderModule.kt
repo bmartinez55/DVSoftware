@@ -31,6 +31,7 @@ val appModule = module {
             stopLocationUseCase = get(),
             saveStringInSharedPreferencesUseCase = get(),
             loadStringFromSharedPreferencesUseCase = get(),
+            startNetworkConnectivityMonitorUseCase = get(),
             getNavigationMapCenterLocationUpdateViewReducer = get(),
             permissionFactory = get(),
             appDictionary = get(),
@@ -42,7 +43,6 @@ val appModule = module {
     viewModel {
         MapConfigurationVM(
             getMapConfigurationInitViewStateViewReducer = get(),
-            appDictionary = get(),
             eventBus = get()
         )
     }
@@ -60,7 +60,7 @@ val appModule = module {
      */
 
     factory<DialogManager> {
-        DialogManagerVertical(themeStyleResId = R.style.Theme_DVSoftware)
+        DialogManagerVertical(themeStyleResId = R.style.FayucaFinderDialogTheme)
     }
 
     factory<NotificationManager> {

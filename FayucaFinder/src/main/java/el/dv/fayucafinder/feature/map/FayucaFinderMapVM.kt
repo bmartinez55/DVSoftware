@@ -21,6 +21,8 @@ import el.dv.domain.navigation.model.MapVisualType
 import el.dv.domain.navigation.model.MapZoomType
 import el.dv.domain.navigation.model.NavigationMapFeature
 import el.dv.domain.navigation.model.NavigationMapInteractionType
+import el.dv.domain.networkmonitor.model.NetworkState
+import el.dv.domain.networkmonitor.usecase.StartNetworkConnectivityMonitorUseCase
 import el.dv.domain.sharedpreferences.model.LoadValueRequest
 import el.dv.domain.sharedpreferences.model.SaveStringRequest
 import el.dv.domain.sharedpreferences.usecase.LoadStringFromSharedPreferencesUseCase
@@ -52,12 +54,15 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import el.dv.fayucafinder.R as FayucaFinderRes
+import el.dv.presentation.R as PresentationRes
+import el.dv.xml_uikit.R as XmlUiKitRes
 
 class FayucaFinderMapVM(
     private val getLocationUseCase: GetLocationUseCase,
     private val stopLocationUseCase: StopLocationUseCase,
     private val saveStringInSharedPreferencesUseCase: SaveStringInSharedPreferencesUseCase,
     private val loadStringFromSharedPreferencesUseCase: LoadStringFromSharedPreferencesUseCase,
+    private val startNetworkConnectivityMonitorUseCase: StartNetworkConnectivityMonitorUseCase,
     private val getNavigationMapCenterLocationUpdateViewReducer: GetNavigationMapCenterLocationUpdateViewReducer,
     private val permissionFactory: PermissionFactory<UIPermissionProviderConstructParams<RequestPermissionCallback>, PermissionApi, CheckPermissionGrantedUseCase, RequestForPermissionGrantedUseCase>,
     private val appDictionary: AppDictionary,
@@ -164,6 +169,41 @@ class FayucaFinderMapVM(
         requestForPermissionGrantedUseCase = permissionFactory.getRequestForPermissionUseCase(permissionApi)
 
         handleEvent(FayucaFinderMapViewEvent.CheckIfPermissionIsGranted(permission = event.permission))
+        monitorNetworkConnectivity()
+    }
+
+    private fun monitorNetworkConnectivity() {
+        AppLog.d(TAG, "monitorNetworkConnectivity")
+        viewModelScope.launch {
+            startNetworkConnectivityMonitorUseCase.run(Unit)
+                .catch { e ->
+                    AppLog.e(TAG, "monitorNetworkConnectivity catch error", e)
+                }
+                .collectLatest { networkState ->
+                    AppLog.d(TAG, "networkState: $networkState")
+                    when (networkState) {
+                        is NetworkState.Connected -> updateViewState(
+                            state.copy(
+                                viewState = state.viewState.copy(
+                                    bottomBannerViewState = BottomBannerViewState.Hide,
+                                    navigationMapState = NavigationMapState.Idle
+                                )
+                            )
+                        )
+                        is NetworkState.Disconnected -> updateViewState(
+                            state.copy(
+                                viewState = state.viewState.copy(
+                                    bottomBannerViewState = BottomBannerViewState.ShowWifiDisconnected(
+                                        drawableRes = XmlUiKitRes.drawable.ic_wifi_off_icon,
+                                        title = appDictionary.toString(AppText.TranslatableText(PresentationRes.string.wifi_disconnected))
+                                    ),
+                                    navigationMapState = NavigationMapState.Idle
+                                )
+                            )
+                        )
+                    }
+                }
+        }
     }
 
     private fun handleViewLoaded(event: FayucaFinderMapViewEvent.ViewLoaded) {

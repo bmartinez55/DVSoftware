@@ -16,10 +16,10 @@
         android:name=".core.FayucaFinderApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/fayuca_finder_app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DVSoftware">
+        android:theme="@style/Theme.DVSoftware.FayucaFinder">
 
         <activity
             android:name="el.dv.fayucafinder.core.view.FayucaFinderActivity"
@@ -27,7 +27,8 @@
             android:configChanges="uiMode"
             android:screenOrientation="portrait"
             android:persistableMode="persistRootOnly"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.DVSoftware.FayucaFinder">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
