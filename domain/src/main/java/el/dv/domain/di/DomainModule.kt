@@ -9,9 +9,16 @@ import el.dv.domain.sharedpreferences.usecase.LoadBooleanFromSharedPreferencesUs
 import el.dv.domain.sharedpreferences.usecase.LoadStringFromSharedPreferencesUseCase
 import el.dv.domain.sharedpreferences.usecase.SaveBooleanInSharedPreferencesUseCase
 import el.dv.domain.sharedpreferences.usecase.SaveStringInSharedPreferencesUseCase
+import el.dv.domain.truck.usecase.AddTruckUseCase
+import el.dv.domain.truck.usecase.GetTruckDetailsUseCase
+import el.dv.domain.truck.usecase.GetTrucksFromOwnerUseCase
+import el.dv.domain.truck.usecase.GetTrucksUseCase
 import org.koin.dsl.module
 
 val domainModule = module {
+    /**
+     * Domain class implementations
+     */
     single<CoroutineDispatchers> {
         AppCoroutineDispatchers()
     }
@@ -19,6 +26,10 @@ val domainModule = module {
     single<EventBus> {
         EventBusImpl()
     }
+
+    /**
+     * Use Cases
+     */
 
     factory {
         SaveStringInSharedPreferencesUseCase(dataStoreRepository = get())
@@ -38,5 +49,21 @@ val domainModule = module {
 
     single {
         StartNetworkConnectivityMonitorUseCase(networkConnectivityMonitor = get())
+    }
+
+    factory {
+        AddTruckUseCase(truckRepository = get())
+    }
+
+    factory {
+        GetTruckDetailsUseCase(truckRepository = get())
+    }
+
+    factory {
+        GetTrucksUseCase(truckRepository = get())
+    }
+
+    factory {
+        GetTrucksFromOwnerUseCase(truckRepository = get())
     }
 }
