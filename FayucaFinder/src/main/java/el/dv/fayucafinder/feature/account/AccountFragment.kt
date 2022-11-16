@@ -7,9 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import el.dv.fayucafinder.databinding.FullScreenComposeLayoutBinding
 
-/**
- * Fragment that holds one of the features
- */
 class AccountFragment : Fragment() {
 
     private lateinit var binding: FullScreenComposeLayoutBinding

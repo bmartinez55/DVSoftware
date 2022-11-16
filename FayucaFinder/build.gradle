@@ -57,6 +57,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     annotationProcessor "androidx.databinding:databinding-compiler:$databinding_compiler_version"
 
+    // Google & Firebase
+    implementation "com.google.firebase:firebase-auth-ktx"
+    implementation "com.google.android.gms:play-services-auth:$google_play_services_auth_version"
+
     // Test
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$junit_test_version"

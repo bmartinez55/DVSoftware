@@ -1,8 +1,28 @@
 package el.dv.fayucafinder.di
 
 import android.content.Context
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import el.dv.data.network.auth.model.AuthCallback
+import el.dv.data.network.auth.model.AuthData
+import el.dv.data.network.auth.model.IntentData
 import el.dv.fayucafinder.R
+import el.dv.fayucafinder.feature.login.auth.firebase.FirebaseAuthenticationFactoryForGoogle
+import el.dv.fayucafinder.feature.login.auth.firebase.FirebaseAuthenticationProvider
+import el.dv.fayucafinder.feature.login.auth.firebase.FirebaseAuthenticationProviderForGoogleAccount
+import el.dv.fayucafinder.feature.login.auth.firebase.usecase.FirebaseGoogleSignOutUseCase
+import el.dv.fayucafinder.feature.login.auth.firebase.usecase.FirebaseSignOutUserUseCase
+import el.dv.fayucafinder.feature.login.auth.firebase.usecase.GetFirebaseAccountForGoogleUseCase
+import el.dv.fayucafinder.feature.login.auth.firebase.usecase.GetFirebaseAccountUseCase
+import el.dv.fayucafinder.feature.login.auth.firebase.usecase.SignInWithFirebaseGoogleUseCase
+import el.dv.fayucafinder.feature.login.auth.google.GoogleAuthenticationActivityResultContract
+import el.dv.fayucafinder.feature.login.auth.google.GoogleAuthenticationFactory
+import el.dv.fayucafinder.feature.login.auth.google.GoogleAuthenticationProvider
+import el.dv.fayucafinder.feature.login.auth.google.usecase.GetGoogleAccountUseCase
+import el.dv.fayucafinder.feature.login.auth.google.usecase.SignInWithGoogleUseCase
+import el.dv.fayucafinder.feature.login.view.LoginVM
 import el.dv.fayucafinder.feature.map.FayucaFinderMapLifecycleObserver
 import el.dv.fayucafinder.feature.map.FayucaFinderMapVM
 import el.dv.fayucafinder.feature.map.bottomsheet.MapConfigurationVM
@@ -47,12 +67,88 @@ val appModule = module {
         )
     }
 
+    viewModel {
+        LoginVM()
+    }
+
     /**
      * Lifecycle related dependencies
      */
 
     factory { (lifecycleOwner: LifecycleOwner, OnResumeAction: ActionListener, OnPauseAction: ActionListener) ->
         FayucaFinderMapLifecycleObserver(lifecycleOwner = lifecycleOwner, onResumeAction = OnResumeAction, onPauseAction = OnPauseAction)
+    }
+
+    /**
+     * Factory related dependencies
+     */
+
+    factory { (activityResultContract: GoogleAuthenticationActivityResultContract, authCallback: AuthCallback<AuthData<IntentData>>, fragment: Fragment, context: Context) ->
+        GoogleAuthenticationProvider(activityResultContract = activityResultContract, authCallback = authCallback, fragment = fragment, context = context)
+    }
+
+    factory { (callback: AuthCallback<AuthData<Task<AuthResult>>>) ->
+        FirebaseAuthenticationProviderForGoogleAccount(authCallback = callback)
+    }
+
+    single {
+        GoogleAuthenticationFactory()
+    }
+
+    single {
+        FirebaseAuthenticationFactoryForGoogle()
+    }
+
+    /**
+     * Activity Contracts
+     */
+
+    factory {
+        GoogleAuthenticationActivityResultContract()
+    }
+
+    /**
+     * UseCases related dependencies
+     */
+
+    factory {
+        SignInWithFirebaseGoogleUseCase(authenticationProviderForGoogleAccount = get())
+    }
+
+    factory { (authProvider: GoogleAuthenticationProvider) ->
+        SignInWithGoogleUseCase(authenticationProvider = authProvider)
+    }
+
+    factory { (authProvider: FirebaseAuthenticationProvider) ->
+        GetFirebaseAccountUseCase(authProvider = authProvider)
+    }
+
+    factory {
+        GetFirebaseAccountForGoogleUseCase(authenticationProviderForGoogleAccount = get())
+    }
+
+    factory { (authProvider: GoogleAuthenticationProvider) ->
+        GetGoogleAccountUseCase(authenticationProvider = authProvider)
+    }
+
+    single {
+        FirebaseSignOutUserUseCase(authenticationProviderForGoogleAccount = get())
+    }
+
+    factory {
+        FirebaseGoogleSignOutUseCase(context = get())
+    }
+
+    /**
+     * ViewReducer related dependencies
+     */
+
+    factory {
+        GetMapConfigurationInitViewStateViewReducer(appDictionary = get())
+    }
+
+    factory {
+        GetNavigationMapCenterLocationUpdateViewReducer()
     }
 
     /**
@@ -81,17 +177,5 @@ val appModule = module {
 
     single {
         androidContext().getSharedPreferences(Const.COMMON_SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE)
-    }
-
-    /**
-     * ViewReducer related dependencies
-     */
-
-    factory {
-        GetMapConfigurationInitViewStateViewReducer(appDictionary = get())
-    }
-
-    factory {
-        GetNavigationMapCenterLocationUpdateViewReducer()
     }
 }
