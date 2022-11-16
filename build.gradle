@@ -45,6 +45,7 @@ buildscript {
     ext.play_services_map_version = '18.1.0'
     ext.play_services_location_version = '21.0.0'
     ext.firebase_bom_version = '31.0.2'
+    ext.google_play_services_auth_version = '20.3.0'
 
     // DI
     ext.koin_version = '2.2.3'//'3.2.2'
