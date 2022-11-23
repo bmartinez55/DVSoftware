@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.annotation.IdRes
+import androidx.navigation.NavDirections
 import el.dv.domain.navigation.model.MapVisualType
 
 sealed class ViewEffect {
@@ -25,6 +26,8 @@ sealed class ViewEffect {
     data class StartActivityEffect(val intent: Intent) : ViewEffect()
 
     data class NavigateToGlobalActionEffect(@IdRes val actionId: Int) : ViewEffect()
+
+    data class NavigateToDirection(val navDirections: NavDirections) : ViewEffect()
 
     data class UpdateMapTypeEffect(val mapVisualType: MapVisualType) : ViewEffect()
 

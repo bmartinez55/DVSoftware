@@ -214,7 +214,7 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
                     arguments = viewEffect.mapVisualType.convertParcelableToBundle(MAP_CONFIGURATION_ARGUMENT_KEY)
                 }
             }
-            is ViewEffect.Default -> {}
+            else -> {}
         }
     }
 
@@ -232,6 +232,5 @@ class FayucaFinderMapFragment : Fragment(), OnMapReadyCallback {
     companion object {
         const val TAG = "MapFragment"
         const val MAP_CONFIGURATION_ARGUMENT_KEY = "mapvisualtype"
-        const val BOUNCE_ANIMATION_DURATION = 3000L
     }
 }

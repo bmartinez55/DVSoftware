@@ -9,6 +9,7 @@ import el.dv.data.network.auth.model.AuthCallback
 import el.dv.data.network.auth.model.AuthData
 import el.dv.data.network.auth.model.IntentData
 import el.dv.fayucafinder.R
+import el.dv.fayucafinder.core.view.FayucaFinderVM
 import el.dv.fayucafinder.feature.login.auth.firebase.FirebaseAuthenticationFactoryForGoogle
 import el.dv.fayucafinder.feature.login.auth.firebase.FirebaseAuthenticationProvider
 import el.dv.fayucafinder.feature.login.auth.firebase.FirebaseAuthenticationProviderForGoogleAccount
@@ -46,6 +47,14 @@ val appModule = module {
      * ViewModel related dependencies
      */
     viewModel {
+        FayucaFinderVM(firebaseAuthFactoryForGoogle = get())
+    }
+
+    viewModel {
+        LoginVM()
+    }
+
+    viewModel {
         FayucaFinderMapVM(
             getLocationUseCase = get(),
             stopLocationUseCase = get(),
@@ -65,10 +74,6 @@ val appModule = module {
             getMapConfigurationInitViewStateViewReducer = get(),
             eventBus = get()
         )
-    }
-
-    viewModel {
-        LoginVM()
     }
 
     /**
