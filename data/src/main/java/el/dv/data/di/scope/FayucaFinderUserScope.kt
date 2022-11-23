@@ -26,14 +26,16 @@ sealed class UserScopeData {
     @Parcelize
     data class UserData(
         val userTokenId: String,
-        val userEmail: String = ""
+        val userEmail: String = "",
+        val tokenIdExpirationEpochTime: Long
     ) : UserScopeData(), Parcelable
 
     @Parcelize
     data class TruckOwnerUserData(
         val userTokenId: String,
         val userEmail: String = "",
-        val ownerId: String = ""
+        val ownerId: String = "",
+        val tokenIdExpirationEpochTime: Long
     ) : UserScopeData(), Parcelable
 
     object NoData : UserScopeData()

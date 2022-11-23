@@ -12,12 +12,24 @@
         <action
             android:id="@+id/action_FayucaFinderFragment_to_BottomNavigationFragment"
             app:destination="@id/BottomNavigationFragment" />
+        <action
+            android:id="@+id/action_FayucaFinderFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/BottomNavigationFragment"
         android:name="el.dv.fayucafinder.core.view.bottomnavigation.BottomNavigationFragment"
-        android:label="BottomNavigationFragment">
+        android:label="BottomNavigationFragment"
+        tools:layout="@layout/bottom_navigation_layout">
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="el.dv.fayucafinder.feature.login.view.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_BottomNavigationFragment"
+            app:destination="@id/BottomNavigationFragment" />
     </fragment>
 
 </navigation>

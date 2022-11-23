@@ -44,7 +44,6 @@ android {
 }
 
 dependencies {
-
     api "androidx.compose.animation:animation:$compose_version"
     api "androidx.compose.foundation:foundation:$compose_version"
     api "androidx.compose.material:material:$compose_version"
@@ -55,4 +54,6 @@ dependencies {
     api "androidx.compose.ui:ui-tooling:$compose_version"
     api "androidx.compose.ui:ui-tooling-preview:$compose_version"
     api "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
+    api "com.google.accompanist:accompanist-insets:$compose_accompanist_version"
+    api "com.google.accompanist:accompanist-flowlayout:$compose_accompanist_version"
 }
