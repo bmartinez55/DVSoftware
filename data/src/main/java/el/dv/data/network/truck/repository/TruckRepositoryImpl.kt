@@ -12,6 +12,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 
+/**
+ * Repository implementation that provides truck data
+ */
 class TruckRepositoryImpl(
     private val truckApi: TruckApi,
     private val dispatchers: CoroutineDispatchers

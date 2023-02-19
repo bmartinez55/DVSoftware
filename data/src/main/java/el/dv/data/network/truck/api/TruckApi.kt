@@ -8,20 +8,20 @@ import el.dv.domain.truck.repository.UpdateTruckOperationStatusRequest
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Api that provides truck services
+ * Api that provides truck data
  */
 interface TruckApi {
     /**
-     * Add user
+     * Add Truck
      * @param addTruckRequest
      * @return Result<Boolean>
      */
     suspend fun addTruck(addTruckRequest: AddTruckRequest): Result<Boolean>
 
     /**
-     * Get User by email
-     * @param email: String
-     * @return Result<User>
+     * Get Truck Details
+     * @param truckId
+     * @return Result<TruckDetails>
      */
     suspend fun getTruckDetails(truckId: String): Result<TruckDetails>
 

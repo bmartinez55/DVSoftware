@@ -36,12 +36,12 @@ class FayucaFinderTruckApi(
                 truckDatabase.reference
                     .child(addTruckRequest.truck.ownerId)
                     .child(it)
-                    .setValue(addTruckRequest.truck.toFirebaseTruck())
+                    .setValue(addTruckRequest.truck.toFirebaseTruck().toMap())
                     .addOnSuccessListener {
                         AppLog.d(TAG, "addTruck success")
                         truckDetailsDatabase.reference
                             .child(addTruckRequest.truck.truckId)
-                            .setValue(addTruckRequest.truckDetails.toFirebaseTruckDetails())
+                            .setValue(addTruckRequest.truckDetails.toFirebaseTruckDetails().toMap())
                             .addOnSuccessListener {
                                 AppLog.d(TAG, "addTruckDetails sucess")
                                 continuation.resumeWith(kotlin.Result.success(Result.Success(true)))

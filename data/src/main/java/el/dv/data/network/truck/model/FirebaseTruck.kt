@@ -2,6 +2,7 @@ package el.dv.data.network.truck.model
 
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties
+import el.dv.domain.extension.toIndexedMap
 import el.dv.domain.truck.repository.Accessibility
 import el.dv.domain.truck.repository.Truck
 import el.dv.domain.truck.repository.TruckDetails
@@ -42,7 +43,19 @@ data class FirebaseTruckDetails(
     val accessibilities: String = "",
     val imageUriList: List<String> = emptyList(),
     val ownerId: String = ""
-)
+) {
+    @Exclude
+    fun toMap(): Map<String, Any?> {
+        return mapOf(
+            "truckId" to truckId,
+            "description" to description,
+            "genres" to genres,
+            "accessibilities" to accessibilities,
+            "imageUriList" to imageUriList.toIndexedMap(),
+            "ownerId" to ownerId
+        )
+    }
+}
 
 @IgnoreExtraProperties
 data class FirebaseUpdateTruckOperationStatusRequest(

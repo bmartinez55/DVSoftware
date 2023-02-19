@@ -13,6 +13,9 @@ import el.dv.domain.truck.usecase.AddTruckUseCase
 import el.dv.domain.truck.usecase.GetTruckDetailsUseCase
 import el.dv.domain.truck.usecase.GetTrucksFromOwnerUseCase
 import el.dv.domain.truck.usecase.GetTrucksUseCase
+import el.dv.domain.user.usecase.AddUserUseCase
+import el.dv.domain.user.usecase.GetUserUseCase
+import el.dv.domain.user.usecase.UpdateUserUseCase
 import org.koin.dsl.module
 
 val domainModule = module {
@@ -30,7 +33,6 @@ val domainModule = module {
     /**
      * Use Cases
      */
-
     factory {
         SaveStringInSharedPreferencesUseCase(dataStoreRepository = get())
     }
@@ -65,5 +67,17 @@ val domainModule = module {
 
     factory {
         GetTrucksFromOwnerUseCase(truckRepository = get())
+    }
+
+    factory {
+        AddUserUseCase(userRepository = get())
+    }
+
+    factory {
+        UpdateUserUseCase(userRepository = get())
+    }
+
+    factory {
+        GetUserUseCase(userRepository = get())
     }
 }
