@@ -5,6 +5,8 @@
     <string name="confirm" translatable="false">Confirm</string>
     <string name="back" translatable="false">Back</string>
     <string name="cancel" translatable="false">False</string>
+    <string name="signin" translatable="false">Sign In</string>
+    <string name="signup" translatable="false">Sign Up</string>
 
     <!--Common Banner Text-->
     <string name="wifi_disconnected" translatable="false">No internet detected</string>
