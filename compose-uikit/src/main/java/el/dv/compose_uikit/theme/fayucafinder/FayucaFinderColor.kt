@@ -1,4 +1,4 @@
-package el.dv.compose_uikit.theme
+package el.dv.compose_uikit.theme.fayucafinder
 
 import androidx.compose.ui.graphics.Color
 

@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
-import el.dv.fayucafinder.databinding.FullScreenComposeLayoutBinding
-import el.dv.fayucafinder.extension.inflateComposeContainer
+import el.dv.compose_uikit.extension.requireContentView
+import el.dv.compose_uikit.theme.fayucafinder.FayucaFinderTheme
 import el.dv.presentation.extension.navigate
 import el.dv.presentation.view.effect.ViewEffect
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -17,15 +18,13 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class FayucaFinderFragment : Fragment() {
 
     private val viewModel: FayucaFinderVM by viewModel()
-    private lateinit var binding: FullScreenComposeLayoutBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = FullScreenComposeLayoutBinding.inflate(inflater, container, false).also {
-            it.lifecycleOwner = this@FayucaFinderFragment
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
+        this.requireContentView(ViewCompositionStrategy.DisposeOnLifecycleDestroyed(viewLifecycleOwner)) {
+            FayucaFinderTheme {
+                FayucaFinderScreen()
+            }
         }
-        setUpView()
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,12 +34,6 @@ class FayucaFinderFragment : Fragment() {
         }
         // TODO(Uncomment line once login is completely implemented)
         // viewModel.handleEvent(FayucaFinderViewEvent.Init)
-    }
-
-    private fun setUpView() {
-        inflateComposeContainer(binding.composeView) {
-            FayucaFinderScreen()
-        }
     }
 
     private fun triggerViewEffects(viewEffect: ViewEffect) {

@@ -1,9 +1,10 @@
-package el.dv.compose_uikit.theme
+package el.dv.compose_uikit.theme.fayucafinder
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.em
+import el.dv.compose_uikit.theme.Dimens
 
 val FayucaFinderLightTypography = Typography(
     h1 = TextStyle(

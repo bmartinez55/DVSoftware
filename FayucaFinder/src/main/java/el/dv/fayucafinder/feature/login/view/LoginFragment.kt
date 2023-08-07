@@ -4,10 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.fragment.app.Fragment
-import el.dv.fayucafinder.databinding.FullScreenComposeLayoutBinding
-import el.dv.fayucafinder.extension.inflateComposeContainer
+import el.dv.compose_uikit.extension.requireContentView
+import el.dv.compose_uikit.theme.fayucafinder.FayucaFinderTheme
+import el.dv.presentation.extension.navigate
 import el.dv.presentation.extension.onBackPress
 import el.dv.presentation.view.effect.ViewEffect
 import el.dv.presentation.view.manager.dialog.DialogManager
@@ -18,33 +24,35 @@ class LoginFragment : Fragment() {
 
     private val viewModel: LoginVM by viewModel()
     private val dialogManager: DialogManager by inject()
-    private lateinit var binding: FullScreenComposeLayoutBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = FullScreenComposeLayoutBinding.inflate(inflater, container, false).also {
-            it.lifecycleOwner = this@LoginFragment
-        }
-
-        onBackPress(false) {
-            activity?.onBackPressedDispatcher?.onBackPressed()
-        }
+        onBackPress(false) { activity?.onBackPressedDispatcher?.onBackPressed() }
 
         viewModel.handleEvent(LoginViewEvent.Init)
-        renderViewState()
 
-        return binding.root
+        return this.requireContentView(ViewCompositionStrategy.DisposeOnLifecycleDestroyed(viewLifecycleOwner)) {
+            FayucaFinderTheme {
+                val viewState = viewModel.viewState.observeAsState()
+                when (val state = viewState.value?.loginState) {
+                    is LoginState.Show -> LoginScreen(
+                        welcomeText = state.welcomeText,
+                        signInWithGoogleText = state.signInWithGoogleText,
+                        signInWithGoogleButtonIcon = state.signInWithGoogleIcon,
+                        onSignInWithGoogleClick = {
+                            viewModel.handleEvent(LoginViewEvent.LoginWithGoogleClick)
+                        }
+                    )
+                    is LoginState.Hide -> {}
+                    else -> {}
+                }
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.viewEffect.observe(viewLifecycleOwner) { viewEffect ->
             triggerViewEffect(viewEffect)
-        }
-    }
-
-    private fun renderViewState() {
-        inflateComposeContainer(binding.composeView) {
-            val viewState = viewModel.viewState.observeAsState()
         }
     }
 
@@ -61,6 +69,7 @@ class LoginFragment : Fragment() {
                 onKeyListener = viewEffect.onKeyListener
             )
             is ViewEffect.DismissDialogEffect -> dialogManager.dismiss()
+            is ViewEffect.NavigateToDirection -> navigate(viewEffect.navDirections)
             else -> {}
         }
     }

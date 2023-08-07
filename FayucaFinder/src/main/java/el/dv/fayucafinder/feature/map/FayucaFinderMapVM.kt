@@ -7,8 +7,8 @@ import android.os.Build
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import el.dv.domain.core.Geolocation
@@ -74,11 +74,7 @@ class FayucaFinderMapVM(
     private val state: InternalState
         get() = requireNotNull(internalState.value)
 
-    val viewState: LiveData<FayucaFinderMapState> = Transformations.distinctUntilChanged(
-        internalState.map {
-            it.viewState
-        }
-    )
+    val viewState: LiveData<FayucaFinderMapState> = internalState.map { it.viewState }.distinctUntilChanged()
 
     private val internalViewEffect = MutableLiveData<ViewEffect>()
     val viewEffect: LiveData<ViewEffect> = internalViewEffect

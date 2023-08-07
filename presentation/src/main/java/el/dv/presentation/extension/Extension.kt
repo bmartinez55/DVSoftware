@@ -7,7 +7,13 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.model.LatLng
 import el.dv.domain.core.Geolocation
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 
 typealias ActionListener = () -> Unit
 
@@ -34,6 +40,7 @@ fun Fragment.onBackPress(enabled: Boolean, onBackPressAction: () -> Unit) {
     )
 }
 
+@OptIn(ExperimentalCoroutinesApi::class)
 fun <E> SendChannel<E>.offerWhenOpen(data: E) {
     when (this.isClosedForSend) {
         false -> this.trySend(data)
@@ -62,4 +69,19 @@ fun <T : Any> Bundle.getBundleData(key: String, defaultValue: T): T {
 
 fun <T : Any> Fragment.getBundleData(key: String, defaultValue: T) = lazy {
     arguments?.getBundleData(key, defaultValue) ?: defaultValue
+}
+
+/**
+ * Created a job that has launches a Coroutine Scope periodically according to the delay time.
+ * @param delayMillis
+ * @param action
+ * @return Job
+ */
+fun CoroutineScope.launchPeriodic(delayMillis: Long, action: CoroutineScope.() -> Unit): Job {
+    return launch {
+        while (!this.isActive) {
+            action()
+            delay(delayMillis)
+        }
+    }
 }
