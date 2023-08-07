@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace 'el.dv.compose_uikit'
-    compileSdk 32
+    compileSdk compile_sdk_version
 
     defaultConfig {
-        minSdk 29
-        targetSdk 32
+        minSdk min_sdk_version
+        targetSdk target_sdk_version
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -44,6 +44,8 @@ android {
 }
 
 dependencies {
+    // Jetpack Suite or UI
+    api "androidx.fragment:fragment-ktx:$fragment_version"
     api "androidx.compose.animation:animation:$compose_version"
     api "androidx.compose.foundation:foundation:$compose_version"
     api "androidx.compose.material:material:$compose_version"

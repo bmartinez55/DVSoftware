@@ -51,7 +51,7 @@ val appModule = module {
     }
 
     viewModel {
-        LoginVM()
+        LoginVM(appDictionary = get())
     }
 
     viewModel {

@@ -17,4 +17,7 @@
     <string name="terrain" translatable="false">Terrain</string>
     <string name="hybrid" translatable="false">Hybrid</string>
     <string name="three_dimension_mode" translatable="false">3D Mode</string>
+
+    <!--Login-->
+    <string name="login_with_google" translatable="false">Login With Google</string>
 </resources>
