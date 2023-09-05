@@ -98,7 +98,6 @@ dependencies {
     // DI
     api "io.insert-koin:koin-core:$koin_version"
     api "io.insert-koin:koin-android:$koin_android_version"
-    api "io.insert-koin:koin-androidx-viewmodel:$koin_viewmodel_version"
 
     // Test
     testImplementation "junit:junit:$junit_version"

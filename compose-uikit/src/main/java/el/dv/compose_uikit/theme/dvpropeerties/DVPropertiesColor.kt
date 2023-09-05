@@ -1,0 +1,36 @@
+package el.dv.compose_uikit.theme.dvpropeerties
+
+import androidx.compose.ui.graphics.Color
+
+object DVPropertiesColor {
+    val primary = Color(0xFFBF0023)
+    val onPrimary = Color(0xFFFFFFFF)
+    val primaryContainer = Color(0xFFFFDAD7)
+    val onPrimaryContainer = Color(0xFF410005)
+    val secondary = Color(0xFFBA1919)
+    val onSecondary = Color(0xFFFFFFFF)
+    val secondaryContainer = Color(0xFFFFDAD5)
+    val onSecondaryContainer = Color(0xFF410002)
+    val tertiary = Color(0xFF9C4235)
+    val onTertiary = Color(0xFFFFFFFF)
+    val tertiaryContainer = Color(0xFFFFDAD4)
+    val onTertiaryContainer = Color(0xFF410000)
+    val error = Color(0xFFBA1A1A)
+    val errorContainer = Color(0xFFFFDAD6)
+    val onError = Color(0xFFFFFFFF)
+    val onErrorContainer = Color(0xFF410002)
+    val background = Color(0xFFFFFBFF)
+    val onBackground = Color(0xFF201A1A)
+    val surface = Color(0xFFFFFBFF)
+    val onSurface = Color(0xFF201A1A)
+    val surfaceVariant = Color(0xFFF4DDDB)
+    val onSurfaceVariant = Color(0xFF534342)
+    val outline = Color(0xFF857372)
+    val inverseOnSurface = Color(0xFFFBEEEC)
+    val inverseSurface = Color(0xFF362F2E)
+    val inversePrimary = Color(0xFFFFB3AF)
+    val shadow = Color(0xFF000000)
+    val surfaceTint = Color(0xFFBF0023)
+    val outlineVariant = Color(0xFFD8C1C0)
+    val scrim = Color(0xFF000000)
+}
