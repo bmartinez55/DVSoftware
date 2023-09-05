@@ -4,12 +4,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
+import el.dv.compose_uikit.theme.dvpropeerties.DVPropertiesTheme
 
 fun Fragment.inflateComposeContainer(view: ComposeView, content: @Composable () -> Unit) {
     view.apply {
         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
         setContent {
-            // TODO("Add Theme for DVProperties App")
+            DVPropertiesTheme {
+                content()
+            }
         }
     }
 }

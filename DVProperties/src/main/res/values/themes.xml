@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.DVSoftware" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.DVProperties" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="primary">@color/primary</item>
+        <item name="primaryVariant">@color/primaryContainer</item>
+        <item name="secondary">@color/secondary</item>
+        <item name="secondaryVariant">@color/secondaryContainer</item>
+        <item name="backgroundColor">@color/background</item>
+        <item name="surface">@color/surface</item>
+        <item name="error">@color/error</item>
+        <item name="onPrimary">@color/onPrimary</item>
+        <item name="onSecondary">@color/onSecondary</item>
+        <item name="onBackground">@color/onBackground</item>
+        <item name="onSurface">@color/onSurface</item>
+        <item name="onError">@color/onError</item>
+    </style>
 </resources>

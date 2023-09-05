@@ -1,9 +1,10 @@
-package el.dv.compose_uikit.theme
+package el.dv.compose_uikit.theme.fayucafinder
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import el.dv.compose_uikit.theme.DVSoftwareShapes
 
 private val FayucaFinderLightThemeColors = lightColors(
     primary = FayucaFinderColor.Palette.deepOrange500,

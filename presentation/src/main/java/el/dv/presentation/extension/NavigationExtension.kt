@@ -3,14 +3,13 @@ package el.dv.presentation.extension
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import org.koin.androidx.viewmodel.ViewModelOwner
-import org.koin.androidx.viewmodel.koin.getViewModel
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.core.parameter.ParametersDefinition
-import org.koin.java.KoinJavaComponent.getKoin
 
 /**
  * ViewModel scope will be tied to navigation graph and
@@ -22,8 +21,10 @@ inline fun <reified VM : ViewModel> Fragment.sharedNavGraphViewModel(
 ): Lazy<VM> {
     val backStackEntry: NavBackStackEntry by lazy { findNavController().getBackStackEntry(navGraphId) }
     return lazy(LazyThreadSafetyMode.NONE) {
-        getKoin().getViewModel(
-            owner = { ViewModelOwner(backStackEntry.viewModelStore, backStackEntry) },
+        getViewModel(
+            ownerProducer = {
+                backStackEntry.viewModelStore as ViewModelStoreOwner
+            },
             parameters = parameters
         )
     }
@@ -39,8 +40,10 @@ inline fun <reified VM : ViewModel> Fragment.sharedParentNavGraphViewModel(
 ): Lazy<VM> {
     val backStackEntry: NavBackStackEntry by lazy { requireParentFragment().requireParentFragment().findNavController().getBackStackEntry(navGraphId) }
     return lazy(LazyThreadSafetyMode.NONE) {
-        getKoin().getViewModel(
-            owner = { ViewModelOwner(backStackEntry.viewModelStore, backStackEntry) },
+        getViewModel(
+            ownerProducer = {
+                backStackEntry.viewModelStore as ViewModelStoreOwner
+            },
             parameters = parameters
         )
     }

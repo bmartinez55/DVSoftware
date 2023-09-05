@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import el.dv.compose_uikit.extension.angledGradientBackground
-import el.dv.compose_uikit.theme.FayucaFinderColor
+import el.dv.compose_uikit.theme.fayucafinder.FayucaFinderColor
 import el.dv.fayucafinder.R
 
 @Composable
