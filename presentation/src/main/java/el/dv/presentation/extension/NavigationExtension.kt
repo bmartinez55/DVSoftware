@@ -3,6 +3,7 @@ package el.dv.presentation.extension
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
@@ -20,11 +21,13 @@ inline fun <reified VM : ViewModel> Fragment.sharedNavGraphViewModel(
     noinline parameters: ParametersDefinition? = null
 ): Lazy<VM> {
     val backStackEntry: NavBackStackEntry by lazy { findNavController().getBackStackEntry(navGraphId) }
+    val store: ViewModelStoreOwner = object : ViewModelStoreOwner {
+        override val viewModelStore: ViewModelStore
+            get() = backStackEntry.viewModelStore
+    }
     return lazy(LazyThreadSafetyMode.NONE) {
         getViewModel(
-            ownerProducer = {
-                backStackEntry.viewModelStore as ViewModelStoreOwner
-            },
+            ownerProducer = { store },
             parameters = parameters
         )
     }
@@ -39,11 +42,13 @@ inline fun <reified VM : ViewModel> Fragment.sharedParentNavGraphViewModel(
     noinline parameters: ParametersDefinition? = null
 ): Lazy<VM> {
     val backStackEntry: NavBackStackEntry by lazy { requireParentFragment().requireParentFragment().findNavController().getBackStackEntry(navGraphId) }
+    val store: ViewModelStoreOwner = object : ViewModelStoreOwner {
+        override val viewModelStore: ViewModelStore
+            get() = backStackEntry.viewModelStore
+    }
     return lazy(LazyThreadSafetyMode.NONE) {
         getViewModel(
-            ownerProducer = {
-                backStackEntry.viewModelStore as ViewModelStoreOwner
-            },
+            ownerProducer = { store },
             parameters = parameters
         )
     }
