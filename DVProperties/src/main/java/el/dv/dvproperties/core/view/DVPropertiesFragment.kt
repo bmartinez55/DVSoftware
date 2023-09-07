@@ -11,7 +11,6 @@ import el.dv.presentation.extension.requireContentView
 
 class DVPropertiesFragment : Fragment() {
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
