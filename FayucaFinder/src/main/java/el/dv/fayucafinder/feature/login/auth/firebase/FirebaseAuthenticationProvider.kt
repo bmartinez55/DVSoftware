@@ -5,9 +5,9 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import el.dv.data.network.auth.api.AuthProviderBase
-import el.dv.data.network.auth.model.AuthAccount
-import el.dv.data.network.auth.model.AuthData
+import el.dv.data.fayucafinder.network.auth.api.AuthProviderBase
+import el.dv.data.fayucafinder.network.auth.model.AuthAccount
+import el.dv.data.fayucafinder.network.auth.model.AuthData
 import el.dv.domain.core.Result
 
 /**

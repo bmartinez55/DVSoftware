@@ -1,8 +1,8 @@
 package el.dv.fayucafinder.feature.login.auth.google
 
-import el.dv.data.network.auth.model.AuthCallback
-import el.dv.data.network.auth.model.AuthData
-import el.dv.data.network.auth.model.IntentData
+import el.dv.data.fayucafinder.network.auth.model.AuthCallback
+import el.dv.data.fayucafinder.network.auth.model.AuthData
+import el.dv.data.fayucafinder.network.auth.model.IntentData
 import el.dv.fayucafinder.feature.login.auth.UIAuthFactory
 import el.dv.fayucafinder.feature.login.auth.google.usecase.CheckIfUserIsAuthenticatedWithGoogleUseCase
 import el.dv.fayucafinder.feature.login.auth.google.usecase.GetGoogleAccountUseCase

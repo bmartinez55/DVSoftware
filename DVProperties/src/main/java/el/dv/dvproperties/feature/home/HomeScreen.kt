@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import el.dv.compose_uikit.theme.dvpropeerties.DVPropertiesTheme
-import el.dv.domain.dvproperties.PropertyDetails
+import el.dv.domain.dvproperties.propertydetails.PropertyDetails
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

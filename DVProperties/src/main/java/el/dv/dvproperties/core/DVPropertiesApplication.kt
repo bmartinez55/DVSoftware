@@ -1,6 +1,7 @@
 package el.dv.dvproperties.core
 
 import android.app.Application
+import el.dv.dvproperties.di.DVPropertiesDIModuleProvider
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.loadKoinModules
@@ -14,7 +15,7 @@ class DVPropertiesApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@DVPropertiesApplication)
-            loadKoinModules(emptyList())
+            loadKoinModules(DVPropertiesDIModuleProvider.dvPropertiesModuleList)
         }
     }
 }
