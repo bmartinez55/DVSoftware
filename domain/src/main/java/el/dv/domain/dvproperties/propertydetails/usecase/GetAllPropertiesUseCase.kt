@@ -7,8 +7,8 @@ import el.dv.domain.dvproperties.propertydetails.PropertyDetailsRepository
 
 class GetAllPropertiesUseCase(
     private val propertyDetailsRepository: PropertyDetailsRepository
-) : SuspendUseCase<Unit, Result<List<PropertyDetails>>> {
-    override suspend fun run(param: Unit): Result<List<PropertyDetails>> {
+) : SuspendUseCase<Unit, List<PropertyDetails>> {
+    override suspend fun run(param: Unit): List<PropertyDetails> {
         return propertyDetailsRepository.getAllProperties()
     }
 }
