@@ -5,8 +5,8 @@ import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContract
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import el.dv.data.network.auth.model.AuthData
-import el.dv.data.network.auth.model.IntentData
+import el.dv.data.fayucafinder.network.auth.model.AuthData
+import el.dv.data.fayucafinder.network.auth.model.IntentData
 import el.dv.fayucafinder.R
 
 /**

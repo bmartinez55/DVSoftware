@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
-import el.dv.data.di.scope.SignInUserScope
-import el.dv.data.di.scope.UserScopeData
-import el.dv.data.di.scope.fayucaFinderUserScope
-import el.dv.data.network.auth.model.AuthCallback
-import el.dv.data.network.auth.model.AuthData
+import el.dv.data.fayucafinder.di.SignInUserScope
+import el.dv.data.fayucafinder.di.UserScopeData
+import el.dv.data.fayucafinder.di.fayucaFinderUserScope
+import el.dv.data.fayucafinder.network.auth.model.AuthCallback
+import el.dv.data.fayucafinder.network.auth.model.AuthData
 import el.dv.domain.core.Result
 import el.dv.domain.extension.isNotNullAndNotEmpty
 import el.dv.domain.logging.AppLog

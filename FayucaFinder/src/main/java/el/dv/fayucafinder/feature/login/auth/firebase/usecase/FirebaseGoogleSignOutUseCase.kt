@@ -5,8 +5,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import el.dv.data.di.scope.SignOutUserScope
-import el.dv.data.di.scope.fayucaFinderUserScope
+import el.dv.data.fayucafinder.di.SignOutUserScope
+import el.dv.data.fayucafinder.di.fayucaFinderUserScope
 import el.dv.domain.core.SuspendUseCase
 import el.dv.domain.logging.AppLog
 

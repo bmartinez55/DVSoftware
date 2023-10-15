@@ -7,12 +7,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import el.dv.data.network.auth.api.AuthProvider
-import el.dv.data.network.auth.model.AuthAccount
-import el.dv.data.network.auth.model.AuthCallback
-import el.dv.data.network.auth.model.AuthData
-import el.dv.data.network.auth.model.AuthProviderRequest
-import el.dv.data.network.auth.model.IntentData
+import el.dv.data.fayucafinder.network.auth.api.AuthProvider
+import el.dv.data.fayucafinder.network.auth.model.AuthAccount
+import el.dv.data.fayucafinder.network.auth.model.AuthCallback
+import el.dv.data.fayucafinder.network.auth.model.AuthData
+import el.dv.data.fayucafinder.network.auth.model.AuthProviderRequest
+import el.dv.data.fayucafinder.network.auth.model.IntentData
 import el.dv.domain.core.Result
 import el.dv.domain.logging.AppLog
 

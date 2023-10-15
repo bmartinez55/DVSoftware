@@ -1,6 +1,6 @@
 package el.dv.dvproperties.feature.home
 
-import el.dv.domain.dvproperties.PropertyDetails
+import el.dv.domain.dvproperties.propertydetails.PropertyDetails
 
 data class HomeViewState(
     val horizontalGridState: HorizontalGridState = HorizontalGridState.Hide

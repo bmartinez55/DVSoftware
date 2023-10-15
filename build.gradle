@@ -6,7 +6,7 @@ buildscript {
     ext.target_sdk_version = 33
 
     // Gradle build version
-    ext.build_gradle_version = '8.0.1'
+    ext.build_gradle_version = '8.1.2'
     ext.kotlin_gradle_plugin_version = '1.9.0'
 
     // Core Libraries
@@ -55,6 +55,9 @@ buildscript {
     ext.play_services_location_version = '21.0.1'
     ext.firebase_bom_version = '31.0.2'
     ext.google_play_services_auth_version = '20.6.0'
+
+    // Room
+    ext.room_version = "2.5.2"
 
     // DI
     ext.koin_version = '3.2.0'
