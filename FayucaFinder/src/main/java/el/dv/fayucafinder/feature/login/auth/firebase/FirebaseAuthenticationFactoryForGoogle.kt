@@ -2,8 +2,8 @@ package el.dv.fayucafinder.feature.login.auth.firebase
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
-import el.dv.data.fayucafinder.network.auth.model.AuthCallback
-import el.dv.data.fayucafinder.network.auth.model.AuthData
+import el.dv.fayucafinderdata.network.auth.model.AuthCallback
+import el.dv.fayucafinderdata.network.auth.model.AuthData
 import el.dv.fayucafinder.feature.login.auth.AuthFactory
 import el.dv.fayucafinder.feature.login.auth.firebase.usecase.CheckIfUserIsAuthenticatedWithFirebaseGoogleUseCase
 import el.dv.fayucafinder.feature.login.auth.firebase.usecase.FirebaseSignOutUserUseCase

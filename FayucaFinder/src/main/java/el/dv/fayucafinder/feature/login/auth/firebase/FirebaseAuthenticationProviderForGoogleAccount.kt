@@ -5,10 +5,10 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import el.dv.data.fayucafinder.network.auth.api.AuthProvider
-import el.dv.data.fayucafinder.network.auth.model.AuthCallback
-import el.dv.data.fayucafinder.network.auth.model.AuthData
-import el.dv.data.fayucafinder.network.auth.model.AuthProviderRequest
+import el.dv.fayucafinderdata.network.auth.api.AuthProvider
+import el.dv.fayucafinderdata.network.auth.model.AuthCallback
+import el.dv.fayucafinderdata.network.auth.model.AuthData
+import el.dv.fayucafinderdata.network.auth.model.AuthProviderRequest
 import el.dv.domain.logging.AppLog
 
 class FirebaseAuthenticationProviderForGoogleAccount(private val authCallback: AuthCallback<AuthData<Task<AuthResult>>>) :

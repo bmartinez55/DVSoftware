@@ -50,6 +50,7 @@ android {
 
 dependencies {
     implementation project(":presentation")
+    implementation(project(":FayucaFinderData"))
 
     // Androidx
     implementation "androidx.core:core-ktx:$core_ktx_version"

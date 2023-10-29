@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PropertyDetails(
-    val id: Int? = null,
+    val id: Int = 0,
     val address: String = "",
     val city: String = "",
     val state: String = "",

@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
-import el.dv.data.fayucafinder.network.auth.model.AuthCallback
-import el.dv.data.fayucafinder.network.auth.model.AuthData
-import el.dv.data.fayucafinder.network.auth.model.IntentData
+import el.dv.fayucafinderdata.network.auth.model.AuthCallback
+import el.dv.fayucafinderdata.network.auth.model.AuthData
+import el.dv.fayucafinderdata.network.auth.model.IntentData
 import el.dv.fayucafinder.R
 import el.dv.fayucafinder.core.view.FayucaFinderVM
 import el.dv.fayucafinder.feature.login.auth.firebase.FirebaseAuthenticationFactoryForGoogle

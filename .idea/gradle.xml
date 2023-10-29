@@ -14,12 +14,13 @@
             <option value="$PROJECT_DIR$/DVProperties" />
             <option value="$PROJECT_DIR$/FayucaFinder" />
             <option value="$PROJECT_DIR$/buildSrc" />
-            <option value="$PROJECT_DIR$/compose-uikit" />
-            <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/data/DVPropertiesData" />
+            <option value="$PROJECT_DIR$/data/DataCommon" />
+            <option value="$PROJECT_DIR$/data/FayucaFinderData" />
             <option value="$PROJECT_DIR$/domain" />
-            <option value="$PROJECT_DIR$/dvpropertiesdata" />
             <option value="$PROJECT_DIR$/presentation" />
-            <option value="$PROJECT_DIR$/xml-uikit" />
+            <option value="$PROJECT_DIR$/uikit/compose-uikit" />
+            <option value="$PROJECT_DIR$/uikit/xml-uikit" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
