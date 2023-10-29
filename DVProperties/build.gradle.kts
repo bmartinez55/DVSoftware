@@ -57,20 +57,17 @@ android {
 
 dependencies {
     implementation(project(":presentation"))
+    implementation(project(":DVPropertiesData"))
 
-    // Core
     implementation(Dependencies.Jetbrains.kotlinStdlib)
 
-    // Androidx
     implementation(Dependencies.AndroidX.coreKtx)
     implementation(Dependencies.AndroidX.appCompat)
     annotationProcessor(Dependencies.AndroidX.dataBindingCompiler)
 
-    // Google & Firebase
     implementation(Dependencies.Firebase.authKtx)
     implementation(Dependencies.Google.playServicesAuth)
 
-    // Test
     testImplementation(Dependencies.Test.junit)
     androidTestImplementation(Dependencies.Test.junitTest)
     androidTestImplementation(Dependencies.Test.espresso)

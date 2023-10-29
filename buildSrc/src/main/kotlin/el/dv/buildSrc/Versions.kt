@@ -9,12 +9,31 @@ object Versions {
     const val coreKtx = "1.10.1"
     const val appCompat = "1.6.1"
     const val databindingCompiler = "7.3.1"
-
-    // Jetpack Suite && UI Layouts
     const val composeCompiler = "1.5.0"
+    const val compose = "1.5.0"
+    const val composeConstraintLayout = "1.0.1"
+    const val composeNavigation = "2.6.0"
+    const val lifecycle = "2.6.1"
+    const val constraintLayout = "2.1.4"
+
+    // DI
+    const val koin = "3.2.0"
+    const val koinAndroid = "3.3.0"
+
+    // Room
+    const val room = "2.5.2"
 
     // Google
     const val playServicesAuth = "20.6.0"
+    const val mapsUtils = "2.4.0"
+    const val accompanistInsets = "0.23.1"
+    const val accompanistFlowLayout = "0.23.1"
+    const val googleMaterial = "1.9.0"
+    const val playServicesMap = "18.1.0"
+    const val mapsKtx = "3.1.0"
+
+    // Firebase
+    const val bom = "31.0.2"
 
     // Test
     const val junit = "4.13.2"

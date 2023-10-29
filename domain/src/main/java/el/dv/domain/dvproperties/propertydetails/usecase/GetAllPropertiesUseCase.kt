@@ -1,6 +1,5 @@
 package el.dv.domain.dvproperties.propertydetails.usecase
 
-import el.dv.domain.core.Result
 import el.dv.domain.core.SuspendUseCase
 import el.dv.domain.dvproperties.propertydetails.PropertyDetails
 import el.dv.domain.dvproperties.propertydetails.PropertyDetailsRepository

@@ -62,7 +62,7 @@ android {
 }
 
 dependencies {
-    api project(":data")
+    api project(':DataCommon')
     api project(":xml-uikit")
     api project(":compose-uikit")
 

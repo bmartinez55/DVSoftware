@@ -1,9 +1,0 @@
-rootProject.name = "DVSoftware"
-include ':FayucaFinder'
-include ':data'
-include ':domain'
-include ':presentation'
-include ':xml-uikit'
-include ':compose-uikit'
-include ':DVProperties'
-include ':dvpropertiesdata'

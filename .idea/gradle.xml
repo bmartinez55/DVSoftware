@@ -12,12 +12,13 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/DVProperties" />
+            <option value="$PROJECT_DIR$/DVPropertiesData" />
+            <option value="$PROJECT_DIR$/DataCommon" />
             <option value="$PROJECT_DIR$/FayucaFinder" />
+            <option value="$PROJECT_DIR$/FayucaFinderData" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/compose-uikit" />
-            <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/domain" />
-            <option value="$PROJECT_DIR$/dvpropertiesdata" />
             <option value="$PROJECT_DIR$/presentation" />
             <option value="$PROJECT_DIR$/xml-uikit" />
           </set>
