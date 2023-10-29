@@ -63,6 +63,8 @@ android {
 
 dependencies {
     api project(':DataCommon')
+    api(project(":DVPropertiesData"))
+    api(project(":FayucaFinderData"))
     api project(":xml-uikit")
     api project(":compose-uikit")
 
