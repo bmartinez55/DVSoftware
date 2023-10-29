@@ -1,23 +1,20 @@
 package el.dv.dvpropertiesdata.network
 
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Dao
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Query
-import kotlinx.parcelize.Parcelize
 
 @Dao
 interface PropertyDetailsDao {
     @Query("SELECT * FROM propertyDetailsTable ORDER BY id ASC")
-    suspend fun getAllProperties(): List<DaoPropertyDetails>
+    fun getAllProperties(): List<DaoPropertyDetails>
 }
 
-@Parcelize
 @Entity(tableName = "propertyDetailsTable")
 data class DaoPropertyDetails(
-    @PrimaryKey(autoGenerate = true) val id: Int? = null,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo("id") val id: Int,
     @ColumnInfo("address") val address: String = "",
     @ColumnInfo("city") val city: String = "",
     @ColumnInfo("state") val state: String = "",
@@ -29,4 +26,4 @@ data class DaoPropertyDetails(
     @ColumnInfo("bedroom_count") val bedroomCount: String = "",
     @ColumnInfo("bathroom_count") val bathroomCount: String = "",
     @ColumnInfo("property_type") val propertyType: String = ""
-) : Parcelable
+)

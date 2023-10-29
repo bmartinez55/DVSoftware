@@ -15,7 +15,7 @@ class DVPropertiesApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@DVPropertiesApplication)
-            loadKoinModules(DVPropertiesDIModuleProvider.dvPropertiesModuleList)
+            modules(DVPropertiesDIModuleProvider.dvPropertiesModuleList)
         }
     }
 }

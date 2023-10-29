@@ -7,5 +7,5 @@ const val PROPERTY_DETAILS_DB = "propertyDetailsDB"
 
 @Database(entities = [DaoPropertyDetails::class], version = 1)
 abstract class PropertyDetailsDB : RoomDatabase() {
-    abstract fun getPropertyDetailsDao()
+    abstract fun getPropertyDetailsDao(): PropertyDetailsDao
 }

@@ -40,7 +40,7 @@ dependencies {
     implementation(Dependencies.AndroidX.coreKtx)
     implementation(Dependencies.AndroidX.appCompat)
 
-    api(platform(Dependencies.Firebase.bom))
+    implementation(platform(Dependencies.Firebase.bom))
     implementation(Dependencies.Firebase.databaseKtx)
 
     implementation(Dependencies.DI.koinCore)

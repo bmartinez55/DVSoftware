@@ -2,8 +2,8 @@ package el.dv.fayucafinder.feature.map.bottomsheet
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import el.dv.domain.event.AppEvent
@@ -27,11 +27,7 @@ class MapConfigurationVM(
     private val state: InternalState
         get() = requireNotNull(internalState.value)
 
-    val viewState: LiveData<MapConfigurationViewState> = Transformations.distinctUntilChanged(
-        internalState.map {
-            it.viewState
-        }
-    )
+    val viewState: LiveData<MapConfigurationViewState> = internalState.map { it.viewState }.distinctUntilChanged()
 
     private val eventChannel = Channel<MapConfigurationViewEvent>(Channel.UNLIMITED)
 

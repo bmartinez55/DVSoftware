@@ -42,7 +42,7 @@ dependencies {
     api(Dependencies.AndroidX.coreKtx)
     api(Dependencies.AndroidX.appCompat)
 
-    api(Dependencies.Google.mapsUtils)
+    implementation(Dependencies.Google.mapsUtils)
 
     api(Dependencies.DI.koinCore)
     api(Dependencies.DI.koinAndroid)
