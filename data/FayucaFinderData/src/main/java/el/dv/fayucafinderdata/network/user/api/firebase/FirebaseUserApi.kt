@@ -1,14 +1,14 @@
 package el.dv.fayucafinderdata.network.user.api.firebase
 
 import com.google.firebase.database.FirebaseDatabase
-import el.dv.fayucafinderdata.network.user.api.UserApi
-import el.dv.fayucafinderdata.network.user.model.toFirebaseUser
 import el.dv.domain.core.Result
-import el.dv.domain.logging.AppLog
 import el.dv.domain.fayucafinder.user.model.AddUserRequest
 import el.dv.domain.fayucafinder.user.model.GetUserRequest
 import el.dv.domain.fayucafinder.user.model.UpdateUserRequest
 import el.dv.domain.fayucafinder.user.model.User
+import el.dv.domain.logging.AppLog
+import el.dv.fayucafinderdata.network.user.api.UserApi
+import el.dv.fayucafinderdata.network.user.model.toFirebaseUser
 import kotlin.coroutines.suspendCoroutine
 
 class FirebaseUserApi(private val userDatabase: FirebaseDatabase) : UserApi {

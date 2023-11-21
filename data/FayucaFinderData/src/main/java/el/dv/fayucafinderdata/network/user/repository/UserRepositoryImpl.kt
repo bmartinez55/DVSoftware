@@ -1,6 +1,5 @@
 package el.dv.fayucafinderdata.network.user.repository
 
-import el.dv.fayucafinderdata.network.user.api.UserApi
 import el.dv.domain.core.CoroutineDispatchers
 import el.dv.domain.core.Result
 import el.dv.domain.fayucafinder.user.UserRepository
@@ -8,6 +7,7 @@ import el.dv.domain.fayucafinder.user.model.AddUserRequest
 import el.dv.domain.fayucafinder.user.model.GetUserRequest
 import el.dv.domain.fayucafinder.user.model.UpdateUserRequest
 import el.dv.domain.fayucafinder.user.model.User
+import el.dv.fayucafinderdata.network.user.api.UserApi
 import kotlinx.coroutines.withContext
 
 /**

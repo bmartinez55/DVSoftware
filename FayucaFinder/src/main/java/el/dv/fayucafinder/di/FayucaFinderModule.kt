@@ -5,9 +5,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
-import el.dv.fayucafinderdata.network.auth.model.AuthCallback
-import el.dv.fayucafinderdata.network.auth.model.AuthData
-import el.dv.fayucafinderdata.network.auth.model.IntentData
 import el.dv.fayucafinder.R
 import el.dv.fayucafinder.core.view.FayucaFinderVM
 import el.dv.fayucafinder.feature.login.auth.firebase.FirebaseAuthenticationFactoryForGoogle
@@ -30,6 +27,9 @@ import el.dv.fayucafinder.feature.map.bottomsheet.MapConfigurationVM
 import el.dv.fayucafinder.feature.map.bottomsheet.viewreducer.GetMapConfigurationInitViewStateViewReducer
 import el.dv.fayucafinder.feature.map.viewreducer.GetNavigationMapCenterLocationUpdateViewReducer
 import el.dv.fayucafinder.util.Const
+import el.dv.fayucafinderdata.network.auth.model.AuthCallback
+import el.dv.fayucafinderdata.network.auth.model.AuthData
+import el.dv.fayucafinderdata.network.auth.model.IntentData
 import el.dv.presentation.extension.ActionListener
 import el.dv.presentation.sensor.AccelerometerSensor
 import el.dv.presentation.sensor.GyroscopeSensor

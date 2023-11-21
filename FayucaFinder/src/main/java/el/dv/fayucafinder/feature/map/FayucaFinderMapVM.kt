@@ -235,8 +235,11 @@ class FayucaFinderMapVM(
                             state.isReady() -> NavigationMapState.Show(
                                 navigationMapCenter = NavigationMapCenter.Unbounded(
                                     centerLocation = state.userCurrentLocation,
-                                    zoomLevel = if (mapConfigurations.isIn3DMode()) Const.THREE_DIMENSION_ZOOM_LEVEL
-                                    else Const.CURRENT_LOCATION_SELECTION_ZOOM_LEVEL,
+                                    zoomLevel = if (mapConfigurations.isIn3DMode()) {
+                                        Const.THREE_DIMENSION_ZOOM_LEVEL
+                                    } else {
+                                        Const.CURRENT_LOCATION_SELECTION_ZOOM_LEVEL
+                                    },
                                     animate = mapConfigurations.isIn3DMode(),
                                     tilt = if (mapConfigurations.isIn3DMode()) Const.THREE_DIMENSION_CAMERA_TILT else 0f
                                 ),
@@ -472,8 +475,11 @@ class FayucaFinderMapVM(
                     navigationMapState = NavigationMapState.Show(
                         navigationMapCenter = NavigationMapCenter.Unbounded(
                             centerLocation = location,
-                            zoomLevel = if (state.mapConfigurations.isIn3DMode()) Const.THREE_DIMENSION_ZOOM_LEVEL
-                            else Const.CURRENT_LOCATION_SELECTION_ZOOM_LEVEL,
+                            zoomLevel = if (state.mapConfigurations.isIn3DMode()) {
+                                Const.THREE_DIMENSION_ZOOM_LEVEL
+                            } else {
+                                Const.CURRENT_LOCATION_SELECTION_ZOOM_LEVEL
+                            },
                             animate = state.mapConfigurations.isIn3DMode(),
                             tilt = if (state.mapConfigurations.isIn3DMode()) Const.THREE_DIMENSION_CAMERA_TILT else 0f
                         ),

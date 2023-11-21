@@ -10,11 +10,16 @@ import androidx.room.Query
 interface PropertyDetailsDao {
     @Query("SELECT * FROM propertyDetailsTable ORDER BY id ASC")
     fun getAllProperties(): List<DaoPropertyDetails>
+
+    @Query("SELECT * FROM propertyDetailsTable WHERE property_type LIKE :propertyType")
+    fun getAllPropertiesByType(propertyType: String): List<DaoPropertyDetails>
 }
 
 @Entity(tableName = "propertyDetailsTable")
 data class DaoPropertyDetails(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo("id") val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo("id")
+    val id: Int,
     @ColumnInfo("address") val address: String = "",
     @ColumnInfo("city") val city: String = "",
     @ColumnInfo("state") val state: String = "",

@@ -8,7 +8,7 @@ import el.dv.presentation.extension.ActionListener
 class FayucaFinderMapLifecycleObserver(
     private val lifecycleOwner: LifecycleOwner,
     private val onResumeAction: ActionListener,
-    private val onPauseAction: ActionListener,
+    private val onPauseAction: ActionListener
 ) : DefaultLifecycleObserver {
 
     init {

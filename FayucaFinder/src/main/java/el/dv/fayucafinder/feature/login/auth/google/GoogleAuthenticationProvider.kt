@@ -7,14 +7,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import el.dv.domain.core.Result
+import el.dv.domain.logging.AppLog
 import el.dv.fayucafinderdata.network.auth.api.AuthProvider
 import el.dv.fayucafinderdata.network.auth.model.AuthAccount
 import el.dv.fayucafinderdata.network.auth.model.AuthCallback
 import el.dv.fayucafinderdata.network.auth.model.AuthData
 import el.dv.fayucafinderdata.network.auth.model.AuthProviderRequest
 import el.dv.fayucafinderdata.network.auth.model.IntentData
-import el.dv.domain.core.Result
-import el.dv.domain.logging.AppLog
 
 /**
  * Google Authentication provider implementation

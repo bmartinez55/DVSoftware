@@ -6,11 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
-import el.dv.fayucafinderdata.di.SignInUserScope
-import el.dv.fayucafinderdata.di.UserScopeData
-import el.dv.fayucafinderdata.di.fayucaFinderUserScope
-import el.dv.fayucafinderdata.network.auth.model.AuthCallback
-import el.dv.fayucafinderdata.network.auth.model.AuthData
 import el.dv.domain.core.Result
 import el.dv.domain.extension.isNotNullAndNotEmpty
 import el.dv.domain.logging.AppLog
@@ -18,6 +13,11 @@ import el.dv.fayucafinder.feature.login.auth.firebase.FirebaseAuthenticationFact
 import el.dv.fayucafinder.feature.login.auth.firebase.FirebaseAuthenticationProviderForGoogleAccount
 import el.dv.fayucafinder.feature.login.auth.firebase.usecase.CheckIfUserIsAuthenticatedWithFirebaseGoogleUseCase
 import el.dv.fayucafinder.feature.login.auth.firebase.usecase.GetSignedInFirebaseGoogleAccountUseCase
+import el.dv.fayucafinderdata.di.SignInUserScope
+import el.dv.fayucafinderdata.di.UserScopeData
+import el.dv.fayucafinderdata.di.fayucaFinderUserScope
+import el.dv.fayucafinderdata.network.auth.model.AuthCallback
+import el.dv.fayucafinderdata.network.auth.model.AuthData
 import el.dv.presentation.view.effect.ViewEffect
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.catch

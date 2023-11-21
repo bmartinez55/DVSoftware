@@ -1,9 +1,9 @@
 package el.dv.fayucafinderdata.network.auth.api
 
+import el.dv.domain.core.Result
 import el.dv.fayucafinderdata.network.auth.model.AuthAccount
 import el.dv.fayucafinderdata.network.auth.model.AuthData
 import el.dv.fayucafinderdata.network.auth.model.AuthProviderRequest
-import el.dv.domain.core.Result
 
 /**
  * Base Interface to handle various authentication providers i.e. Firebase, Google etc.
