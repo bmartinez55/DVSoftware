@@ -5,10 +5,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import el.dv.fayucafinderdata.di.SignOutUserScope
-import el.dv.fayucafinderdata.di.fayucaFinderUserScope
 import el.dv.domain.core.SuspendUseCase
 import el.dv.domain.logging.AppLog
+import el.dv.fayucafinderdata.di.SignOutUserScope
+import el.dv.fayucafinderdata.di.fayucaFinderUserScope
 
 class FirebaseGoogleSignOutUseCase(private val context: Context) : SuspendUseCase<Unit, Unit> {
 

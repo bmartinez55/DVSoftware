@@ -1,8 +1,5 @@
 package el.dv.fayucafinder.feature.login.auth.google
 
-import el.dv.fayucafinderdata.network.auth.model.AuthCallback
-import el.dv.fayucafinderdata.network.auth.model.AuthData
-import el.dv.fayucafinderdata.network.auth.model.IntentData
 import el.dv.fayucafinder.feature.login.auth.UIAuthFactory
 import el.dv.fayucafinder.feature.login.auth.google.usecase.CheckIfUserIsAuthenticatedWithGoogleUseCase
 import el.dv.fayucafinder.feature.login.auth.google.usecase.GetGoogleAccountUseCase
@@ -10,6 +7,9 @@ import el.dv.fayucafinder.feature.login.auth.google.usecase.GetSignedInGoogleAcc
 import el.dv.fayucafinder.feature.login.auth.google.usecase.GoogleSignOutUserUseCase
 import el.dv.fayucafinder.feature.login.auth.google.usecase.SignInWithGoogleUseCase
 import el.dv.fayucafinder.feature.login.auth.model.UIAuthProviderParams
+import el.dv.fayucafinderdata.network.auth.model.AuthCallback
+import el.dv.fayucafinderdata.network.auth.model.AuthData
+import el.dv.fayucafinderdata.network.auth.model.IntentData
 
 /**
  * Google Authentication Factory implementation

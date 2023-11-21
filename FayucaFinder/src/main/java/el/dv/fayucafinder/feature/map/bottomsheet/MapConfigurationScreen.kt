@@ -8,10 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import el.dv.compose_uikit.theme.fayucafinder.FayucaFinderTheme
-import el.dv.compose_uikit.theme.padding
-import el.dv.compose_uikit.widgets.DVSpacer
-import el.dv.compose_uikit.widgets.H2Text
+import el.dv.compose.theme.fayucafinder.FayucaFinderTheme
+import el.dv.compose.theme.padding
+import el.dv.compose.widgets.DVSpacer
+import el.dv.compose.widgets.H2Text
 import el.dv.domain.navigation.model.MapVisualType
 import el.dv.fayucafinder.feature.map.bottomsheet.composables.MapTypeChipGroup
 

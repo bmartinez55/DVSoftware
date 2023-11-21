@@ -8,4 +8,12 @@
 
     <!--Common Banner Text-->
     <string name="wifi_disconnected" translatable="false">No internet detected</string>
+
+    <!--Common Title Text-->
+    <string name="welcome" translatable="false">Welcome!</string>
+    <string name="welcome_with_user" translatable="false">Welcome %s</string>
+    <string name="loading" translatable="false">Loading...</string>
+    <string name="error_please_try_again" translatable="false">Something went wrong. Please try again.</string>
+    <string name="retry" translatable="false">Retry</string>
+    <string name="recent" translatable="false">Recent</string>
 </resources>

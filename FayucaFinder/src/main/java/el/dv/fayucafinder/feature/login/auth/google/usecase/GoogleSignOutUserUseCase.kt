@@ -1,9 +1,9 @@
 package el.dv.fayucafinder.feature.login.auth.google.usecase
 
-import el.dv.fayucafinderdata.di.SignOutUserScope
-import el.dv.fayucafinderdata.di.fayucaFinderUserScope
 import el.dv.domain.core.SuspendUseCase
 import el.dv.fayucafinder.feature.login.auth.google.GoogleAuthenticationProvider
+import el.dv.fayucafinderdata.di.SignOutUserScope
+import el.dv.fayucafinderdata.di.fayucaFinderUserScope
 
 /**
  * Signs out user from Google

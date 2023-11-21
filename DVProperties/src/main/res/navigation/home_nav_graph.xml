@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="el.dv.dvproperties.feature.home.HomeFragment"
+        android:name="el.dv.dvproperties.feature.home.view.HomeFragment"
         android:label="HomeFragment" />
 </navigation>

@@ -12,8 +12,8 @@ import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.imePadding
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
-import el.dv.compose_uikit.extension.ifThen
-import el.dv.compose_uikit.theme.fayucafinder.FayucaFinderTheme
+import el.dv.compose.extension.ifThen
+import el.dv.compose.theme.fayucafinder.FayucaFinderTheme
 
 @Composable
 fun FayucaFinderScaffold(

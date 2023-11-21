@@ -14,7 +14,7 @@ fun <E> SendChannel<E>.offerWhenOpen(data: E) {
 }
 
 fun List<String>.toIndexedMap(): Map<String, String> {
-    val map = mutableMapOf<String,String>()
+    val map = mutableMapOf<String, String>()
     this.forEachIndexed { index, s ->
         map[index.toString()] = s
     }

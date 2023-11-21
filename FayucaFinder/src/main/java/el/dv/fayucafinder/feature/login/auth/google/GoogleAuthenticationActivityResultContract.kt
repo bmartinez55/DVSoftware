@@ -5,9 +5,9 @@ import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContract
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import el.dv.fayucafinder.R
 import el.dv.fayucafinderdata.network.auth.model.AuthData
 import el.dv.fayucafinderdata.network.auth.model.IntentData
-import el.dv.fayucafinder.R
 
 /**
  * Activity Contract to create an intent for Google authentication and

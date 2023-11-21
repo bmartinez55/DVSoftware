@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import el.dv.compose_uikit.theme.dvpropeerties.DVPropertiesTheme
+import el.dv.compose.theme.dvpropeerties.DVPropertiesTheme
 import el.dv.presentation.extension.requireContentView
 
 class DVPropertiesFragment : Fragment() {
@@ -17,7 +17,6 @@ class DVPropertiesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View = requireContentView {
         DVPropertiesTheme {
-
         }
     }
 

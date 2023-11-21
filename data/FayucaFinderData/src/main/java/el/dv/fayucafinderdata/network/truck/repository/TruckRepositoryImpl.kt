@@ -1,6 +1,5 @@
 package el.dv.fayucafinderdata.network.truck.repository
 
-import el.dv.fayucafinderdata.network.truck.api.TruckApi
 import el.dv.domain.core.CoroutineDispatchers
 import el.dv.domain.core.Result
 import el.dv.domain.fayucafinder.truck.repository.AddTruckRequest
@@ -8,6 +7,7 @@ import el.dv.domain.fayucafinder.truck.repository.Truck
 import el.dv.domain.fayucafinder.truck.repository.TruckDetails
 import el.dv.domain.fayucafinder.truck.repository.TruckRepository
 import el.dv.domain.fayucafinder.truck.repository.UpdateTruckOperationStatusRequest
+import el.dv.fayucafinderdata.network.truck.api.TruckApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext

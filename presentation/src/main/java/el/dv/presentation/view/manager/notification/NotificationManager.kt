@@ -109,7 +109,7 @@ class NotificationManagerImpl(
         description: String,
         autoCancelEnabled: Boolean,
         onGoingEnabled: Boolean,
-        pendingIntent: PendingIntent?,
+        pendingIntent: PendingIntent?
     ): NotificationCompat.Builder {
         return NotificationCompat.Builder(context, channelId).apply {
             setSmallIcon(smallIconId)

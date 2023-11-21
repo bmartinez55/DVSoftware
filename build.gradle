@@ -69,7 +69,7 @@ buildscript {
     ext.espresso_version = '3.4.0'
 
     //ktlint
-    ext.ktlint_version = '10.2.0'
+    ext.ktlint_version = '11.6.1'
 
     repositories {
         mavenCentral()

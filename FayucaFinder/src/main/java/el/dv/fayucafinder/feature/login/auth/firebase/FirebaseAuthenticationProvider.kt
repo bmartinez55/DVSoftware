@@ -5,10 +5,10 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import el.dv.domain.core.Result
 import el.dv.fayucafinderdata.network.auth.api.AuthProviderBase
 import el.dv.fayucafinderdata.network.auth.model.AuthAccount
 import el.dv.fayucafinderdata.network.auth.model.AuthData
-import el.dv.domain.core.Result
 
 /**
  * Firebase Authentication Provider implementation
