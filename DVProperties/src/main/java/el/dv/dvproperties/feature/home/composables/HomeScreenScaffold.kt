@@ -1,4 +1,4 @@
-package el.dv.dvproperties.feature.home
+package el.dv.dvproperties.feature.home.composables
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.PaddingValues

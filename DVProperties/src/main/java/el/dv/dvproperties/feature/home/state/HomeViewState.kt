@@ -1,4 +1,4 @@
-package el.dv.dvproperties.feature.home.view
+package el.dv.dvproperties.feature.home.state
 
 import el.dv.domain.dvproperties.propertydetails.model.PropertyDetails
 

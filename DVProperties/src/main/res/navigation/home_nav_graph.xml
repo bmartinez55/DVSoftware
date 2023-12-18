@@ -7,5 +7,14 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="el.dv.dvproperties.feature.home.view.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_newPropertyFragment"
+            app:destination="@id/newPropertyFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newPropertyFragment"
+        android:name="el.dv.dvproperties.feature.newproperty.NewPropertyFragment"
+        android:label="NewPropertyFragment" />
 </navigation>

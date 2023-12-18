@@ -13,6 +13,7 @@ object Versions {
     const val compose = "1.5.0"
     const val composeConstraintLayout = "1.0.1"
     const val composeNavigation = "2.6.0"
+    const val composeMaterial3 = "1.1.2"
     const val lifecycle = "2.6.1"
     const val constraintLayout = "2.1.4"
 

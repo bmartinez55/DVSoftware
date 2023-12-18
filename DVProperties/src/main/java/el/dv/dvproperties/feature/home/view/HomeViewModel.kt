@@ -10,6 +10,9 @@ import el.dv.domain.core.ifFailure
 import el.dv.domain.core.ifSuccess
 import el.dv.domain.dvproperties.propertydetails.usecase.GetAllOwnedPropertiesUseCase
 import el.dv.domain.logging.AppLog
+import el.dv.dvproperties.feature.home.state.HomeState
+import el.dv.dvproperties.feature.home.state.HomeViewEvent
+import el.dv.dvproperties.feature.home.state.HomeViewState
 import el.dv.presentation.util.AppDictionary
 import el.dv.presentation.view.effect.ViewEffect
 import kotlinx.coroutines.channels.Channel
@@ -59,6 +62,11 @@ class HomeViewModel(
         internalState.value = state
     }
 
+    private fun sendViewEffect(viewEffect: ViewEffect) {
+        AppLog.d(TAG, "sendViewEffect")
+        internalViewEffect.value = viewEffect
+    }
+
     private fun handleInit(event: HomeViewEvent.Init) {
         AppLog.d(TAG, "handleInit")
         updateViewState(state = state.copy(viewState = state.viewState.copy(homeState = HomeState.Loading)))
@@ -77,6 +85,7 @@ class HomeViewModel(
 
     private fun handleAddPropertyItemOnClick(event: HomeViewEvent.AddPropertyItemOnClick) {
         AppLog.d(TAG, "handleAddPropertyItemOnClick")
+        sendViewEffect(ViewEffect.NavigateToDirection(HomeFragmentDirections.actionHomeFragmentToNewPropertyFragment()))
     }
 
     data class InternalState(

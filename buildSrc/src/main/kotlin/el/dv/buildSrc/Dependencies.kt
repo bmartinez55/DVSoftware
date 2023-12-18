@@ -25,6 +25,7 @@ object Dependencies {
         const val composeNavigation = "androidx.navigation:navigation-compose:${Versions.composeNavigation}"
         const val composeLifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.lifecycle}"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+        const val composeMaterial3 = "androidx.compose.material3:material3:${Versions.composeMaterial3}"
     }
 
     object DI {

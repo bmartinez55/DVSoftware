@@ -6,12 +6,12 @@
     tools:context="el.dv.dvproperties.core.view.DVPropertiesFragment">
 
     <item
-        android:id="@+id/home"
+        android:id="@id/homeFragment"
         android:title="@string/home"
         android:icon="@drawable/ic_home" />
 
     <item
-        android:id="@+id/settings"
+        android:id="@id/settingsFragment"
         android:title="@string/settings"
         android:icon="@drawable/ic_settings" />
 

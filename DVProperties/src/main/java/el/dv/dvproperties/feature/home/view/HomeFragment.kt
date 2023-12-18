@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.fragment.app.Fragment
 import el.dv.domain.logging.AppLog
-import el.dv.dvproperties.feature.home.HomeScreenScaffold
-import el.dv.dvproperties.feature.home.view.composables.ErrorScreen
-import el.dv.dvproperties.feature.home.view.composables.HomeScreen
-import el.dv.dvproperties.feature.home.view.composables.LoadingScreen
+import el.dv.dvproperties.feature.home.state.HomeState
+import el.dv.dvproperties.feature.home.state.HomeViewEvent
+import el.dv.dvproperties.feature.home.composables.HomeScreenScaffold
+import el.dv.dvproperties.feature.home.composables.ErrorScreen
+import el.dv.dvproperties.feature.home.composables.HomeScreen
+import el.dv.dvproperties.feature.home.composables.LoadingScreen
+import el.dv.presentation.extension.navigate
 import el.dv.presentation.extension.requireContentView
 import el.dv.presentation.view.effect.ViewEffect
 import el.dv.presentation.view.manager.dialog.DialogManager
@@ -66,6 +69,7 @@ class HomeFragment : Fragment() {
                 onKeyListener = viewEffect.onKeyListener
             )
             is ViewEffect.DismissDialogEffect -> dialogManager.dismiss()
+            is ViewEffect.NavigateToDirection -> navigate(viewEffect.navDirections)
             else -> {}
         }
     }

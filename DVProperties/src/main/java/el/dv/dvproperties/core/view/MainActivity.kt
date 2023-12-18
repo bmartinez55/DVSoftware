@@ -19,6 +19,5 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpView() {
         this.supportActionBar?.hide()
-        window.addFlags(View.SYSTEM_UI_FLAG_LAYOUT_STABLE or WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
 }
