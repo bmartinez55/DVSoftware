@@ -1,4 +1,4 @@
-package el.dv.dvproperties.feature.home.view.composables
+package el.dv.dvproperties.feature.home.composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

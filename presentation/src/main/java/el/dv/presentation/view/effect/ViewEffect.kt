@@ -37,6 +37,8 @@ sealed class ViewEffect {
 
     data class NavigateToDirection(val navDirections: NavDirections) : ViewEffect()
 
+    object NavigateBack : ViewEffect()
+
     data class UpdateMapTypeEffect(val mapVisualType: MapVisualType) : ViewEffect()
 
     data class ShowMapConfigurationsScreenEffect(val mapVisualType: MapVisualType) : ViewEffect()

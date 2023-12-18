@@ -3,6 +3,7 @@ package el.dv.dvpropertiesdata.network
 import el.dv.domain.core.CoroutineDispatchers
 import el.dv.domain.core.Result
 import el.dv.domain.dvproperties.propertydetails.PropertyDetailsRepository
+import el.dv.domain.dvproperties.propertydetails.model.AddPropertyRequest
 import el.dv.domain.dvproperties.propertydetails.model.PropertyDetails
 import el.dv.domain.dvproperties.propertydetails.model.PropertyType
 import kotlinx.coroutines.withContext
@@ -24,6 +25,15 @@ class PropertyDetailsRepositoryImpl(
             Result.Success(propertyDetailsDao.getAllPropertiesByType(propertyType.name).map { it.toPropertyDetails() })
         } catch (e: Exception) {
             Result.Failure(e)
+        }
+    }
+
+    override suspend fun addNewProperty(addPropertyRequest: AddPropertyRequest): Result<Boolean> = withContext(dispatchers.IO) {
+        try {
+            propertyDetailsDao.addNewProperty(addPropertyRequest.toDaoPropertyDetails())
+            Result.Success(true)
+        } catch (e: Exception) {
+            Result.Failure(false)
         }
     }
 }
@@ -51,4 +61,20 @@ private fun String.toPropertyType(): PropertyType {
         PropertyType.Multi.name -> PropertyType.Multi
         else -> PropertyType.SFH
     }
+}
+
+private fun AddPropertyRequest.toDaoPropertyDetails(): DaoPropertyDetails {
+    return DaoPropertyDetails(
+        address = this.address,
+        city = this.city,
+        state = this.state,
+        zipCode = this.zipCode,
+        propertyCost = this.propertyCost,
+        lotSize = this.lotSize,
+        propertySize = this.propertySize,
+        buildDate = this.buildDate,
+        bedroomCount = this.bedroomCount,
+        bathroomCount = this.bathroomCount,
+        propertyType = this.propertyType.name
+    )
 }

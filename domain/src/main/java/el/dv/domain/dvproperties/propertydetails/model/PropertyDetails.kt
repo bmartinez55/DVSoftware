@@ -24,3 +24,17 @@ enum class PropertyType {
     Multi,
     Commercial
 }
+
+data class AddPropertyRequest(
+    val address: String = "",
+    val city: String = "",
+    val state: String = "",
+    val zipCode: String = "",
+    val propertyCost: String = "",
+    val lotSize: String = "",
+    val propertySize: String = "",
+    val buildDate: String = "",
+    val bedroomCount: String = "",
+    val bathroomCount: String = "",
+    val propertyType: PropertyType = PropertyType.SFH
+)

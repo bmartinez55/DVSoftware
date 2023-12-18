@@ -52,6 +52,7 @@ dependencies {
     api(Dependencies.AndroidX.composeUiToolingPreview)
     api(Dependencies.AndroidX.composeNavigation)
     api(Dependencies.AndroidX.composeLifecycleViewModel)
+    api(Dependencies.AndroidX.composeMaterial3)
 
     api(Dependencies.Google.accompanistInsets)
     api(Dependencies.Google.accompanistFlowLayout)

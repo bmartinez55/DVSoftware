@@ -1,4 +1,4 @@
-package el.dv.dvproperties.feature.home.view
+package el.dv.dvproperties.feature.home.state
 
 sealed class HomeViewEvent {
     object Init : HomeViewEvent()

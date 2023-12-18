@@ -1,6 +1,7 @@
 package el.dv.domain.dvproperties.di
 
 import el.dv.domain.common.commonDomainModule
+import el.dv.domain.dvproperties.propertydetails.usecase.AddNewPropertyUseCase
 import el.dv.domain.dvproperties.propertydetails.usecase.GetAllOwnedPropertiesUseCase
 import el.dv.domain.dvproperties.propertydetails.usecase.GetOwnedPropertiesByTypeUseCase
 import el.dv.domain.networkmonitor.usecase.StartNetworkConnectivityMonitorUseCase
@@ -16,4 +17,6 @@ val dvPropertiesDomainModule = module {
     factoryOf(::GetAllOwnedPropertiesUseCase)
 
     factoryOf(::GetOwnedPropertiesByTypeUseCase)
+
+    factoryOf(::AddNewPropertyUseCase)
 }

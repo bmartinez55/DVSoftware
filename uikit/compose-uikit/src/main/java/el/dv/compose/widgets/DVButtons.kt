@@ -30,7 +30,7 @@ fun FilledRoundedButton(
     content: @Composable RowScope.() -> Unit
 ) = Button(
     onClick = onClick,
-    modifier = modifier.height(45.dp),
+    modifier = Modifier.height(45.dp).then(modifier),
     enabled = enabled,
     interactionSource = interactionSource,
     elevation = elevation,

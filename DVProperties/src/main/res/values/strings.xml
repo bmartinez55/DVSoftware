@@ -5,4 +5,20 @@
 
     <string name="city_plus_state">%s, %s</string>
     <string name="add_property">Add Property</string>
+    <string name="new_property_desc">Please fill out all fields unless stated as optional</string>
+    <string name="address">Address</string>
+    <string name="address_desc">Please input address</string>
+    <string name="city">City</string>
+    <string name="city_desc">Please input city</string>
+    <string name="state">State</string>
+    <string name="state_desc">Please input state</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="zip_code_desc">Please input zip code</string>
+    <string name="purchase_price">Purchase</string>
+    <string name="purchase_price_desc">Please input purchase price</string>
+    <string name="bedrooms">Bedrooms</string>
+    <string name="bathrooms">Bathrooms</string>
+    <string name="square_feet">Sqft</string>
+    <string name="lot_size">Lot size</string>
+
 </resources>
