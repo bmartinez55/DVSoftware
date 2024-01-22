@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import el.dv.compose.theme.dvpropeerties.DVPropertiesTheme
+import el.dv.presentation.extension.navigate
 import el.dv.presentation.extension.requireContentView
 
 class DVPropertiesFragment : Fragment() {
@@ -16,13 +16,12 @@ class DVPropertiesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = requireContentView {
-        DVPropertiesTheme {
-        }
+        DVPropertiesTheme {}
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        findNavController().navigate(DVPropertiesFragmentDirections.actionDVPropertiesFragmentToBottomNavigationFragment())
+        navigate(DVPropertiesFragmentDirections.actionDVPropertiesFragmentToBottomNavigationFragment())
     }
 
     companion object {

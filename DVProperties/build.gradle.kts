@@ -59,8 +59,6 @@ dependencies {
     implementation(project(":presentation"))
     implementation(project(":DVPropertiesData"))
 
-    implementation(Dependencies.Jetbrains.kotlinStdlib)
-
     implementation(Dependencies.AndroidX.coreKtx)
     implementation(Dependencies.AndroidX.appCompat)
     annotationProcessor(Dependencies.AndroidX.dataBindingCompiler)

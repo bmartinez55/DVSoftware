@@ -15,6 +15,6 @@
 
     <fragment
         android:id="@+id/newPropertyFragment"
-        android:name="el.dv.dvproperties.feature.newproperty.NewPropertyFragment"
+        android:name="el.dv.dvproperties.feature.newproperty.view.NewPropertyFragment"
         android:label="NewPropertyFragment" />
 </navigation>

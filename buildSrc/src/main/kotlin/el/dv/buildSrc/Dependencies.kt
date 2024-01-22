@@ -6,7 +6,8 @@ object Dependencies {
     const val minSdk = 30
 
     object Jetbrains {
-        const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+        const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
     }
 
     object AndroidX {
@@ -24,8 +25,24 @@ object Dependencies {
         const val composeUiToolingPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
         const val composeNavigation = "androidx.navigation:navigation-compose:${Versions.composeNavigation}"
         const val composeLifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.lifecycle}"
+        const val lifeCycleLiveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
+        const val lifeCycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+        const val lifeCycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+        const val lifeCycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
+        const val preferencesKtx = "androidx.preference:preference-ktx:${Versions.preferenceKtx}"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
         const val composeMaterial3 = "androidx.compose.material3:material3:${Versions.composeMaterial3}"
+        const val camera2 = "androidx.camera:camera-camera2:${Versions.cameraX}"
+        const val cameraCore = "androidx.camera:camera-core:${Versions.cameraX}"
+        const val cameraExtensions = "androidx.camera:camera-extensions:${Versions.cameraX}"
+        const val cameraLifecycle = "androidx.camera:camera-lifecycle:${Versions.cameraX}"
+        const val cameraView = "androidx.camera:camera-view:${Versions.cameraX}"
+        const val cameraVideo = "androidx.camera:camera-video:${Versions.cameraX}"
+        const val legacySupportV4 = "androidx.legacy:legacy-support-v4:${Versions.legacySupportV4}"
+        const val supportAppCompatV7 = "com.android.support:appcompat-v7:${Versions.supportAppCompatV7}"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
+        const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigationKtx}"
+        const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigationKtx}"
     }
 
     object DI {
@@ -54,6 +71,8 @@ object Dependencies {
         const val playServicesMap = "com.google.android.gms:play-services-maps:${Versions.playServicesMap}"
         const val mapsKtx = "com.google.maps.android:maps-ktx:${Versions.mapsKtx}"
         const val mapsUtilsKtx = "com.google.maps.android:maps-utils-ktx:${Versions.mapsKtx}"
+        const val playServicesLocation = "com.google.android.gms:play-services-location:${Versions.playServicesLocation}"
+        const val places = "com.google.android.libraries.places:places:${Versions.places}"
     }
 
     object Test {

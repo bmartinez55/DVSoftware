@@ -2,6 +2,8 @@
     <string name="app_name">DV Properties</string>
     <string name="home">Home</string>
     <string name="settings">Settings</string>
+    <string name="take_a_photo">Take a Photo</string>
+    <string name="upload">Upload</string>
 
     <string name="city_plus_state">%s, %s</string>
     <string name="add_property">Add Property</string>
@@ -15,10 +17,11 @@
     <string name="zip_code">Zip Code</string>
     <string name="zip_code_desc">Please input zip code</string>
     <string name="purchase_price">Purchase</string>
+    <string name="property_value">Property Value</string>
     <string name="purchase_price_desc">Please input purchase price</string>
     <string name="bedrooms">Bedrooms</string>
     <string name="bathrooms">Bathrooms</string>
     <string name="square_feet">Sqft</string>
     <string name="lot_size">Lot size</string>
-
+    <string name="type">Type</string>
 </resources>

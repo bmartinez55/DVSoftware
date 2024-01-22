@@ -6,6 +6,7 @@
     <string name="back" translatable="false">Back</string>
     <string name="cancel" translatable="false">False</string>
     <string name="submit" translatable="false">Submit</string>
+    <string name="request" translatable="false">Request</string>
 
     <!--Common Banner Text-->
     <string name="wifi_disconnected" translatable="false">No internet detected</string>
@@ -17,4 +18,6 @@
     <string name="error_please_try_again" translatable="false">Something went wrong. Please try again.</string>
     <string name="retry" translatable="false">Retry</string>
     <string name="recent" translatable="false">Recent</string>
+    <string name="camera_permission_denied" translatable="false">Camera Permission Denied</string>
+    <string name="camera_permission_denied_desc" translatable="false">Please update your camera permission in the settings or select Request button.</string>
 </resources>

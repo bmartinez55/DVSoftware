@@ -17,7 +17,7 @@ class BottomNavigationFragment : Fragment() {
     private lateinit var binding: BottomNavigationLayoutBinding
     private lateinit var bottomNavigationNavController: NavController
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = BottomNavigationLayoutBinding.inflate(inflater, container, false).also {
             it.lifecycleOwner = viewLifecycleOwner
         }
@@ -26,15 +26,16 @@ class BottomNavigationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val navHost = childFragmentManager.findFragmentById(binding.bottomNavigationContainer.id) as NavHostFragment
-        bottomNavigationNavController = navHost.navController
-        binding.bottomNavView.setupWithNavController(bottomNavigationNavController)
-        binding.bottomNavView.setOnItemReselectedListener { item ->
-            val selectedMenuItemNavGraph = navHost.navController.graph.findNode(item.itemId) as NavGraph
-            selectedMenuItemNavGraph.let { menuGraph ->
-                navHost.navController.popBackStack(menuGraph.startDestinationId, inclusive = false)
+        with(binding) {
+            val navHost = childFragmentManager.findFragmentById(bottomNavigationContainer.id) as NavHostFragment
+            bottomNavigationNavController = navHost.navController
+            bottomNavView.setupWithNavController(bottomNavigationNavController)
+            bottomNavView.setOnItemReselectedListener { item ->
+                val selectedMenuItemNavGraph = navHost.navController.graph.findNode(item.itemId) as NavGraph
+                selectedMenuItemNavGraph.let { menuGraph ->
+                    navHost.navController.popBackStack(menuGraph.startDestinationId, inclusive = false)
+                }
             }
         }
-        onBackPress(false) {}
     }
 }

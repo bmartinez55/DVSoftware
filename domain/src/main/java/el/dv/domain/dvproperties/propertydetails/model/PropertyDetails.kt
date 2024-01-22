@@ -25,6 +25,15 @@ enum class PropertyType {
     Commercial
 }
 
+fun String.toPropertyType(): PropertyType {
+    return when (this) {
+        PropertyType.SFH.name -> PropertyType.SFH
+        PropertyType.Commercial.name -> PropertyType.Commercial
+        PropertyType.Multi.name -> PropertyType.Multi
+        else -> PropertyType.SFH
+    }
+}
+
 data class AddPropertyRequest(
     val address: String = "",
     val city: String = "",
