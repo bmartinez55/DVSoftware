@@ -1,22 +1,26 @@
-package el.dv.dvproperties.feature.newproperty
+package el.dv.dvproperties.feature.newproperty.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.runtime.getValue
+import androidx.camera.view.CameraController
+import androidx.camera.view.LifecycleCameraController
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import el.dv.compose.widgets.DVTopBar
 import el.dv.domain.logging.AppLog
+import el.dv.dvproperties.feature.newproperty.composables.NewPropertyCameraScreen
 import el.dv.presentation.R
 import el.dv.dvproperties.feature.newproperty.composables.NewPropertyScaffold
 import el.dv.dvproperties.feature.newproperty.composables.NewPropertyScreen
+import el.dv.dvproperties.feature.newproperty.state.NewPropertyCameraViewState
 import el.dv.dvproperties.feature.newproperty.state.NewPropertyState
 import el.dv.dvproperties.feature.newproperty.state.NewPropertyViewEvent
 import el.dv.presentation.extension.onBackPress
@@ -31,9 +35,18 @@ class NewPropertyFragment : Fragment() {
 
     private val viewModel: NewPropertyViewModel by viewModel()
     private val dialogManager: DialogManager by inject()
+    private lateinit var binding: View
 
+    @OptIn(ExperimentalMaterialApi::class)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View = requireContentView {
         val viewState = viewModel.viewState.observeAsState()
+        val context = LocalContext.current
+        val controller = remember {
+            LifecycleCameraController(context).apply {
+                setEnabledUseCases(CameraController.IMAGE_CAPTURE or CameraController.VIDEO_CAPTURE)
+            }
+        }
+        val bottomSheetScaffoldState = rememberBottomSheetScaffoldState()
 
         NewPropertyScaffold(
             topBar = { scaffoldState, scrollState ->
@@ -46,20 +59,58 @@ class NewPropertyFragment : Fragment() {
                 is NewPropertyState.Hide -> {}
                 is NewPropertyState.Show -> NewPropertyScreen(
                     scrollState = scrollState,
-                    address = state.address,
+                    newPropertyDetailsState = viewModel.newPropertiesDetailsState,
+                    onAddressChanged = {
+                       viewModel.handleViewEvent(NewPropertyViewEvent.OnAddressChanged(it))
+                    },
+                    onCityChanged = {
+                        viewModel.handleViewEvent(NewPropertyViewEvent.OnCityChanged(it))
+                    },
+                    onStateChanged = {
+                         viewModel.handleViewEvent(NewPropertyViewEvent.OnStateChanged(it))
+                    },
+                    onZipCodeChanged = {
+                         viewModel.handleViewEvent(NewPropertyViewEvent.OnZipCodeChanged(it))
+                    },
                     bedroomDropDownClick = {
-
+                         viewModel.handleViewEvent(NewPropertyViewEvent.OnBedroomDropDownClick(it))
                     },
                     bathroomDropDownClick = {
-
+                         viewModel.handleViewEvent(NewPropertyViewEvent.OnBathroomDropDownClick(it))
+                    },
+                    propertyTypeDropDownClick = {
+                         viewModel.handleViewEvent(NewPropertyViewEvent.OnPropertyTypeDropDownClick(it))
+                    },
+                    propertySizeChanged = {
+                         viewModel.handleViewEvent(NewPropertyViewEvent.OnPropertySizeChanged(it))
+                    },
+                    lotSizeChanged = {
+                         viewModel.handleViewEvent(NewPropertyViewEvent.OnLotSizeChanged(it))
+                    },
+                    propertyCostChanged = {
+                         viewModel.handleViewEvent(NewPropertyViewEvent.OnPropertyCostChanged(it))
+                    },
+                    takeAPhotoButtonClick = {
+                        viewModel.handleViewEvent(NewPropertyViewEvent.TakeAPhotoButtonClick(context))
+                    },
+                    uploadButtonClick = {
+                        viewModel.handleViewEvent(NewPropertyViewEvent.UploadButtonClick)
                     },
                     onSubmitClick = {
                         viewModel.handleViewEvent(NewPropertyViewEvent.OnSubmitButtonClick)
                     }
-                )
+                ).also { AppLog.d(TAG, "ViewState: $state") }
+                else -> {}
+            }
+
+            when (viewState.value?.newPropertyCameraViewState) {
+                is NewPropertyCameraViewState.Hide -> {}
+                is NewPropertyCameraViewState.Show -> NewPropertyCameraScreen(controller = controller, scaffoldState = bottomSheetScaffoldState)
                 else -> {}
             }
         }
+    }.also {
+        binding = it.rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,7 +122,7 @@ class NewPropertyFragment : Fragment() {
             AppLog.d(TAG, "viewEffect $viewEffect")
             triggerViewEffects(viewEffect)
         }
-        viewModel.handleViewEvent(NewPropertyViewEvent.Init)
+        viewModel.handleViewEvent(NewPropertyViewEvent.Init(this, requireContext()))
     }
 
     private fun triggerViewEffects(viewEffect: ViewEffect) {
