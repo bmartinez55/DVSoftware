@@ -75,6 +75,11 @@ object Dependencies {
         const val places = "com.google.android.libraries.places:places:${Versions.places}"
     }
 
+    object ThirdParty {
+        const val coilCompose = "io.coil-kt:coil-compose:${Versions.coilCompose}"
+        const val gson = "com.google.code.gson:gson:${Versions.gson}"
+    }
+
     object Test {
         const val junit = "junit:junit:${Versions.junit}"
         const val junitTest = "androidx.test.ext:junit:${Versions.junitTest}"

@@ -15,7 +15,6 @@ import el.dv.dvproperties.feature.home.composables.HomeScreenScaffold
 import el.dv.dvproperties.feature.home.composables.ErrorScreen
 import el.dv.dvproperties.feature.home.composables.HomeScreen
 import el.dv.dvproperties.feature.home.composables.LoadingScreen
-import el.dv.presentation.extension.navigate
 import el.dv.presentation.extension.onBackPress
 import el.dv.presentation.extension.requireContentView
 import el.dv.presentation.permission.Permission
@@ -39,7 +38,7 @@ class HomeFragment : Fragment() {
                 is HomeState.Loading -> LoadingScreen()
                 is HomeState.Error -> ErrorScreen { viewModel.handleEvent(HomeViewEvent.ErrorScreen) }
                 is HomeState.Show -> HomeScreen(
-                    propertList = state.propertyList,
+                    propertyList = state.propertyList,
                     propertyDetailsItemOnClick = { viewModel.handleEvent(HomeViewEvent.HorizontalGridOnClick(it)) },
                     addPropertyDetailsItemOnClick = { viewModel.handleEvent(HomeViewEvent.AddPropertyItemOnClick) }
                 )
@@ -50,8 +49,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        onBackPress(true) {
-            findNavController().navigateUp()
+        onBackPress(false) {
+            activity?.onBackPressedDispatcher?.onBackPressed()
         }
         viewModel.viewEffect.observe(viewLifecycleOwner) { viewEffect ->
             triggerViewEffect(viewEffect)

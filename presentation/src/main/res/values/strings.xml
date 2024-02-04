@@ -20,4 +20,8 @@
     <string name="recent" translatable="false">Recent</string>
     <string name="camera_permission_denied" translatable="false">Camera Permission Denied</string>
     <string name="camera_permission_denied_desc" translatable="false">Please update your camera permission in the settings or select Request button.</string>
+
+    <!--Warning Text-->
+    <string name="something_went_wrong" translatable="false">Something went wrong</string>
+    <string name="please_try_again" translatable="false">Please try again</string>
 </resources>

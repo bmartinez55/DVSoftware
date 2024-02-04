@@ -20,8 +20,15 @@
     <string name="property_value">Property Value</string>
     <string name="purchase_price_desc">Please input purchase price</string>
     <string name="bedrooms">Bedrooms</string>
+    <string name="bedrooms_short">Beds</string>
     <string name="bathrooms">Bathrooms</string>
+    <string name="bathrooms_short">Baths</string>
     <string name="square_feet">Sqft</string>
     <string name="lot_size">Lot size</string>
     <string name="type">Type</string>
+    <string name="single_family">Single Family Property</string>
+    <string name="multi_family">Multi-Family Property</string>
+    <string name="commercial_property">Commercial Property</string>
+    <string name="built_in">Built in %s</string>
+    <string name="sqft_lot">%s sqft lot</string>
 </resources>

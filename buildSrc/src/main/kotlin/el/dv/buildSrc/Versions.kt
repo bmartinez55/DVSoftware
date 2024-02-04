@@ -29,7 +29,7 @@ object Versions {
     const val koinAndroid = "3.3.0"
 
     // Room
-    const val room = "2.5.2"
+    const val room = "2.6.0"
 
     // Google
     const val playServicesAuth = "20.6.0"
@@ -44,6 +44,10 @@ object Versions {
 
     // Firebase
     const val bom = "31.0.2"
+
+    // ThirdParty
+    const val coilCompose = "2.5.0"
+    const val gson = "2.10.1"
 
     // Test
     const val junit = "4.13.2"

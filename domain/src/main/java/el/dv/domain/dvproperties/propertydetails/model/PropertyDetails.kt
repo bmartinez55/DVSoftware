@@ -1,6 +1,8 @@
 package el.dv.domain.dvproperties.propertydetails.model
 
 import android.os.Parcelable
+import androidx.room.Ignore
+import java.math.BigInteger
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -16,8 +18,11 @@ data class PropertyDetails(
     val buildDate: String = "",
     val bedroomCount: String = "",
     val bathroomCount: String = "",
-    val propertyType: PropertyType = PropertyType.SFH
-) : Parcelable
+    val propertyType: PropertyType = PropertyType.SFH,
+    val imagePaths: ImagePaths = ImagePaths()
+) : Parcelable {
+    fun fullAddress(): String = address.plus(", ").plus(city).plus(" ").plus(state).plus(" ").plus(zipCode)
+}
 
 enum class PropertyType {
     SFH,
@@ -45,5 +50,7 @@ data class AddPropertyRequest(
     val buildDate: String = "",
     val bedroomCount: String = "",
     val bathroomCount: String = "",
-    val propertyType: PropertyType = PropertyType.SFH
+    val propertyType: PropertyType = PropertyType.SFH,
+    @Ignore
+    var imagePaths: ImagePaths = ImagePaths()
 )

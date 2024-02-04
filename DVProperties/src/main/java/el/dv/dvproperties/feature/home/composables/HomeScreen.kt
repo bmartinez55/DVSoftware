@@ -21,7 +21,7 @@ import el.dv.presentation.R
 
 @Composable
 fun HomeScreen(
-    propertList: List<PropertyDetails>,
+    propertyList: List<PropertyDetails>,
     propertyDetailsItemOnClick: (Int) -> Unit,
     addPropertyDetailsItemOnClick: () -> Unit
 ) {
@@ -40,7 +40,7 @@ fun HomeScreen(
         DVSpacer(modifier = Modifier.paddingBottomXSmall())
 
         PriorityHorizontalGrid(
-            propertyList = propertList,
+            propertyList = propertyList,
             propertyDetailsItemOnClick = { propertyDetailsItemOnClick(it) },
             addPropertyDetailsItemOnClick = { addPropertyDetailsItemOnClick() }
         )
@@ -55,7 +55,7 @@ fun HomeScreen(
 @Composable
 fun HomeScreenPreview() {
     DVPropertiesTheme {
-        HomeScreen(propertList = PropertyDetailsListMockData.noPropertyDetails, {}, {})
+        HomeScreen(propertyList = PropertyDetailsListMockData.noPropertyDetails, {}, {})
     }
 }
 

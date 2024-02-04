@@ -55,4 +55,6 @@ dependencies {
 
     api(Dependencies.Google.accompanistInsets)
     api(Dependencies.Google.accompanistFlowLayout)
+
+    api(Dependencies.ThirdParty.coilCompose)
 }

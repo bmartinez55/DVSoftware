@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Warning Text-->
+    <string name="something_went_wrong" translatable="false">Something went wrong</string>
+    <string name="please_try_again" translatable="false">Please try again</string>
+</resources>

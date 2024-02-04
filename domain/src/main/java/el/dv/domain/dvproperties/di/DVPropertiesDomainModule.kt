@@ -4,6 +4,7 @@ import el.dv.domain.common.commonDomainModule
 import el.dv.domain.dvproperties.propertydetails.usecase.AddNewPropertyUseCase
 import el.dv.domain.dvproperties.propertydetails.usecase.GetAllOwnedPropertiesUseCase
 import el.dv.domain.dvproperties.propertydetails.usecase.GetOwnedPropertiesByTypeUseCase
+import el.dv.domain.dvproperties.propertydetails.usecase.GetPropertyByIdUseCase
 import el.dv.domain.networkmonitor.usecase.StartNetworkConnectivityMonitorUseCase
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
@@ -19,4 +20,6 @@ val dvPropertiesDomainModule = module {
     factoryOf(::GetOwnedPropertiesByTypeUseCase)
 
     factoryOf(::AddNewPropertyUseCase)
+
+    factoryOf(::GetPropertyByIdUseCase)
 }
