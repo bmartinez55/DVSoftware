@@ -57,6 +57,8 @@ dependencies {
     annotationProcessor(Dependencies.Room.compiler)
     implementation(Dependencies.Room.roomKtx)
 
+    implementation(Dependencies.ThirdParty.gson)
+
     testImplementation(Dependencies.Test.junit)
     androidTestImplementation(Dependencies.Test.junitTest)
     androidTestImplementation(Dependencies.Test.espresso)

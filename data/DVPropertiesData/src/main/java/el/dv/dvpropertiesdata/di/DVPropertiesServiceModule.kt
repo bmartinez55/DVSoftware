@@ -14,7 +14,10 @@ import org.koin.dsl.module
 
 val dVPropertiesServiceModule = module {
     single {
-        Room.databaseBuilder(androidContext(), PropertyDetailsDB::class.java, PROPERTY_DETAILS_DB).build()
+        Room
+            .databaseBuilder(androidContext(), PropertyDetailsDB::class.java, PROPERTY_DETAILS_DB)
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     single {

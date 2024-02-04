@@ -7,9 +7,13 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.TextFieldColors
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.lightColors
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import el.dv.compose.theme.DVSoftwareShapes
+import el.dv.compose.theme.Dimens
 
 @Composable
 fun DVPropertiesButtonColors(): ButtonColors = ButtonDefaults.buttonColors(
@@ -61,6 +65,24 @@ fun dVPropertiesTextFieldColors(): TextFieldColors = TextFieldDefaults.textField
     focusedLabelColor = MaterialTheme.colors.primary,
     placeholderColor = MaterialTheme.colors.secondaryVariant,
     unfocusedLabelColor = MaterialTheme.colors.surface
+)
+
+@Composable
+fun dvPropertiesCardColors(): CardColors = CardDefaults.cardColors(
+    containerColor = MaterialTheme.colors.surface,
+    contentColor = MaterialTheme.colors.surface,
+    disabledContainerColor = MaterialTheme.colors.surface,
+    disabledContentColor = MaterialTheme.colors.surface
+)
+
+@Composable
+fun dvPropertiesCardElevation(): CardElevation = CardDefaults.cardElevation(
+    defaultElevation = Dimens.Elevation.medium,
+    pressedElevation = Dimens.Elevation.medium,
+    focusedElevation = Dimens.Elevation.medium,
+    hoveredElevation = Dimens.Elevation.medium,
+    draggedElevation = Dimens.Elevation.medium,
+    disabledElevation = Dimens.Elevation.medium
 )
 
 @Composable

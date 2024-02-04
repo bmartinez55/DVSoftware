@@ -11,4 +11,6 @@ interface PropertyDetailsRepository {
     suspend fun getOwnedPropertiesByType(propertyType: PropertyType): Result<List<PropertyDetails>>
 
     suspend fun addNewProperty(addPropertyRequest: AddPropertyRequest): Result<Boolean>
+
+    suspend fun getPropertyById(propertyId: String): Result<PropertyDetails>
 }

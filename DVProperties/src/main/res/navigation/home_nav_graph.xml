@@ -11,10 +11,18 @@
         <action
             android:id="@+id/action_homeFragment_to_newPropertyFragment"
             app:destination="@id/newPropertyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_propertyDetailsFragment"
+            app:destination="@id/propertyDetailsFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/newPropertyFragment"
         android:name="el.dv.dvproperties.feature.newproperty.view.NewPropertyFragment"
         android:label="NewPropertyFragment" />
+
+    <fragment
+        android:id="@+id/propertyDetailsFragment"
+        android:name="el.dv.dvproperties.feature.propertydetails.view.PropertyDetailsFragment"
+        android:label="PropertyDetailsFragment" />
 </navigation>
