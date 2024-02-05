@@ -78,6 +78,8 @@ object Dependencies {
     object ThirdParty {
         const val coilCompose = "io.coil-kt:coil-compose:${Versions.coilCompose}"
         const val gson = "com.google.code.gson:gson:${Versions.gson}"
+        const val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitGsonConverter}"
+        const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     }
 
     object Test {

@@ -1,5 +1,6 @@
 package el.dv.dvproperties.di
 
+import el.dv.domain.dvproperties.geocoding.usecase.GetPropertyCoordinatesUseCase
 import el.dv.dvproperties.R
 import el.dv.dvproperties.core.view.DVPropertiesViewModel
 import el.dv.dvproperties.feature.home.view.HomeViewModel
@@ -18,6 +19,11 @@ val dvPropertiesModule = module {
     viewModelOf(::DVPropertiesViewModel)
     viewModelOf(::HomeViewModel)
     viewModelOf(::NewPropertyViewModel)
+
+    /**
+     * Declaration of UseCases
+     */
+    factoryOf(::GetPropertyCoordinatesUseCase)
 
     /**
      * Declarations of ViewReducers

@@ -1,15 +1,15 @@
-package el.dv.dvpropertiesdata.network
+package el.dv.dvpropertiesdata.network.propertydetails
 
 import com.google.gson.Gson
 import el.dv.data.extension.formatToCurrency
 import el.dv.domain.core.CoroutineDispatchers
+import el.dv.domain.core.Geolocation
 import el.dv.domain.core.Result
 import el.dv.domain.dvproperties.propertydetails.PropertyDetailsRepository
 import el.dv.domain.dvproperties.propertydetails.model.AddPropertyRequest
 import el.dv.domain.dvproperties.propertydetails.model.ImagePaths
 import el.dv.domain.dvproperties.propertydetails.model.PropertyDetails
 import el.dv.domain.dvproperties.propertydetails.model.PropertyType
-import el.dv.dvpropertiesdata.util.TypeConverter
 import el.dv.dvpropertiesdata.util.fromJson
 import kotlinx.coroutines.withContext
 
@@ -65,8 +65,13 @@ private fun DaoPropertyDetails.toPropertyDetails(): PropertyDetails {
         bedroomCount = this.bedroomCount,
         bathroomCount = this.bathroomCount,
         propertyType = this.propertyType.toPropertyType(),
-        imagePaths = Gson().fromJson<ImagePaths>(this.imagePaths)
+        imagePaths = Gson().fromJson<ImagePaths>(this.imagePaths),
+        coordinates = this.toGeolocation()
     )
+}
+
+private fun DaoPropertyDetails.toGeolocation(): Geolocation {
+    return Geolocation(this.lat, this.lon)
 }
 
 private fun String.toPropertyType(): PropertyType {
@@ -90,6 +95,9 @@ private fun AddPropertyRequest.toDaoPropertyDetails(): DaoPropertyDetails {
         bedroomCount = this.bedroomCount,
         bathroomCount = this.bathroomCount,
         propertyType = this.propertyType.name,
-        imagePaths = Gson().toJson(this.imagePaths)
+        imagePaths = Gson().toJson(this.imagePaths),
+        lat = this.coordinates.lat,
+        lon = this.coordinates.lon
     )
 }
+

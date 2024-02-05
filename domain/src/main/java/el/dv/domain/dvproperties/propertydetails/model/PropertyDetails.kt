@@ -2,6 +2,7 @@ package el.dv.domain.dvproperties.propertydetails.model
 
 import android.os.Parcelable
 import androidx.room.Ignore
+import el.dv.domain.core.Geolocation
 import java.math.BigInteger
 import kotlinx.parcelize.Parcelize
 
@@ -19,7 +20,8 @@ data class PropertyDetails(
     val bedroomCount: String = "",
     val bathroomCount: String = "",
     val propertyType: PropertyType = PropertyType.SFH,
-    val imagePaths: ImagePaths = ImagePaths()
+    val imagePaths: ImagePaths = ImagePaths(),
+    val coordinates: Geolocation = Geolocation()
 ) : Parcelable {
     fun fullAddress(): String = address.plus(", ").plus(city).plus(" ").plus(state).plus(" ").plus(zipCode)
 }
@@ -52,5 +54,6 @@ data class AddPropertyRequest(
     val bathroomCount: String = "",
     val propertyType: PropertyType = PropertyType.SFH,
     @Ignore
-    var imagePaths: ImagePaths = ImagePaths()
+    var imagePaths: ImagePaths = ImagePaths(),
+    val coordinates: Geolocation = Geolocation()
 )

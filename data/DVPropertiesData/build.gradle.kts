@@ -58,6 +58,8 @@ dependencies {
     implementation(Dependencies.Room.roomKtx)
 
     implementation(Dependencies.ThirdParty.gson)
+    implementation(Dependencies.ThirdParty.retrofit)
+    implementation(Dependencies.ThirdParty.retrofitGsonConverter)
 
     testImplementation(Dependencies.Test.junit)
     androidTestImplementation(Dependencies.Test.junitTest)
