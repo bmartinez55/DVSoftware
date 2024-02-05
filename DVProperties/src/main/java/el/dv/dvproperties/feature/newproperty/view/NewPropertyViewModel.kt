@@ -8,8 +8,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
+import el.dv.domain.core.Geolocation
 import el.dv.domain.core.ifFailure
 import el.dv.domain.core.ifSuccess
+import el.dv.domain.dvproperties.geocoding.usecase.GetPropertyCoordinatesUseCase
 import el.dv.domain.dvproperties.propertydetails.model.toPropertyType
 import el.dv.domain.dvproperties.propertydetails.usecase.AddNewPropertyUseCase
 import el.dv.domain.logging.AppLog
@@ -45,6 +47,7 @@ import kotlinx.coroutines.launch
 class NewPropertyViewModel(
     private val addNewPropertyUseCase: AddNewPropertyUseCase,
     private val loadBooleanFromSharedPreferencesUseCase: LoadBooleanFromSharedPreferencesUseCase,
+    private val getPropertyCoordinatesUseCase: GetPropertyCoordinatesUseCase,
     private val permissionFactory: PermissionFactory<UIPermissionProviderConstructParams<RequestPermissionCallback>, PermissionApi, CheckPermissionGrantedUseCase, RequestForPermissionGrantedUseCase>,
     private val appDictionary: AppDictionary
 ) : ViewModel() {
@@ -194,11 +197,21 @@ class NewPropertyViewModel(
     private fun handleOnSubmitButtonClick(event: NewPropertyViewEvent.OnSubmitButtonClick) {
         AppLog.d(TAG, "handleOnSubmitButtonClick")
         viewModelScope.launch {
-            addNewPropertyUseCase.run(newPropertiesDetailsState.toAddPropertyRequest()).ifSuccess {
-                sendViewEffect(ViewEffect.NavigateBack)
+            getPropertyCoordinatesUseCase.run(newPropertiesDetailsState.addressState.value).ifSuccess { coordinates ->
+                addNewProperty(coordinates)
             }.ifFailure { e ->
-                AppLog.d(TAG, "Error submitting new property $e")
+                AppLog.d(TAG, "getPropertyCoordinatesUseCase error $e")
+                addNewProperty()
             }
+        }
+    }
+
+    private fun addNewProperty(propertyCoordinates: Geolocation = Geolocation()) {
+        AppLog.d(TAG, "addNewProperty")
+        viewModelScope.launch {
+            addNewPropertyUseCase.run(newPropertiesDetailsState.toAddPropertyRequest(propertyCoordinates)).ifSuccess {
+                sendViewEffect(ViewEffect.NavigateBack)
+            }.ifFailure { e -> AppLog.d(TAG, "Error submitting new property $e") }
         }
     }
 

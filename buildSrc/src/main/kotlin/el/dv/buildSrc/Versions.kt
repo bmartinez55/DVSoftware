@@ -48,6 +48,8 @@ object Versions {
     // ThirdParty
     const val coilCompose = "2.5.0"
     const val gson = "2.10.1"
+    const val retrofitGsonConverter = "2.9.0"
+    const val retrofit = "2.9.0"
 
     // Test
     const val junit = "4.13.2"

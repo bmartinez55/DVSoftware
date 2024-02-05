@@ -1,9 +1,9 @@
-package el.dv.dvpropertiesdata.network
+package el.dv.dvpropertiesdata.network.propertydetails
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import el.dv.dvpropertiesdata.util.TypeConverter
+import el.dv.dvpropertiesdata.network.propertydetails.DaoPropertyDetails
+import el.dv.dvpropertiesdata.network.propertydetails.PropertyDetailsDao
 
 const val PROPERTY_DETAILS_DB = "propertyDetailsDB"
 

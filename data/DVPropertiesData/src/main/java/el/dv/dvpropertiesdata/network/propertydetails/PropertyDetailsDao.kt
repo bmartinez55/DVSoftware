@@ -1,4 +1,4 @@
-package el.dv.dvpropertiesdata.network
+package el.dv.dvpropertiesdata.network.propertydetails
 
 import androidx.room.ColumnInfo
 import androidx.room.Dao
@@ -7,8 +7,6 @@ import androidx.room.Insert
 import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.TypeConverters
-import com.google.gson.annotations.SerializedName
-import el.dv.domain.dvproperties.propertydetails.model.ImagePaths
 import el.dv.dvpropertiesdata.util.TypeConverter
 
 @Dao
@@ -44,5 +42,7 @@ data class DaoPropertyDetails(
     @ColumnInfo("property_type") var propertyType: String = "",
     @ColumnInfo("image_paths")
     @TypeConverters(TypeConverter::class)
-    var imagePaths: String = ""
+    var imagePaths: String = "",
+    @ColumnInfo("lat") var lat: Double = 0.0,
+    @ColumnInfo("lon") var lon: Double = 0.0
 )

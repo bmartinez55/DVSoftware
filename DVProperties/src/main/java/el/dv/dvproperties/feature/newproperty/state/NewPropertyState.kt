@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.fragment.app.Fragment
+import el.dv.domain.core.Geolocation
 import el.dv.domain.dvproperties.propertydetails.model.AddPropertyRequest
 import el.dv.domain.dvproperties.propertydetails.model.PropertyType
 import el.dv.presentation.permission.Permission
@@ -72,7 +73,7 @@ data class NewPropertiesDetailsState(
     val propertyType: MutableState<PropertyType> = mutableStateOf(PropertyType.SFH)
 )
 
-fun NewPropertiesDetailsState.toAddPropertyRequest(): AddPropertyRequest {
+fun NewPropertiesDetailsState.toAddPropertyRequest(coordinates: Geolocation): AddPropertyRequest {
     return AddPropertyRequest(
         address = this.addressState.value,
         city = this.cityState.value,
@@ -84,6 +85,7 @@ fun NewPropertiesDetailsState.toAddPropertyRequest(): AddPropertyRequest {
         buildDate = this.buildDateState.value,
         bedroomCount = this.bedRoomState.value,
         bathroomCount = this.bathRoomState.value,
-        propertyType = this.propertyType.value
+        propertyType = this.propertyType.value,
+        coordinates = coordinates
     )
 }
