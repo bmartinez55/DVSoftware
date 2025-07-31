@@ -2,7 +2,7 @@ package el.dv.buildSrc
 
 object Versions {
     // Core
-    const val kotlin = "1.9.0"
+    const val kotlin = "2.0.20"
     const val ktLint = "10.2.0"
     const val coroutines = "1.7.3"
 
