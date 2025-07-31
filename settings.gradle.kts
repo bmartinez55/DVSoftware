@@ -14,3 +14,5 @@ include(":DVPropertiesData")
 project(":DVPropertiesData").projectDir = File(rootProject.projectDir, "/data/DVPropertiesData")
 include(":FayucaFinderData")
 project(":FayucaFinderData").projectDir = File(rootProject.projectDir, "/data/FayucaFinderData")
+
+include(":weatherapp")
