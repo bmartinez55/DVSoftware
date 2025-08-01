@@ -1,5 +1,4 @@
 import el.dv.buildSrc.Dependencies
-import el.dv.buildSrc.Versions
 
 plugins {
     id("com.android.library")
@@ -33,7 +32,7 @@ android {
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
-                targetCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -48,7 +47,6 @@ dependencies {
     // Threads
     api(Dependencies.Jetbrains.coroutinesCore)
     api(Dependencies.Jetbrains.coroutinesAndroid)
-
 
     // DI
     api(Dependencies.DI.koinCore)

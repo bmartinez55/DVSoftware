@@ -10,7 +10,6 @@ import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import el.dv.dvproperties.databinding.BottomNavigationLayoutBinding
-import el.dv.presentation.extension.onBackPress
 
 class BottomNavigationFragment : Fragment() {
 

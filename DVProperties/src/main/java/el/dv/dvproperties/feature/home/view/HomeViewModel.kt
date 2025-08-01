@@ -207,7 +207,6 @@ class HomeViewModel(
                     handleEvent(HomeViewEvent.CheckPermission(Permission(Manifest.permission.READ_MEDIA_VIDEO)))
                 }
                 permission.isVideoAccessPermission() -> {
-
                 }
             }
         }

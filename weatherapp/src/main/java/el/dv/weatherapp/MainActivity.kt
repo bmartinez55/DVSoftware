@@ -5,25 +5,24 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import el.dv.weatherapp.ui.theme.DVSoftwareTheme
+import androidx.navigation.compose.rememberNavController
+import el.dv.weatherapp.navhost.AppNavHost
+import el.dv.weatherapp.ui.theme.WeatherAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            DVSoftwareTheme {
+            WeatherAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    innerPadding
+                    AppNavHost(navController = rememberNavController())
                 }
             }
         }
@@ -41,7 +40,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    DVSoftwareTheme {
+    WeatherAppTheme {
         Greeting("Android")
     }
 }

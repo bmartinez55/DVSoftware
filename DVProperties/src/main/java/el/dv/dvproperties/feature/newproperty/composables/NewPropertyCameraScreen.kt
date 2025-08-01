@@ -20,7 +20,6 @@ fun NewPropertyCameraScreen(
 ) {
     BottomSheetScaffold(
         sheetContent = {
-
         },
         scaffoldState = scaffoldState,
         sheetPeekHeight = 0.dp

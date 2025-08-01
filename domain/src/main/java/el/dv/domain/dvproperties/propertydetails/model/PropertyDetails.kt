@@ -3,7 +3,6 @@ package el.dv.domain.dvproperties.propertydetails.model
 import android.os.Parcelable
 import androidx.room.Ignore
 import el.dv.domain.core.Geolocation
-import java.math.BigInteger
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

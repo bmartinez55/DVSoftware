@@ -4,4 +4,4 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class ImagePaths(val imagePathsList: List<String> = emptyList()): Parcelable
+data class ImagePaths(val imagePathsList: List<String> = emptyList()) : Parcelable

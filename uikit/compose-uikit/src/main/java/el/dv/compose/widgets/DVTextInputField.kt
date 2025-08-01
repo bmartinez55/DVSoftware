@@ -82,6 +82,6 @@ fun DVTextInputField(
 @Composable
 fun DVTextInputFieldPreview() {
     DVPropertiesTheme {
-        DVTextInputField(value = "", matchScreenWidth = false, label = { Text(text = "Test")}, onValueChanged = {}, leadingIcon = null, trailingIcon = null)
+        DVTextInputField(value = "", matchScreenWidth = false, label = { Text(text = "Test") }, onValueChanged = {}, leadingIcon = null, trailingIcon = null)
     }
 }

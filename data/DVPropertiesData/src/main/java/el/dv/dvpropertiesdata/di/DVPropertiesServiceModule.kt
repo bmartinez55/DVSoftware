@@ -2,7 +2,6 @@ package el.dv.dvpropertiesdata.di
 
 import android.content.Context
 import androidx.room.Room
-import com.google.gson.Gson
 import el.dv.data.storage.core.api.DataStoreApi
 import el.dv.data.storage.sharedpreferences.api.SharedPreferencesDataStoreApi
 import el.dv.dvpropertiesdata.network.core.ClientInterceptor

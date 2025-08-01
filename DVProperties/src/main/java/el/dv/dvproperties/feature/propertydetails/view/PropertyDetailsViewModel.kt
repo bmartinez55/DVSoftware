@@ -15,7 +15,6 @@ import el.dv.dvproperties.feature.propertydetails.state.PropertyDetailsState
 import el.dv.dvproperties.feature.propertydetails.state.PropertyDetailsViewEvents
 import el.dv.dvproperties.feature.propertydetails.state.PropertyDetailsViewState
 import el.dv.dvproperties.feature.propertydetails.view.viewreducer.GetPropertyDetailsViewReducer
-import el.dv.presentation.util.AppDictionary
 import el.dv.presentation.view.effect.ViewEffect
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.catch

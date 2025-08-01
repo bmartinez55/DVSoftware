@@ -9,12 +9,12 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import el.dv.domain.logging.AppLog
-import el.dv.dvproperties.feature.home.state.HomeState
-import el.dv.dvproperties.feature.home.state.HomeViewEvent
-import el.dv.dvproperties.feature.home.composables.HomeScreenScaffold
 import el.dv.dvproperties.feature.home.composables.ErrorScreen
 import el.dv.dvproperties.feature.home.composables.HomeScreen
+import el.dv.dvproperties.feature.home.composables.HomeScreenScaffold
 import el.dv.dvproperties.feature.home.composables.LoadingScreen
+import el.dv.dvproperties.feature.home.state.HomeState
+import el.dv.dvproperties.feature.home.state.HomeViewEvent
 import el.dv.presentation.extension.onBackPress
 import el.dv.presentation.extension.requireContentView
 import el.dv.presentation.permission.Permission

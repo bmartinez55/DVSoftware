@@ -2,33 +2,40 @@ package el.dv.weatherapp.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.em
+import el.dv.compose.theme.Dimens
+import el.dv.compose.theme.fayucafinder.FayucaFinderColor
 
 // Set of Material typography styles to start with
 val Typography = Typography(
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    )
-    /* Other default text styles to override
     titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
+        fontSize = Dimens.FontSize.x2large,
+        fontWeight = FontWeight.Bold,
+        lineHeight = 1.3.em,
+        color = FayucaFinderColor.Palette.black
     ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
+    titleMedium = TextStyle(
+        fontSize = Dimens.FontSize.xlarge,
+        fontWeight = FontWeight.Bold,
+        lineHeight = 1.5.em,
+        color = FayucaFinderColor.Palette.black
+    ),
+    titleSmall = TextStyle(
+        fontSize = Dimens.FontSize.large,
+        fontWeight = FontWeight.Bold,
+        lineHeight = 1.5.em,
+        color = FayucaFinderColor.Palette.black
+    ),
+    bodyLarge = TextStyle(
+        fontSize = Dimens.FontSize.medium,
+        lineHeight = 1.6.em,
+        color = FayucaFinderColor.Palette.black
+    ),
+    bodySmall = TextStyle(
+        fontSize = Dimens.FontSize.medium,
+        fontWeight = FontWeight.Bold,
+        lineHeight = 1.6.em,
+        color = FayucaFinderColor.Palette.black
     )
-    */
 )

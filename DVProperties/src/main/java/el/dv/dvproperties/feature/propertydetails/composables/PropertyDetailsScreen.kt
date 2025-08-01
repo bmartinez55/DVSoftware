@@ -18,7 +18,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,8 +40,6 @@ import el.dv.compose.theme.paddingBottomXXSmall
 import el.dv.compose.theme.paddingEndMedium
 import el.dv.compose.theme.paddingEndXXSmall
 import el.dv.compose.theme.paddingHorzMedium
-import el.dv.compose.theme.paddingMedium
-import el.dv.compose.theme.paddingSmall
 import el.dv.compose.theme.paddingTopMedium
 import el.dv.compose.theme.paddingXSmall
 import el.dv.compose.widgets.BodyText
@@ -58,7 +55,7 @@ import el.dv.dvproperties.R
 @Composable
 fun PropertyDetailsScreen(
     scrollState: ScrollState,
-    propertyDetails: PropertyDetails,
+    propertyDetails: PropertyDetails
 ) {
     Box(
         modifier = Modifier
@@ -82,7 +79,6 @@ fun PropertyDetailsScreen(
             SecondaryPropertyDetails(propertyDetails = propertyDetails)
         }
     }
-
 }
 
 @Composable
@@ -146,7 +142,7 @@ fun PrimaryPropertyDetail(propertyDetails: PropertyDetails) {
 
         PropertyDimensions(propertyDetails = propertyDetails)
 
-        BodyText(text =propertyDetails.fullAddress())
+        BodyText(text = propertyDetails.fullAddress())
     }
 }
 
