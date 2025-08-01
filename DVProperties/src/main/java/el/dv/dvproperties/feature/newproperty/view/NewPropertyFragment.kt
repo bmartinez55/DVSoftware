@@ -17,19 +17,18 @@ import androidx.navigation.fragment.findNavController
 import el.dv.compose.widgets.DVTopBar
 import el.dv.domain.logging.AppLog
 import el.dv.dvproperties.feature.newproperty.composables.NewPropertyCameraScreen
-import el.dv.presentation.R
 import el.dv.dvproperties.feature.newproperty.composables.NewPropertyScaffold
 import el.dv.dvproperties.feature.newproperty.composables.NewPropertyScreen
 import el.dv.dvproperties.feature.newproperty.state.NewPropertyCameraViewState
 import el.dv.dvproperties.feature.newproperty.state.NewPropertyState
 import el.dv.dvproperties.feature.newproperty.state.NewPropertyViewEvent
+import el.dv.presentation.R
 import el.dv.presentation.extension.onBackPress
 import el.dv.presentation.extension.requireContentView
 import el.dv.presentation.view.effect.ViewEffect
 import el.dv.presentation.view.manager.dialog.DialogManager
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class NewPropertyFragment : Fragment() {
 
@@ -61,34 +60,34 @@ class NewPropertyFragment : Fragment() {
                     scrollState = scrollState,
                     newPropertyDetailsState = viewModel.newPropertiesDetailsState,
                     onAddressChanged = {
-                       viewModel.handleViewEvent(NewPropertyViewEvent.OnAddressChanged(it))
+                        viewModel.handleViewEvent(NewPropertyViewEvent.OnAddressChanged(it))
                     },
                     onCityChanged = {
                         viewModel.handleViewEvent(NewPropertyViewEvent.OnCityChanged(it))
                     },
                     onStateChanged = {
-                         viewModel.handleViewEvent(NewPropertyViewEvent.OnStateChanged(it))
+                        viewModel.handleViewEvent(NewPropertyViewEvent.OnStateChanged(it))
                     },
                     onZipCodeChanged = {
-                         viewModel.handleViewEvent(NewPropertyViewEvent.OnZipCodeChanged(it))
+                        viewModel.handleViewEvent(NewPropertyViewEvent.OnZipCodeChanged(it))
                     },
                     bedroomDropDownClick = {
-                         viewModel.handleViewEvent(NewPropertyViewEvent.OnBedroomDropDownClick(it))
+                        viewModel.handleViewEvent(NewPropertyViewEvent.OnBedroomDropDownClick(it))
                     },
                     bathroomDropDownClick = {
-                         viewModel.handleViewEvent(NewPropertyViewEvent.OnBathroomDropDownClick(it))
+                        viewModel.handleViewEvent(NewPropertyViewEvent.OnBathroomDropDownClick(it))
                     },
                     propertyTypeDropDownClick = {
-                         viewModel.handleViewEvent(NewPropertyViewEvent.OnPropertyTypeDropDownClick(it))
+                        viewModel.handleViewEvent(NewPropertyViewEvent.OnPropertyTypeDropDownClick(it))
                     },
                     propertySizeChanged = {
-                         viewModel.handleViewEvent(NewPropertyViewEvent.OnPropertySizeChanged(it))
+                        viewModel.handleViewEvent(NewPropertyViewEvent.OnPropertySizeChanged(it))
                     },
                     lotSizeChanged = {
-                         viewModel.handleViewEvent(NewPropertyViewEvent.OnLotSizeChanged(it))
+                        viewModel.handleViewEvent(NewPropertyViewEvent.OnLotSizeChanged(it))
                     },
                     propertyCostChanged = {
-                         viewModel.handleViewEvent(NewPropertyViewEvent.OnPropertyCostChanged(it))
+                        viewModel.handleViewEvent(NewPropertyViewEvent.OnPropertyCostChanged(it))
                     },
                     takeAPhotoButtonClick = {
                         viewModel.handleViewEvent(NewPropertyViewEvent.TakeAPhotoButtonClick(context))

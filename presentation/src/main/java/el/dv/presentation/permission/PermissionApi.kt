@@ -2,11 +2,9 @@ package el.dv.presentation.permission
 
 import android.Manifest
 import android.os.Build
-import android.os.Parcelable
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import kotlinx.parcelize.Parcelize
 
 interface PermissionApi {
     fun isPermissionGranted(permission: Permission): PermissionResult
@@ -16,8 +14,10 @@ interface PermissionApi {
 data class Permission(val permissionId: String = "") {
     fun isPermissionCamera(): Boolean = this.permissionId == Manifest.permission.CAMERA
     fun isPermissionRecordAudio(): Boolean = this.permissionId == Manifest.permission.RECORD_AUDIO
+
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun isImageAccessPermission(): Boolean = this.permissionId == Manifest.permission.READ_MEDIA_IMAGES
+
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun isVideoAccessPermission(): Boolean = this.permissionId == Manifest.permission.READ_MEDIA_VIDEO
 }

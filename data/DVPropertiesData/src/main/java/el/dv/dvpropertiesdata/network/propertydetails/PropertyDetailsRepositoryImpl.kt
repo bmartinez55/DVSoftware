@@ -100,4 +100,3 @@ private fun AddPropertyRequest.toDaoPropertyDetails(): DaoPropertyDetails {
         lon = this.coordinates.lon
     )
 }
-

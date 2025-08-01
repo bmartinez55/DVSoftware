@@ -18,7 +18,7 @@ class GeocodingRepositoryImpl(private val geocodingApi: GeocodingApi, private va
             val response = geocodingApi.getPropertyCoordinates(address.appendUrl()).await()
             Result.Success(response.toGeolocation())
         } catch (e: Exception) {
-            AppLog.e(TAG,"getPropertyCoordinates error", e)
+            AppLog.e(TAG, "getPropertyCoordinates error", e)
             Result.Failure(e)
         }
     }

@@ -1,6 +1,5 @@
 package el.dv.dvpropertiesdata.extension
 
-import el.dv.domain.core.Result
 import el.dv.dvpropertiesdata.R
 import retrofit2.Response
 

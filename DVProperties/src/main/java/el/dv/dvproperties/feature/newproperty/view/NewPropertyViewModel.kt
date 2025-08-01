@@ -33,7 +33,6 @@ import el.dv.presentation.permission.RequestPermissionCallback
 import el.dv.presentation.permission.UIPermissionProviderConstructParams
 import el.dv.presentation.permission.usecase.CheckPermissionGrantedUseCase
 import el.dv.presentation.permission.usecase.RequestForPermissionGrantedUseCase
-import el.dv.presentation.R as PresentationR
 import el.dv.presentation.util.AppDictionary
 import el.dv.presentation.util.AppText
 import el.dv.presentation.view.effect.ViewEffect
@@ -43,6 +42,7 @@ import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import el.dv.presentation.R as PresentationR
 
 class NewPropertyViewModel(
     private val addNewPropertyUseCase: AddNewPropertyUseCase,
@@ -141,7 +141,6 @@ class NewPropertyViewModel(
             updateViewState(state.copy(viewState = state.viewState.copy(newPropertyState = NewPropertyState.Show(newPropertiesDetailsState.addressState))))
             AppLog.d(TAG, "isCameraPermissionGranted? ${permissionResultState.isCameraPermissionGranted}")
         }
-
     }
 
     private fun handleOnAddressChanged(event: NewPropertyViewEvent.OnAddressChanged) {

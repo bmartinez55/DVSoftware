@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.runtime.setValue
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,10 +21,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
@@ -71,13 +70,13 @@ fun NewPropertyScreen(
     uploadButtonClick: () -> Unit,
     onSubmitClick: () -> Unit
 ) {
-    Column (
+    Column(
         modifier = Modifier
             .paddingMedium()
             .verticalScroll(scrollState, enabled = true)
     ) {
         H3Text(text = stringResource(id = R.string.add_property))
-        
+
         CaptionText(text = stringResource(id = R.string.new_property_desc))
 
         DVSpacer(modifier = Modifier.paddingBottomX2Large())
@@ -85,9 +84,9 @@ fun NewPropertyScreen(
         DVTextInputField(
             value = newPropertyDetailsState.addressState.value,
             onValueChanged = {
-                 onAddressChanged(it)
+                onAddressChanged(it)
             },
-            label = { Text(text = stringResource(id = R.string.address))}
+            label = { Text(text = stringResource(id = R.string.address)) }
         )
 
         DVSpacer(modifier = Modifier.paddingBottomXLarge())
@@ -234,7 +233,7 @@ fun BedroomDropDownMenu(
         BodyText(text = stringResource(id = R.string.bedrooms))
         OutlinedTextField(
             value = dropDownValue.value,
-            onValueChange = { dropDownValue.value = it},
+            onValueChange = { dropDownValue.value = it },
             trailingIcon = {
                 Icon(
                     imageVector = icon,
@@ -285,7 +284,7 @@ fun BathroomDropDownMenu(
         BodyText(text = stringResource(id = R.string.bathrooms))
         OutlinedTextField(
             value = dropDownValue.value,
-            onValueChange = { dropDownValue.value = it},
+            onValueChange = { dropDownValue.value = it },
             trailingIcon = {
                 Icon(
                     imageVector = icon,
@@ -336,7 +335,7 @@ fun PropertyTypeDropDownMenu(
         BodyText(text = stringResource(id = R.string.type))
         OutlinedTextField(
             value = dropDownValue.value,
-            onValueChange = { dropDownValue.value = it},
+            onValueChange = { dropDownValue.value = it },
             trailingIcon = {
                 Icon(
                     imageVector = icon,
@@ -369,7 +368,7 @@ fun PropertyTypeDropDownMenu(
 fun PropertySize(
     newPropertyDetailsState: NewPropertiesDetailsState,
     propertySizeChanged: (String) -> Unit,
-    lotSizeChanged: (String) -> Unit,
+    lotSizeChanged: (String) -> Unit
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
